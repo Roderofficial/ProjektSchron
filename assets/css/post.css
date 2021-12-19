@@ -1,0 +1,53 @@
+.post{
+    max-width:1200px;
+    margin:auto!important;
+}
+.post .post-header{
+    margin-bottom: 20px;
+}
+.post .images{
+    height: 500px;
+    margin-bottom:20px;
+}
+.post .custom-card-text{
+    font-weight: 700;
+    font-size: 25px;
+
+}
+.map-box{
+    height: 250px;
+}
+.post .card.location{
+    margin-bottom: 20px;
+}
+.post .member-avatar-box {
+    display:block;
+    width: 100px;
+    height: 100px;
+    margin:auto;
+    border-radius:50%;
+}
+.post .member-username{
+    text-align:center;
+    font-size:27px;
+    font-weight: 600;
+    display:block;
+    margin:auto;
+    margin-top: 10px;
+}
+.profile-btn{
+    display: block;
+    margin:auto;
+    margin-top: 20px;
+}
+.post .card{
+    margin-bottom:20px;
+}
+.post-header .swiper{
+    height:100%;
+}
+.post-header .swiper .swiper-slide img{
+    display:block;
+    margin:auto;
+    height:100%;
+}

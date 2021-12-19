@@ -1,0 +1,4 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule "^post/(.*)$" "/post.php?posttitle=$1"
+</IfModule>
