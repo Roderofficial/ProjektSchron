@@ -87,3 +87,8 @@ body{
 .main-classfields .classfields-cards .cardcol{
     padding-top:30px;
 }
+.nav-avatar{
+    width: 32px;
+    display:block;
+    margin:auto;
+}

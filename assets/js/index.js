@@ -10,7 +10,7 @@ function getData(){
 function addClassfield(data){
     $(".classfields-cards").append(
         `
-        <div class="col-lg-3 col-md-6 col-sm-12 cardcol">
+        <div class="col-lg-3 col-md-6 col-sm-6 cardcol">
                 <div class="card classfield-card-preview">
                     <div style="background: url('/assets/images/test-dogs/${data.photo_hash}'); background-size: cover; background-position: center;" class="classfieldimage"></div>
                     <div class="card-body">

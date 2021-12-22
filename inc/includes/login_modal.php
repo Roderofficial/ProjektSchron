@@ -8,13 +8,14 @@
             </div>
             <div class="modal-body">
                 <!-- LOGIN FORM-->
-                <form>
+                <form method="POST" id="loginform">
                     <div class="mb-3">
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="e-mail">
+                        <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="e-mail" name="email">
                     </div>
                     <div class="mb-3">
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="hasło">
+                        <input type="password" class="form-control" placeholder="hasło" name="password">
                     </div>
+                        <input type="hidden" id="redirect" name="redirect">
                     <button type="submit" class="btn btn-primary" style="margin: auto; display:block; padding-left: 20px; padding-right:20px; ">Zaloguj</button>
                 </form>
 
@@ -26,6 +27,11 @@
 
                 <!-- END LOGIN FORM -->
             </div>
+
+            <div class="modal-footer">
+                <p>Nie masz jeszcze konta? <b><u>Zarejestruj się</u></b> lub skorzystaj z logowania za pomocą zewnętrznego serwisu.</p>
+            </div>
+
         </div>
     </div>
 </div>
