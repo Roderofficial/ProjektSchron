@@ -51,3 +51,17 @@
     margin:auto;
     height:100%;
 }
+.post .cost{
+    font-weight: 700;
+    color: #5c0073;
+    font-size: 30px;
+}
+.post .title{
+    font-weight: 300;
+}
+.post .post-details .detail{
+    font-size:18px;
+}
+.post .post-details .detail i{
+    color: #5c0073;
+}

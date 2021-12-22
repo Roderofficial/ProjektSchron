@@ -1,4 +1,5 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'] . "/inc/functions/sfm.php");
 #validate get data
 function generate_images($data){
     $return_data = '';
@@ -9,7 +10,6 @@ function generate_images($data){
     return $return_data;
 
 }
-
 if(!isset($_GET['posttitle']) || empty($_GET['posttitle'])){
     http_response_code(400);
     exit();
@@ -21,7 +21,7 @@ $id = end($tmp);
 require_once($_SERVER['DOCUMENT_ROOT'].'/config/database.php');
 $data = $database->select("classfield", 
 ["[>]user" => ["user_id" => "userid"], "[>]classfield_category" => ["classfield_categoryid" => "ctid"]],
-['classfield.title', 'classfield.description', 'classfield.location', 'classfield.created_at', 'classfield_category.category_title','classfield_category.category_icon', "userdata" => ["user.username", "user.userid","user.avatar_hash"]],
+['classfield.title', 'classfield.description', 'classfield.location', 'classfield.cost', 'classfield.created_at', 'classfield_category.category_title','classfield_category.category_icon', "userdata" => ["user.username", "user.userid","user.avatar_hash"]],
 [
     'classfield.id' => htmlspecialchars($id)
 ]
@@ -41,6 +41,7 @@ $images = $database->select(
     ]
 );
 $data['images'] = generate_images($images);
+$data['cost'] = cost_formatter($data['cost']);
 
 
 ?>
