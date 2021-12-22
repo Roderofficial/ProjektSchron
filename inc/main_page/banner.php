@@ -5,11 +5,12 @@
             <hr />
             <form>
                 <div class="mb-3">
-                    <label class="form-label">Gatunek</label>
+                    <label class="form-label">Kategoria</label>
                     <select class="form-select">
                         <option selected>Open this select menu</option>
                         <option value="dog">Pies</option>
                         <option value="cat">Kot</option>
+                        <option value="cat">Ackesoria</option>
                     </select>
                 </div>
                 <div class="row mb-3">

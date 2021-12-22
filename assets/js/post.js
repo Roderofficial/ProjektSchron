@@ -1,5 +1,5 @@
 $(function () {
-    //MAPS
+    //IMAGES SWIPER
     var swiper = new Swiper(".mySwiper", {
         pagination: {
             el: ".swiper-pagination",
@@ -10,6 +10,7 @@ $(function () {
             prevEl: ".swiper-button-prev",
         },
     });
+    //MAP
     var map = new ol.Map({
         target: 'map-box',
         layers: [
