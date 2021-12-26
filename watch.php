@@ -1,6 +1,3 @@
-<?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/post/controler.php');
-?>
 <!doctype html>
 <html lang="pl">
 
@@ -8,33 +5,29 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/post/controler.php');
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/assets/css/post.css">
 
 
-    <title><?= $data['title'] ?> - adopt.pl</title>
+    <title>zoomory</title>
     <?php require($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/head.php'); ?>
-    <script type="text/javascript">
-        var geo_lat = <?php echo json_encode($data['geo_lat']); ?>;
-        var geo_long = <?php echo json_encode($data['geo_long']); ?>;
-    </script>
+    <link rel="stylesheet" href="/assets/css/watch.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
 </head>
 
 <body>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/navbar/navbar.php');
     require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/navbar/navbar.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/post/main_post.php');
 
     ?>
 
-
+    <div class="watch">
+        <h1>PRZEGLĄDAJ OGŁOSZENIA</h1>
+    </div>
 
 
 
 
     <?php require($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/scripts.php') ?>
-    <script src="/assets/js/post.js"></script>
-
-
+    <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
 </body>
 
 </html>

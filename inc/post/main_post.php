@@ -14,8 +14,8 @@
             <div class="card-body">
                 <p class="custom-card-text" style="font-size: 20px;">AUTOR OGŁOSZENIA</p>
                 <img class="member-avatar-box placeholder" src=" <?= $data['userdata']['avatar_hash'] ?>" alt="">
-                <p class="member-username w-75 placeholder placeholder-lg"><?= $data['userdata']['username'] ?></p>
-                <a href="#" tabindex="-1" class="btn btn-primary placeholder w-75 profile-btn" aria-hidden="true" style="margin:auto; margin-top:20px; display:block;"><i class="fas fa-user"></i> Wyświetl profil użytkownika</a>
+                <p class="member-username w-75 placeholder placeholder-lg"><?= $verified_badge ?> <?= $data['userdata']['username'] ?></p>
+                <a href="/profile/<?= $data['userdata']['userid'] ?>" tabindex="-1" class="btn btn-primary placeholder w-75 profile-btn" aria-hidden="true" style="margin:auto; margin-top:20px; display:block;"><i class="fas fa-user"></i> Wyświetl profil użytkownika</a>
             </div>
         </div>
 

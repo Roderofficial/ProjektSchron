@@ -21,7 +21,7 @@ $id = end($tmp);
 require_once($_SERVER['DOCUMENT_ROOT'].'/config/database.php');
 $data = $database->select("classfield", 
 ["[>]user" => ["user_id" => "userid"], "[>]classfield_category" => ["classfield_categoryid" => "ctid"]],
-['classfield.title', 'classfield.description', 'classfield.location', 'classfield.cost', 'classfield.created_at', 'classfield_category.category_title','classfield_category.category_icon', "userdata" => ["user.username", "user.userid","user.avatar_hash"]],
+['classfield.title', 'classfield.description', 'classfield.location', 'classfield.cost', 'classfield.geo_lat', 'classfield.geo_long', 'classfield.created_at', 'classfield_category.category_title','classfield_category.category_icon', "userdata" => ["user.username", "user.userid","user.avatar_hash","user.verified",]],
 [
     'classfield.id' => htmlspecialchars($id)
 ]
@@ -42,6 +42,12 @@ $images = $database->select(
 );
 $data['images'] = generate_images($images);
 $data['cost'] = cost_formatter($data['cost']);
+
+if($data["userdata"]['verified'] == 1){
+    $verified_badge = verified_badge();
+}else{
+    $verified_badge = "niema";
+}
 
 
 ?>

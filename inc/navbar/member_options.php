@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Mój profil</a>
+        <a class="dropdown-item" href="/profile/<?= $_SESSION['userdata']['userid']?>">Mój profil</a>
         <a class="dropdown-item" href="#">Moje ogłoszenia</a>
         <a class="dropdown-item" href="#">Ustawienia</a>
         <div class="dropdown-divider"></div>
