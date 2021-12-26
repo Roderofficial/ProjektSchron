@@ -13,7 +13,7 @@ if(empty($data['email']) || empty($data['password']) || !filter_var($data['email
 //Check email in database
 require_once($_SERVER["DOCUMENT_ROOT"]."/config/database.php");
 
-$results = $database->select("user", ["userid","username", "email", "password", "avatar_hash"],
+$results = $database->select("user", ["userid","username", "email", "banned", "password", "avatar_hash"],
  [
         "email" => $data['email'],
     ],
@@ -28,18 +28,20 @@ if(empty($results)){
 }
 
 //Check password member when exist
-if(password_verify($data['password'], $results[0]['password'])){
-    @session_start();
-    $_SESSION['userdata']['userid'] = $results[0]['userid'];
-    $_SESSION['userdata']['username'] = $results[0]['username'];
-    $_SESSION['userdata']['avatar'] = $results[0]['avatar_hash'];
-    $_SESSION['login'] = True;
-
-
-}else{
+if(!(password_verify($data['password'], $results[0]['password']))){
     http_response_code(404);
     exit();
 }
+
+if($results[0]['banned'] == 1){
+    http_response_code(403);
+    exit();
+}
+@session_start();
+$_SESSION['userdata']['userid'] = $results[0]['userid'];
+$_SESSION['userdata']['username'] = $results[0]['username'];
+$_SESSION['userdata']['avatar'] = $results[0]['avatar_hash'];
+$_SESSION['login'] = True;
 
 var_dump($_SESSION);
 

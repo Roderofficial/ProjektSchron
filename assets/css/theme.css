@@ -92,3 +92,12 @@ body{
     display:block;
     margin:auto;
 }
+.verified-badge {
+    color: #0089ff;
+}
+.role-admin{
+    color: #099fe6;
+}
+.role-schronisko{
+    color: #c5883b;
+}

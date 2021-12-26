@@ -23,3 +23,4 @@
   gtag('config', 'G-YQ9CSP2JY7');
 </script>
 <link rel="stylesheet" href="/assets/css/theme.css">
+<meta name="theme-color" content="#5c0073">
