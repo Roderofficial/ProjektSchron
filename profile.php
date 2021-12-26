@@ -1,4 +1,5 @@
 <?php
+@session_start();
 require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/profile/controler.php');
 ?>
 <!doctype html>
@@ -10,7 +11,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/profile/controler.php');
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>Radosław Pochopień</title>
+    <title><?= $data['username'] ?></title>
     <?php require($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/head.php'); ?>
     <link rel="stylesheet" href="/assets/css/profile.css">
     <script type="text/javascript">
@@ -38,6 +39,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/profile/controler.php');
 
 
     <?php require($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/scripts.php') ?>
+    <script src="/assets/js/profile.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,5 @@
 
+<hr />
 <?php 
 if(!empty($data['about'])){
     echo '<div class="card">
