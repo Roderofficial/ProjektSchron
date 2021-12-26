@@ -30,9 +30,16 @@ $("#loginform").submit(function (event) {
                 notyf.error(`Podano niepoprawne dane podczas logowania`);
             }else if (response.status == 404){
                 notyf.error("Niepoprawny login lub hasło!")
+            } else if (response.status == 403) {
+                notyf.error("Twoje konto zostało zablokowane! <br /> Jeśli uważasz, że to błąd, skontaktuj się z administracją.")
             }
             
             console.table(response);
         },
          });
 });
+
+//TOOLTIPS
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})

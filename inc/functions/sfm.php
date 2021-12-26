@@ -20,5 +20,9 @@ function cost_formatter($cost)
     return number_format($cost, 0, ',', ' ').' zł';
 }
 
+function verified_badge(){
+    return '<i class="fas fa-check-circle verified-badge" data-toggle="tooltip" title="" data-bs-original-title="Użytkownik został zweryfikowany pod kątem prawidłowości danych." aria-label="Użytkownik został zweryfikowany pod kątem prawidłowości danych."></i>';
+}
+
 
 ?>
