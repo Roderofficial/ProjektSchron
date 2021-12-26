@@ -1,8 +1,21 @@
 <div class="profile-overlay">
     <div class="background-image w-100" style="background-image: url('<?= $data['banner_hash'] ?>');">
+        <?php 
+        
+        if(isset($_SESSION['userdata']['userid']) && $_SESSION['userdata']['userid'] == $_GET['id']){
+            echo '<button type="button" class="btn btn-primary banner-update-btn" id="bannerupdate"><i class="fas fa-upload"></i></button>';
+        }
+
+        ?>
 
         <!-- AVATAR -->
         <div class="avatar" style="background-image: url('<?= $data['avatar_hash'] ?>');">
+            <?php
+                if (isset($_SESSION['userdata']['userid']) && $_SESSION['userdata']['userid'] == $_GET['id']) {
+                    echo '<div class="avatar-update" id="avatar-update"><button type="button" class="btn btn-primary avatar-update-btn" id="avatarupdate"><i class="fas fa-upload"></i></button></div>';
+                }
+            ?>
+            
             <div class="test"><i class="fab fa-facebook" style="color: #0043ff;
     font-size: 34px;
     border-radius: 50%;
