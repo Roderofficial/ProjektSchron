@@ -46,7 +46,7 @@ $data['cost'] = cost_formatter($data['cost']);
 if($data["userdata"]['verified'] == 1){
     $verified_badge = verified_badge();
 }else{
-    $verified_badge = "niema";
+    $verified_badge = null;
 }
 
 
