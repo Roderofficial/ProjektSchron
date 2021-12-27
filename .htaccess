@@ -2,4 +2,5 @@
     RewriteEngine On
     RewriteRule "^post/(.*)$" "/post.php?posttitle=$1"
     RewriteRule "^profile/(.*)$" "/profile.php?id=$1"
+    RewriteRule ^ogloszenia$ /watch.php [L]
 </IfModule>

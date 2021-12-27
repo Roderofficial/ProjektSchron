@@ -21,13 +21,19 @@
 
     <div class="watch">
         <h1>PRZEGLĄDAJ OGŁOSZENIA</h1>
+        <?php
+            var_dump($_GET);
+            require_once($_SERVER['DOCUMENT_ROOT'].'/inc/watch/classfields.php')
+        ?>
+
     </div>
 
 
 
 
     <?php require($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/scripts.php') ?>
-    <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+    
+    <script src="/assets/js/watch.js"></script>
 </body>
 
 </html>
