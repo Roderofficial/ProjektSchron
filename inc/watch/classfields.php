@@ -1,4 +1,7 @@
-<table id="table" data-search="true" data-pagination="true" data-page-size="48" data-show-custom-view="true" data-custom-view="customViewFormatter">
+<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+    <i class="fas fa-filter"></i> Filtry wyszukiwania
+</button>
+<table id="table" data-search="true" data-server-sort="true" data-pagination="true" data-page-size="48" data-side-pagination="server" ata-server-sort="false" data-query-params="queryParams" data-show-custom-view="true" data-custom-view="customViewFormatter">
     <thead>
         <tr>
             <th data-field="id">id</th>
