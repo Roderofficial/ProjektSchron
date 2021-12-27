@@ -101,3 +101,7 @@ body{
 .role-schronisko{
     color: #c5883b;
 }
+.navbar{
+    background: var(--bs-white);
+    border-bottom: 1px solid var(--bs-gray-500);
+}
