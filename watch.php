@@ -27,6 +27,10 @@
         ?>
 
     </div>
+    <?php
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/watch/filter-offcanvas.php');
+    ?>
+
 
 
 
