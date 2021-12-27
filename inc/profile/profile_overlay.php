@@ -1,5 +1,5 @@
 <div class="profile-overlay">
-    <div class="background-image w-100" style="background-image: url('<?= $data['banner_hash'] ?>');">
+    <div class="background-image w-100" style="background-image: url('/assets/images/backgrounds/<?= $data['banner_hash'] ?>');">
         <?php 
         
         if(isset($_SESSION['userdata']['userid']) && $_SESSION['userdata']['userid'] == $_GET['id']){

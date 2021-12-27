@@ -9,6 +9,7 @@ function customViewFormatter(data) {
     var view = '';
     if (data.length != 0) {
         $.each(data, function (i, row) {
+            console.table(row);
             view += template.replace('%NAME%', row.name)
                 .replace('%title%', row.title)
                 .replace('%link%', row.link)
@@ -27,4 +28,16 @@ function customViewFormatter(data) {
     }
 
 
+}
+function queryParams(params) {
+    delete params.sort
+    delete params.order
+    return params
+}
+
+function responseHandler(res) {
+    if ($('#table').bootstrapTable('getOptions').sortOrder === 'desc') {
+        res.rows = res.rows.reverse()
+    }
+    return res
 }
