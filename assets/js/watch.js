@@ -1,5 +1,5 @@
 $('#table').bootstrapTable({
-    url: '/inc/requests/classfields-member.php?userid=' + userid.toString(),
+    url: '/inc/requests/classfields-watch.php',
     locale: "pl_PL",
 
 })
@@ -7,7 +7,7 @@ $('#table').bootstrapTable({
 function customViewFormatter(data) {
     var template = $('#card-template').html()
     var view = '';
-    if(data.length != 0){
+    if (data.length != 0) {
         $.each(data, function (i, row) {
             view += template.replace('%NAME%', row.name)
                 .replace('%title%', row.title)
@@ -18,7 +18,7 @@ function customViewFormatter(data) {
         })
 
         return `<div class="row mx-0">${view}</div>`
-    }else{
+    } else {
         return `<div class="card">
     <div class="card-body">
         <p class="card-text">Użytkownik nie posiada aktywnych ogłoszeń </p>

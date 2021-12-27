@@ -16,7 +16,7 @@
                     <a class="nav-link active" aria-current="page" href="#"><i class="fas fa-home"></i> Strona główna</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-list"></i> Przeglądaj</a>
+                    <a class="nav-link" href="/ogloszenia"><i class="fas fa-list"></i> Przeglądaj</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fas fa-search"></i> Wyszukiwarka</a>
