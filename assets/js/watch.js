@@ -22,7 +22,7 @@ function customViewFormatter(data) {
     } else {
         return `<div class="card">
     <div class="card-body">
-        <p class="card-text">Użytkownik nie posiada aktywnych ogłoszeń </p>
+        <p class="card-text">Brak ogłoszeń </p>
     </div>
     </div>`
     }
