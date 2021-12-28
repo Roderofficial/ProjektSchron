@@ -22,7 +22,6 @@
     <div class="watch">
         <h1>PRZEGLĄDAJ OGŁOSZENIA</h1>
         <?php
-            var_dump($_GET);
             require_once($_SERVER['DOCUMENT_ROOT'].'/inc/watch/classfields.php')
         ?>
 

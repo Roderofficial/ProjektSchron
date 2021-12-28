@@ -3,4 +3,5 @@
     RewriteRule "^post/(.*)$" "/post.php?posttitle=$1"
     RewriteRule "^profile/(.*)$" "/profile.php?id=$1"
     RewriteRule ^ogloszenia$ /watch.php [L]
+    Header set X-Robots-Tag "noindex, follow" env=NOINDEXFOLLOW
 </IfModule>
