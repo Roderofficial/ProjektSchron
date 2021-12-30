@@ -6,6 +6,7 @@ if (!isset($_GET['id']) || empty($_GET['id']) || !is_numeric($_GET['id'])){
 
 require_once($_SERVER["DOCUMENT_ROOT"].'/config/database.php');
 require_once($_SERVER["DOCUMENT_ROOT"] .'/inc/functions/sfm.php');
+require_once($_SERVER["DOCUMENT_ROOT"] . '/config/config.php');
 
 $data = $database->select("user",
 ["[>]user_roles" => ["user_roleID" => "id"]],

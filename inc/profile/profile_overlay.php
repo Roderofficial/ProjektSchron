@@ -9,7 +9,7 @@
         ?>
 
         <!-- AVATAR -->
-        <div class="avatar" style="background-image: url('<?= $data['avatar_hash'] ?>');">
+        <div class="avatar" style="background-image: url('<?= $avatar_locations. $data['avatar_hash'] ?>');">
             <?php
                 if (isset($_SESSION['userdata']['userid']) && $_SESSION['userdata']['userid'] == $_GET['id']) {
                     echo '<div class="avatar-update" id="avatar-update"><button type="button" class="btn btn-primary avatar-update-btn" id="avatarupdate"><i class="fas fa-upload"></i></button></div>';

@@ -105,3 +105,13 @@ body{
     background: var(--bs-white);
     border-bottom: 1px solid var(--bs-gray-500);
 }
+.input-group > .select2-container--bootstrap-5 {
+    width: auto;
+    flex: 1 1 auto;
+}
+
+.input-group > .select2-container--bootstrap-5 .select2-selection--single {
+    height: 100%;
+    line-height: inherit;
+    padding: 0.5rem 1rem;
+}

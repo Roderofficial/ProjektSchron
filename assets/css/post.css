@@ -26,6 +26,7 @@
     height: 100px;
     margin:auto;
     border-radius:50%;
+    border: 2px solid var(--bs-gray-300);
 }
 .post .member-username{
     text-align:center;
