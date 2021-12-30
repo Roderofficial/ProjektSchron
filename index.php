@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>zoomory</title>
+    <title>GetPet.pl - Ogłoszenia</title>
     <?php require($_SERVER['DOCUMENT_ROOT'].'/inc/includes/head.php'); ?>
 </head>
 

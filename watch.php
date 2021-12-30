@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>zoomory</title>
+    <title>Aktualne ogłoszenia - GetPet.pl</title>
     <?php require($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/head.php'); ?>
     <link rel="stylesheet" href="/assets/css/watch.css">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
@@ -22,12 +22,12 @@
     <div class="watch">
         <h1>PRZEGLĄDAJ OGŁOSZENIA</h1>
         <?php
-            require_once($_SERVER['DOCUMENT_ROOT'].'/inc/watch/classfields.php')
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/watch/classfields.php')
         ?>
 
     </div>
     <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/watch/filter-offcanvas.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/watch/filter-offcanvas.php');
     ?>
 
 
@@ -35,8 +35,9 @@
 
 
     <?php require($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/scripts.php') ?>
-    
+    <script src="/assets/libs/city-picker.js"></script>
     <script src="/assets/js/watch.js"></script>
+    <script src="/assets/libs/select2-fix.js"></script>
 </body>
 
 </html>

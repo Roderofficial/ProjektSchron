@@ -1,3 +1,4 @@
+<?php require_once($_SERVER['DOCUMENT_ROOT'].'/config/config.php') ?>
 <div class="dropdown" style="display: inline;">
     <button class="btn btn-secondary dropdown-toggle topbtn" style="margin-right:10px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fas fa-user"></i> Mój profil
@@ -6,7 +7,7 @@
         <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
             <div class="col align-items-center justify-content-center">
                 <?php
-                echo '<img class="nav-avatar" src="' . $_SESSION['userdata']['avatar'] . '">';
+                echo '<img class="nav-avatar" src="' . $avatar_locations . $_SESSION['userdata']['avatar'] . '">';
                 ?>
             </div>
             <div class="col align-items-center justify-content-center" style="text-align:center;">
