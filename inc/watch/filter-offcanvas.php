@@ -6,25 +6,52 @@
     <div class="offcanvas-body">
         <div>
             <div class="mb-3">
+                <label class="form-label">Kategoria</label>
+                <div class="input-group mb-3" style="max-width:100%;">
+                    <select class="category-select form-control" name="category-select[]" multiple="multiple">
+                        <option value="1">Psy</option>
+                        <option value="2">Koty</option>
+                        <option value="3">Konie</option>
+                        <option value="4">Akcesoria</option>
+                    </select>
+                    <button class="btn btn-outline-secondary" type="button" id="search-city-btn">Wyczyść</button>
+                </div>
                 <label class="form-label">Miejscowość</label>
-                <input type="text" class="form-control">
+                <div class="input-group mb-3" style="max-width:100%;">
+                    <select class="form-control citypicker" id="citypicker" name="osm_id" placeholder="Szukaj...">
+                        <option value="" disabled selected>Szukaj...</option>
+                    </select>
+                    <button class="btn btn-outline-secondary" type="button" id="search-city-btn">Wyczyść</button>
+                </div>
+                <label class="form-label">Promień</label>
+                <div class="radius-picker-div" style="max-width:100%; margin-bottom:20px;">
+                    <select class="form-control" id="radius" name="radius">
+                        <option value="0" selected>+0 km</option>
+                        <option value="5">+5 km</option>
+                        <option value="10">+10 km</option>
+                        <option value="15">+15 km</option>
+                        <option value="20">+20 km</option>
+                        <option value="30">+30 km</option>
+                        <option value="50">+50 km</option>
+                        <option value="100">+100 km</option>
+                    </select>
+                </div>
 
-                <label class="form-label">Miejscowość</label>
-                <input type="text" class="form-control">
+                <div class="map-box" id="map-box" style="margin-bottom:20px;"></div>
 
-                <label class="form-label">Miejscowość</label>
-                <input type="text" class="form-control">
+                <label class="form-label">Cena</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Od</span>
+                    <input type="text" class="form-control" aria-label="0zł">
+                    <span class="input-group-text">Do</span>
+                    <input type="text" class="form-control" aria-label="10 000 zł">
+
+                </div>
+                <button class="btn btn-primary btn-sm" role="button">Za darmo</button>
+                <br />
             </div>
         </div>
-        <div class="dropdown mt-3">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
-                Dropdown button
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-        </div>
+        <hr>
+        <button class="btn btn-success w-100" href="#" role="button">Szukaj</button>
     </div>
 </div>

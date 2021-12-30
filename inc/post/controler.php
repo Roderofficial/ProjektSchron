@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/inc/functions/sfm.php");
+require_once($_SERVER['DOCUMENT_ROOT'].'/config/config.php');
 #validate get data
 function generate_images($data){
     $return_data = '';
