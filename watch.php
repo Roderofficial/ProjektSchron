@@ -37,7 +37,6 @@
     <?php require($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/scripts.php') ?>
     <script src="/assets/libs/city-picker.js"></script>
     <script src="/assets/js/watch.js"></script>
-    <script src="/assets/libs/select2-fix.js"></script>
 </body>
 
 </html>
