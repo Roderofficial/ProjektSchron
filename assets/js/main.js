@@ -14,7 +14,7 @@ $("#loginform").submit(function (event) {
 
     $.ajax({
         type: "POST",
-        url: "/inc/login/validate_login.php",
+        url: "/inc/requests/auth/validate_login.php",
         data: data,
         beforeSend: function () {
             submitBtn.prop("disabled", true);
@@ -35,7 +35,7 @@ $("#loginform").submit(function (event) {
             }
             
             console.table(response);
-        },
+        }
          });
 });
 
@@ -43,3 +43,82 @@ $("#loginform").submit(function (event) {
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
+class login_modal_page{
+    static login(){
+        $('#loginmodal-passwordreset, #loginmodal-register').hide();
+        $('#loginmodal-login').fadeIn();
+        
+
+    }
+    static password_reset() {
+        $('#loginmodal-login, #loginmodal-register').hide();
+        $('#loginmodal-passwordreset').fadeIn();
+
+
+    }
+    static register() {
+        $('#loginmodal-login, #loginmodal-passwordreset').hide();
+        $('#loginmodal-register').fadeIn();
+
+
+    }
+
+}
+$('#loginModal').on('show.bs.modal', function (e) {
+    login_modal_page.login();
+})
+$(".login-switch-register").click(function(e){
+     e.preventDefault();
+     login_modal_page.register();
+})
+$(".login-switch-login").click(function (e) {
+    e.preventDefault();
+    login_modal_page.login();
+})
+$(".login-switch-passwordreset").click(function (e) {
+    e.preventDefault();
+    login_modal_page.password_reset();
+})
+
+$("#registerform").submit(function (event) {
+    event.preventDefault();
+    var form = $(this);
+    var notyf = new Notyf(
+        {
+            duration: 6000,
+            position: {
+                x: 'center',
+                y: 'top',
+            }
+        });
+    var submitBtn = $(this).find("input[type=submit]");
+    var data = $('#registerform').serialize();
+    console.log(data);
+
+
+    $.ajax({
+        type: "POST",
+        url: "/inc/requests/auth/register.php",
+        data: data,
+        beforeSend: function () {
+            submitBtn.prop("disabled", true);
+        },
+        success: function (response) {
+
+            notyf.success("Konto zostało utworzone pomyślnie. Automatyczne przekierowanie...")
+            form.trigger("reset");
+            console.log(response);
+            setTimeout(function(e){
+                location.reload();
+            }, 4000);
+            
+
+        },
+        error: function (response) {
+            notyf.error(`Błąd ${response.status}: ${response.responseText}`)
+            grecaptcha.reset();
+
+            console.table(response);
+        }
+    });
+});

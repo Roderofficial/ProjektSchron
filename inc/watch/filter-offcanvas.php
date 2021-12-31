@@ -1,20 +1,20 @@
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasFilter" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasExampleLabel">Filtruj wyniki</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <div>
+        <form id="searchform">
             <div class="mb-3">
                 <label class="form-label">Kategoria</label>
-                <div class="input-group mb-3" style="max-width:100%;">
-                    <select class="category-select form-control" name="category-select[]" multiple="multiple">
+                <div class="mb-3 category" style="max-width:100%;">
+                    <select class="category-select form-control" name="category-select">
+                        <option value="-1" selected>Wszystkie</option>
                         <option value="1">Psy</option>
                         <option value="2">Koty</option>
                         <option value="3">Konie</option>
                         <option value="4">Akcesoria</option>
                     </select>
-                    <button class="btn btn-outline-secondary" type="button" id="search-city-btn">Wyczyść</button>
                 </div>
                 <label class="form-label">Miejscowość</label>
                 <div class="input-group mb-3" style="max-width:100%;">
@@ -24,7 +24,7 @@
                     <button class="btn btn-outline-secondary" type="button" id="search-city-btn">Wyczyść</button>
                 </div>
                 <label class="form-label">Promień</label>
-                <div class="radius-picker-div" style="max-width:100%; margin-bottom:20px;">
+                <div class="radius-picker-div mb-3" style="max-width:100%; margin-bottom:20px;">
                     <select class="form-control" id="radius" name="radius">
                         <option value="0" selected>+0 km</option>
                         <option value="5">+5 km</option>
@@ -37,21 +37,22 @@
                     </select>
                 </div>
 
-                <div class="map-box" id="map-box" style="margin-bottom:20px;"></div>
+                <div class="map-box mb-3" id="map-box" style="margin-bottom:20px;"></div>
 
                 <label class="form-label">Cena</label>
                 <div class="input-group mb-3">
                     <span class="input-group-text">Od</span>
-                    <input type="text" class="form-control" aria-label="0zł">
+                    <input type="text" class="form-control" aria-label="0zł" placeholder="0 zł" name="cost_min">
                     <span class="input-group-text">Do</span>
-                    <input type="text" class="form-control" aria-label="10 000 zł">
+                    <input type="text" class="form-control" aria-label="10 000 zł" placeholder="10 000 zł" name="cost_max">
 
                 </div>
                 <button class="btn btn-primary btn-sm" role="button">Za darmo</button>
                 <br />
             </div>
-        </div>
-        <hr>
-        <button class="btn btn-success w-100" href="#" role="button">Szukaj</button>
+            <hr>
+            <button class="btn btn-success w-100" href="#" type="submit">Szukaj</button>
+        </form>
+
     </div>
 </div>
