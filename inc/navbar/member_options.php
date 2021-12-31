@@ -21,7 +21,7 @@
         <a class="dropdown-item" href="#">Moje ogłoszenia</a>
         <a class="dropdown-item" href="#">Ustawienia</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="/inc/login/logout.php"><i class="fas fa-sign-out-alt"></i> Wyloguj</a>
+        <a class="dropdown-item" href="/inc/requests/auth/logout.php"><i class="fas fa-sign-out-alt"></i> Wyloguj</a>
     </div>
 </div>
 

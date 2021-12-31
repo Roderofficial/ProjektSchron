@@ -2,7 +2,7 @@ function citypicker(tag){
     $(tag).select2(
         {
             theme: 'bootstrap-5',
-            dropdownParent: $('#offcanvasExample'),
+            dropdownParent: $('#offcanvasFilter'),
             ajax: {
                 url: 'https://nominatim.openstreetmap.org/search',
                 type: "GET",
@@ -17,16 +17,17 @@ function citypicker(tag){
                         countrycodes: "pl",
                         dedupe: 1,
                         extratags: 1,
-                        limit: 1
+                        limit: 1,
+                        polygon_geojson: 1
                     };
                 },
                 processResults: function (data) {
                     console.log(data)
                     var res = data.features.map(function (item) {
-                        if (item.properties.place_rank >= 10 && item.properties.place_rank <= 16) {
+                        if (item.properties.place_rank >= 8 && item.properties.place_rank <= 16) {
                             console.log(item)
                             selected_location = item;
-                            return { id: item.properties.place_id, text: item.properties.display_name };
+                            return { id: item.properties.osm_id, text: item.properties.display_name };
                         } else {
                             return {}
                         }

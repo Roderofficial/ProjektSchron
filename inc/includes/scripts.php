@@ -12,3 +12,4 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/login_modal.php');
 <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table-locale-all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
