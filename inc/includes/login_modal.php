@@ -11,10 +11,10 @@
                     <!-- LOGIN FORM-->
                     <form method="POST" id="loginform">
                         <div class="mb-3">
-                            <input type="email" class="form-control" aria-describedby="emailHelp" autocomplete="email" placeholder="e-mail" name="email">
+                            <input type="email" class="form-control" aria-describedby="emailHelp" autocomplete="email" placeholder="e-mail" name="email" required>
                         </div>
                         <div class="mb-3">
-                            <input type="password" class="form-control" placeholder="hasło" autocomplete="current-password" name=" password">
+                            <input type="password" class="form-control" placeholder="hasło" autocomplete="current-password" name=" password" required>
                             <small><a class="login-switch-passwordreset" href="#">Resetuj hasło</a></small>
                         </div>
                         <input type="hidden" id="redirect" name="redirect">
@@ -47,15 +47,15 @@
                     <form method="POST" id="registerform">
                         <div class="mb-3">
                             <label>Nazwa użytkownika/obiektu</label>
-                            <input type="text" class="form-control" autocomplete="username" placeholder="Nazwa użytkownika" name="username">
+                            <input type="text" class="form-control" autocomplete="username" placeholder="Nazwa użytkownika" name="username" required>
                         </div>
                         <div class="mb-3">
                             <label>Adres e-mail</label>
-                            <input type="email" class="form-control" aria-describedby="emailHelp" autocomplete="email" placeholder="e-mail" name="email">
+                            <input type="email" class="form-control" aria-describedby="emailHelp" autocomplete="email" placeholder="e-mail" name="email" required>
                         </div>
                         <div class="mb-3">
                             <label>Hasło</label>
-                            <input type="password" class="form-control" placeholder="hasło" autocomplete="current-password" name=" password">
+                            <input type="password" class="form-control" placeholder="hasło" autocomplete="current-password" name=" password" required>
                         </div>
                         <input type="hidden" id="redirect" name="redirect">
                         <div style="text-align:center;">
@@ -83,7 +83,7 @@
                     <form method="POST" id="passresetform">
                         <div class="mb-3">
                             <label>Adres e-mail</label>
-                            <input type="email" class="form-control" aria-describedby="emailHelp" autocomplete="email" placeholder="e-mail" name="email">
+                            <input type="email" class="form-control" aria-describedby="emailHelp" autocomplete="email" placeholder="e-mail" name="email" required>
                         </div>
                         <input type="hidden" id="redirect" name="redirect">
                         <div style="text-align:center;">
