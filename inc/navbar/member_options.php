@@ -26,4 +26,4 @@
 </div>
 
 
-<button type="button" class="btn btn-primary topbtn"><i class="fas fa-plus"></i> Dodaj ogłoszenie</button>
+<a href="/u/dodaj" type="button" class="btn btn-primary topbtn"><i class="fas fa-plus"></i> Dodaj ogłoszenie</a>
