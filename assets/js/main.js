@@ -104,10 +104,11 @@ $("#registerform").submit(function (event) {
             submitBtn.prop("disabled", true);
         },
         success: function (response) {
+            $("#registerform :input").prop("disabled", true);
 
             notyf.success("Konto zostało utworzone pomyślnie. Automatyczne przekierowanie...")
-            form.trigger("reset");
             console.log(response);
+            
             setTimeout(function(e){
                 location.reload();
             }, 4000);

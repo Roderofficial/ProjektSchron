@@ -1,7 +1,7 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteRule "^post/(.*)$" "/post.php?posttitle=$1"
-    RewriteRule "^profile/(.*)$" "/profile.php?id=$1"
-    RewriteRule ^ogloszenia$ /watch.php [L]
+    RewriteRule "^post/(.*)$" "/views/post.php?posttitle=$1"
+    RewriteRule "^profile/(.*)$" "/views/profile.php?id=$1"
+    RewriteRule ^ogloszenia$ /views/watch.php [L]
     Header set X-Robots-Tag "noindex, follow" env=NOINDEXFOLLOW
 </IfModule>
