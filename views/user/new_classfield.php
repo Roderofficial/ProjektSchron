@@ -11,7 +11,7 @@
     <?php require($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/head.php'); ?>
     <link rel="stylesheet" href="/assets/css/new_classfield.css">
     <link href="https://releases.transloadit.com/uppy/v2.3.2/uppy.min.css" rel="stylesheet">
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -26,11 +26,12 @@
                 <h5 class="card-title">Nowe ogłoszenie</h5>
                 <form method="POST" id="classfield">
 
+                    <!-- OBRAZY -->
                     <div class="obrazy mb-3">
                         <h6 class="card-subtitle mb-2 text-muted ">Zdjęcia</h6>
                         <div id="drag-drop-area"></div>
                         <div class="hidden-images" style="display:none"></div>
-                        <small class="text-muted">Pierwsze wybrane zdjęcie będzie robiło za okładkę.</small>
+                        <small class="text-muted">Pierwsze zdjęcie będzie zdjęciem głównym.</small>
 
                     </div>
                     <div class="simpleinfo mb-3">
@@ -44,16 +45,22 @@
                         <div class="mb-3">
                             <label>Treść ogłoszenia</label>
                             <div id="editor">
+                                <textarea id="desceditor" minlength="100" maxlength="6000"></textarea>
+                                <textarea name="description" id="description" style="display:none;"></textarea>
+
+
+
                             </div>
-                            <textarea name="description" style="display:none" id="hiddenArea"></textarea>
+
 
                         </div>
 
+                        <!-- KATEGORIA I CENA -->
                         <div class="catcost mb-3">
                             <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
                                 <div class="col-lg-6 col-12">
                                     <label>Kategoria</label>
-                                    <select class="category-select form-control" name="category" style="width:100%;">
+                                    <select class="category-select form-control" name="category" style="width:100%;" required>
                                         <option value="-1" selected disabled>Wybierz kategorię</option>
                                         <option value="1">Psy</option>
                                         <option value="2">Koty</option>
@@ -64,7 +71,7 @@
                                 <div class="col-lg-6 col-12">
                                     <label>Cena</label>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" name="cost" placeholder="0 zł" aria-describedby="basic-addon2">
+                                        <input type="number" class="form-control" name="cost" placeholder="0 zł" aria-describedby="basic-addon2" min="0" step="1" required>
                                         <span class="input-group-text" id="basic-addon2">zł</span>
                                     </div>
                                 </div>
@@ -72,6 +79,26 @@
 
                         </div>
 
+                        <!-- DANE KONTAKTOWE -->
+                        <div class="contact mb-3">
+                            <h6 class="card-subtitle mb-2 text-muted ">Dane kontaktowe</h6>
+                            <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                                <div class="col-lg-6 col-12">
+                                    <label>Adres e-mail</label>
+                                    <input type="email" class="form-control" name="email" placeholder="name@example.com" required>
+
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <label>Telefon</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="+48 123 456 789" pattern="(?<!\w)(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w)" required>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <!-- LOKALIZACJA -->
                         <div class="mb-3 lokalizacja">
                             <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|} location">
                                 <div class="col-lg-6 col-12">
@@ -89,6 +116,7 @@
                         </div>
                     </div>
 
+                    <!-- PRZESYŁANIE FORMULARZA -->
                     <div class="submit">
                         <div style="text-align:center;">
                             <div class="g-recaptcha mb-3" style="display:inline-block" data-sitekey="6Ldl6d8dAAAAANuCA-InONqkE0EIWnuoMRDyIqGb"></div>
@@ -111,7 +139,7 @@
 
     <script src="https://releases.transloadit.com/uppy/v2.3.2/uppy.min.js"></script>
     <script src="https://releases.transloadit.com/uppy/locales/v2.0.5/pl_PL.min.js"></script>
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="/assets/libs/tinymce/tinymce.min.js"></script>
     <script src="/assets/js/new_classfield.js"></script>
 </body>
 

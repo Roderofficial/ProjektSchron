@@ -3,9 +3,10 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/inc/functions/sfm.php");
 require_once($_SERVER['DOCUMENT_ROOT'].'/config/config.php');
 #validate get data
 function generate_images($data){
+    require($_SERVER['DOCUMENT_ROOT'] . '/config/config.php');
     $return_data = '';
     foreach($data as $value){
-        $return_data .= '<div class="swiper-slide"><img src="/assets/images/test-dogs/'.$value["photo_hash"].'"></div>';
+        $return_data .= '<div class="swiper-slide"><img src="'.$images_classfield_location.$value["photo_hash"].'"></div>';
         
     }
     return $return_data;

@@ -1,3 +1,4 @@
+var editor;
 function citypickeradd(tag) {
   $(tag).select2(
     {
@@ -23,10 +24,10 @@ function citypickeradd(tag) {
         processResults: function (data) {
           console.log(data)
           var res = data.features.map(function (item) {
-            if (item.properties.place_rank >= 8 && item.properties.place_rank <= 16) {
+            if (item.properties.place_rank >= 13 && item.properties.place_rank <= 16) {
               console.log(item)
               selected_location = item;
-              return { id: item.properties.osm_id, text: item.properties.display_name };
+              return { id: item.properties.osm_type.charAt(0).toUpperCase() + item.properties.osm_id, text: item.properties.display_name };
             } else {
               return {}
             }
@@ -44,11 +45,10 @@ function citypickeradd(tag) {
 
 var uppy = new Uppy.Core({
   restrictions: {
-    maxFileSize: 1000000,
+    maxFileSize: 5000000,
     maxNumberOfFiles: 5,
     minNumberOfFiles: 1,
-    allowedFileTypes: ['image/jpg', 'image/jpeg', 'image/png'],
-    requiredMetaFields: ['caption'],
+    allowedFileTypes: ['image/jpg', 'image/jpeg', 'image/png']
   },
 })
 .use(Uppy.Dashboard, {
@@ -61,15 +61,6 @@ var uppy = new Uppy.Core({
 })
 .use(Uppy.ImageEditor, { target: Uppy.Dashboard })
 
-var toolbareidtor = [['bold', 'italic', 'underline', 'strike'], [{ 'align': [] }], [{ 'list': 'ordered' }, { 'list': 'bullet' }], ,['clean']]
-var quill = new Quill('#editor', {
-  theme: 'snow',
-  placeholder: 'Miejsce na treść ogłoszenia...',
-  modules: {
-    toolbar: toolbareidtor
-  },
-
-});
 
 //on site ready
 $(function(){
@@ -94,11 +85,22 @@ $(function(){
     })
   });
 
+  //tinymce
+  //tinymce
+  editor = tinymce.init({
+    selector: '#desceditor',
+    plugins: 'lists advlist',
+    toolbar: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent",
+    menubar: false,
+  });
+
+
+  //only numer input
 })
 
 $("#classfield").submit(function (event) {
   event.preventDefault();
-  $("#hiddenArea").val($("#editor").html());
+  $("#description").val(tinymce.activeEditor.getContent());
   var formdata = new FormData(this);
   pondFiles = uppy.getFiles();
   for (var i = 0; i < pondFiles.length; i++) {
