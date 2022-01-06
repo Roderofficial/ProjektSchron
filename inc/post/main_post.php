@@ -9,13 +9,24 @@
             </div>
         </div>
 
+        <!-- CONTACT -->
+        <div class="card w-100" id="contactcard">
+            <div class="card-body">
+                <p class="custom-card-text" style="font-size: 20px;">DANE KONTAKTOWE</p>
+                <div class="contactdetail">
+                    <button type="button" class="btn btn-outline-success w-100 btn-lg" id="getcontactbtn"><i class="far fa-address-book"></i> Pokaż dane kontaktowe</button>
+                </div>
+            </div>
+        </div>
+
+
         <!-- AUTHOR INFO -->
         <div class="card author w-100">
             <div class="card-body">
                 <p class="custom-card-text" style="font-size: 20px;">AUTOR OGŁOSZENIA</p>
-                <img class="member-avatar-box placeholder" src=" <?= $avatar_locations.$data['userdata']['avatar_hash'] ?>" alt="">
+                <img class="member-avatar-box placeholder" src=" <?= $avatar_locations . $data['userdata']['avatar_hash'] ?>" alt="">
                 <p class="member-username w-75 placeholder placeholder-lg"><?= $verified_badge ?> <?= $data['userdata']['username'] ?></p>
-                <a href="/profile/<?= $data['userdata']['userid'] ?>" tabindex="-1" class="btn btn-primary placeholder w-75 profile-btn" aria-hidden="true" style="margin:auto; margin-top:20px; display:block;"><i class="fas fa-user"></i> Wyświetl profil użytkownika</a>
+                <a href="/profile/<?= $data['userdata']['userid'] ?>" tabindex="-1" class="btn btn-outline-primary placeholder w-75 profile-btn" aria-hidden="true" style="margin:auto; margin-top:20px; display:block;"><i class="fas fa-user"></i> Wyświetl profil użytkownika</a>
             </div>
         </div>
 

@@ -108,7 +108,7 @@ if(!isset($location_data["features"][0]["properties"]["place_rank"])){
     exit();
 }
 
-if(!($location_data["features"][0]["properties"]["place_rank"] >= 13 || $location_data["features"][0]["properties"]["place_rank"] <= 16)){
+if(!($location_data["features"][0]["properties"]["place_rank"] >= 12 || $location_data["features"][0]["properties"]["place_rank"] <= 18)){
     http_response_code(400);
     echo 'Nieprawidłowy zakres miejscowości!';
     exit();

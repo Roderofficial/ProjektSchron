@@ -1,4 +1,4 @@
-<?php require_once($_SERVER['DOCUMENT_ROOT'].'/config/config.php') ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/config/config.php') ?>
 <div class="dropdown" style="display: inline;">
     <button class="btn btn-secondary dropdown-toggle topbtn" style="margin-right:10px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fas fa-user"></i> Mój profil
@@ -17,9 +17,9 @@
             </div>
         </div>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="/profile/<?= $_SESSION['userdata']['userid']?>">Mój profil</a>
+        <a class="dropdown-item" href="/profile/<?= $_SESSION['userdata']['userid'] ?>">Mój profil</a>
         <a class="dropdown-item" href="#">Moje ogłoszenia</a>
-        <a class="dropdown-item" href="#">Ustawienia</a>
+        <a class="dropdown-item" href="/u/ustawienia">Ustawienia</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="/inc/requests/auth/logout.php"><i class="fas fa-sign-out-alt"></i> Wyloguj</a>
     </div>

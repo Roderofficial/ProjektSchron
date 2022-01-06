@@ -5,5 +5,6 @@
     RewriteRule ^ogloszenia$ /views/watch.php [L]
     RewriteRule ^password-recovery(.*)$ /views/user/password_recovery.php [L]
     RewriteRule ^u/dodaj(.*)$ /views/user/new_classfield.php [L]
+    RewriteRule ^u/ustawienia(.*)$ /views/user/settings.php [L]
     Header set X-Robots-Tag "noindex, follow" env=NOINDEXFOLLOW
 </IfModule>
