@@ -26,11 +26,11 @@ $(function () {
         style: [
             new ol.style.Style({
                 stroke: new ol.style.Stroke({
-                    color: 'blue',
-                    width: 3
+                    color: '#543884',
+                    width: 5
                 }),
                 fill: new ol.style.Fill({
-                    color: 'rgba(0, 0, 255, 0.1)'
+                    color: '#5438844d'
                 })
             })
         ]
@@ -45,19 +45,6 @@ $(function () {
             new ol.layer.Tile({
                 source: new ol.source.OSM(),
             }),
-            new ol.layer.Vector({
-                source: new ol.source.Vector({
-                    features: [iconFeature]
-                }),
-                style: new ol.style.Style({
-                    image: new ol.style.Icon({
-                        anchor: [0.8, 32],
-                        anchorXUnits: 'fraction',
-                        anchorYUnits: 'pixels',
-                        src: '/assets/images/pin.png'
-                    })
-                })
-            })
         ],
         view: new ol.View({
             center: ol.proj.fromLonLat([geo_long, geo_lat]),
@@ -69,4 +56,41 @@ $(function () {
 
 
     $(".placeholder").removeClass("placeholder");
+});
+
+//contact data load
+$("#getcontactbtn").click(function () {
+    var current_btn = $("#getcontactbtn")[0].innerHTML;
+    $(this).html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only">Loading...</span> Ładowanie`);
+    $(this).prop("disabled", true);
+    $.ajax({
+        type: "POST",
+        data: {"post_id": post_id},
+        url: "/inc/requests/post/contact_details.php",
+        success: function (response) {
+            var contact_details = `
+            <div class="d-grid gap-2">
+                <a href="tel:${response.phone}" class="btn btn-outline-primary"" role="button" aria-disabled="true"><i class="fas fa-phone-alt"></i> ${response.phone}</a>
+                <a href="mailto:${response.email}" class="btn btn-outline-primary"" role="button" aria-disabled="true"><i class="far fa-envelope"></i> ${response.email}</a>
+            </div>
+            `
+            $(".contactdetail").html(contact_details);
+            $("#contactcard").addClass("border-primary")
+
+        },
+        error: function (response) {
+            $("#getcontactbtn")[0].innerHTML = current_btn;
+            $("#getcontactbtn").prop("disabled", false);
+            var notyf = new Notyf({
+                position: {
+                    x: 'right',
+                    y: 'top',
+                },
+            });
+            notyf.error('Wystąpił błąd podczas pobierania danych.');
+            
+
+            
+        }
+    });
 });

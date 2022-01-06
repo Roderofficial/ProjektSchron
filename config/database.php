@@ -8,8 +8,8 @@ $database = new Medoo([
     'type' => 'mysql',
     'host' => '167.86.120.16',
     'database' => 'schron',
-    'username' => 'roder',
-    'password' => '@Maniaczyn123mysql',
+    'username' => 'root',
+    'password' => '@Maniaczyn123!mysql',
     'charset' => 'utf8',
  
 

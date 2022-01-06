@@ -40,7 +40,7 @@
                         <!-- DETAIL EDITOR -->
                         <div class="mb-3">
                             <label>Tytuł ogłoszenia</label>
-                            <input class="form-control form-control-lg" type="text" placeholder="tytuł ogłoszenia" name="title" aria-label=".form-control-lg example" required>
+                            <input class="form-control form-control-lg" type="text" placeholder="tytuł ogłoszenia" name="title" aria-label=".form-control-lg example" min="1" max="100" required>
                         </div>
                         <div class="mb-3">
                             <label>Treść ogłoszenia</label>
@@ -121,7 +121,7 @@
                         <div style="text-align:center;">
                             <div class="g-recaptcha mb-3" style="display:inline-block" data-sitekey="6Ldl6d8dAAAAANuCA-InONqkE0EIWnuoMRDyIqGb"></div>
                         </div>
-                        <button class="btn btn-primary" type="submit">Button</button>
+                        <button class="btn btn-primary" type="submit">Dodaj ogłoszenie</button>
 
                     </div>
 
