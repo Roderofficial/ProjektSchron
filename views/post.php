@@ -11,11 +11,12 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/post/controler.php');
     <link rel="stylesheet" href="/assets/css/post.css">
 
 
-    <title><?= $data['title'] ?> - adopt.pl</title>
+    <title><?= $data['title'] ?> - getpet.pl</title>
     <?php require($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/head.php'); ?>
     <script type="text/javascript">
         var geo_lat = <?php echo json_encode($data['geo_lat']); ?>;
         var geo_long = <?php echo json_encode($data['geo_long']); ?>;
+        var post_id = <?php echo json_encode($id); ?>;
     </script>
 </head>
 
