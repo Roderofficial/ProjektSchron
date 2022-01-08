@@ -15,5 +15,4 @@ $data = $database->select("user",[
 ["user.userid" => $_SESSION['userdata']['userid']]);
 
 $data = $data[0];
-var_dump($data);
 ?>
