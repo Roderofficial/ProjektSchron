@@ -47,7 +47,7 @@ if (strlen($_POST['password']) < 8 || strlen($_POST['password']) > 255) {
 //Medoo check if email exist in database
 require_once($_SERVER['DOCUMENT_ROOT']. '/config/database.php');
 
-$count = $database->count("user", ["email" => $_POST['email']]);
+$count = $database->count("user", ["email" => strtolower($_POST['email'])]);
 if($count > 0){
     http_response_code(403);
     echo 'Konto o podanym adresie e-mail już istnieje.';
@@ -59,13 +59,13 @@ if($count > 0){
 $password_hash =password_hash($_POST['password'], PASSWORD_ARGON2ID);
 $database->insert("user",[
     "username" => $_POST['username'],
-    "email" => $_POST['email'],
+    "email" => strtolower($_POST['email']),
     "password" => $password_hash
 ]);
 
 
 //LOGIN
-$results = $database->select("user", "*", ["email" => $_POST['email']]);
+$results = $database->select("user", "*", ["email" => strtolower($_POST['email'])]);
 @session_start();
 $_SESSION['userdata']['userid'] = $results[0]['userid'];
 $_SESSION['userdata']['username'] = $results[0]['username'];

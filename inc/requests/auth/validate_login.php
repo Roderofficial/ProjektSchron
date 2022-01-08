@@ -15,7 +15,7 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/config/database.php");
 
 $results = $database->select("user", ["userid","username", "email", "banned", "password", "avatar_hash"],
  [
-        "email" => $data['email'],
+        "email" => strtolower($data['email']),
     ],
     [
         "LIMIT" => [0, 1]

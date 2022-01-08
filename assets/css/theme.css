@@ -17,7 +17,6 @@
 }
 .main-banner{
     min-height: 600px;
-    background-image: url(/assets/images/banner1.jpg);
     background-size:cover;
     background-position: top;
 }

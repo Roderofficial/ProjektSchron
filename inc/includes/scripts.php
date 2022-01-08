@@ -1,4 +1,5 @@
 <?php
+require_once($_SERVER["DOCUMENT_ROOT"].'/inc/includes/footer.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/login_modal.php');
 ?>
 
