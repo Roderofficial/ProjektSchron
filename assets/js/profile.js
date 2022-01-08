@@ -59,11 +59,12 @@ $("#bannerupdate").click(function () {
         //create form with image to send
         var fd = new FormData();
         fd.append('file', files[0], files[0].name);
+        fd.append('type', 'background')
         notyf.open({ type: 'info', message: "Trwa aktualizacja baneru" })
         
         //Ajax request
         $.ajax({
-            url: '/inc/requests/profile/update-banner.php',
+            url: '/inc/requests/profile/update-image.php',
             type: 'POST',
             data: fd,
 
@@ -119,19 +120,20 @@ $("#avatar-update").click(function () {
         //create form with image to send
         var fd = new FormData();
         fd.append('file', files[0], files[0].name);
-        notyf.open({ type: 'info', message: "Trwa aktualizacja baneru" })
+        fd.append('type', 'avatar')
+        notyf.open({ type: 'info', message: "Trwa aktualizacja avataru" })
 
         //Ajax request
         $.ajax({
-            url: '/inc/requests/profile/avatar-banner.php',
+            url: '/inc/requests/profile/update-image.php',
             type: 'POST',
             data: fd,
 
             //Success
             success: function (data) {
                 console.log(data);
-                notyf.success('Pomyślnie zaktualizowano banner!');
-                $('.background-image').css('background-image', 'url("' + data + '")');
+                notyf.success('Pomyślnie zaktualizowano avatar!');
+                $('.avatar').css('background-image', 'url("' + data + '")');
             },
 
             //Error

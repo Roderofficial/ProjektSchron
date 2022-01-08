@@ -53,6 +53,23 @@ if (strlen(strip_tags($_POST['description'])) < 100 || strlen(strip_tags($_POST[
     exit();
 }
 
+//Strict phones, emails na links in description and title
+//PHONE
+$regex_phone = "/(?:(?:(?:(?:\+|00)\d{2})?[ -]?(?:(?:\(0?\d{2}\))|(?:0?\d{2})))?[ -]?(?:\d{3}[- ]?\d{2}[- ]?\d{2}|\d{2}[- ]?\d{2}[- ]?\d{3}|\d{7})|(?:(?:(?:\+|00)\d{2})?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}))/";
+$_POST['description'] = preg_replace($regex_phone, "[usunięto telefon]", $_POST['description']);
+$_POST['title'] = preg_replace($regex_phone, "[usunięto telefon]", $_POST['title']);
+
+//EMAIL
+$regex_email = "/[^@\s]*@[^@\s]*\.[^@\s]*/";
+$_POST['description'] = preg_replace($regex_email, "[usunięto email]", $_POST['description']);
+$_POST['title'] = preg_replace($regex_email, "[usunięto email]", $_POST['title']);
+//LINKS
+$regex_urls = "/(http(s?):\/\/)?(www\.)?+[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)*/";
+$_POST['description'] = preg_replace($regex_urls, "[usunięto link]", $_POST['description']);
+$_POST['title'] = preg_replace($regex_urls, "[usunięto link]", $_POST['title']);
+
+
+
 //category validate
 $category_ids = $database->select("classfield_category","ctid");
 if(!isset($_POST['category']) || empty($_POST['category']) || !in_array($_POST['category'], $category_ids)){
