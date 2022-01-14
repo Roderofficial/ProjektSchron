@@ -25,7 +25,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/profile/controler.php');
 
     ?>
 
-    <div class="profile">
+    <div class="profile container">
         <?php
         require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/profile/profile_overlay.php');
         require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/profile/classfields.php');

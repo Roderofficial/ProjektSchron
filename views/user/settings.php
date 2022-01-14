@@ -24,7 +24,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/settings/controler.php');
 
 
     <div class="settings">
-        <div class="card settingscard">
+        <div class="card settingscard container">
             <div class="card-body">
                 <!-- BUTTONS -->
                 <div class="settingsbtns">
@@ -51,21 +51,23 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/settings/controler.php');
                 <div class="tab-content" id="pills-tabContent">
                     <!-- USTAWIENIA OGÓLNE -->
                     <div class="tab-pane fade show active" id="pills-displaydata" role="tabpanel" aria-labelledby="pills-displaydata-tab">
-                        <form id="displaydata" style="max-width:400px;">
+                        <form id="displaydata" style="max-width:400px;" method="POST" action="/inc/requests/profile/update_settings.php">
+                            <input type="hidden" name="type" value="displaydata">
                             <div class="mb-3">
                                 <label class="form-label">Nazwa użytkownika</label>
-                                <input type="text" name="displayname" class="form-control" placeholder="<?= $data["username"] ?>">
+                                <input type="text" name="displayname" class="form-control" value="<?= $data["username"] ?>">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Adres e-mail</label>
-                                <input type="email" class="form-control" name="email" placeholder="<?= $data["email"] ?>">
+                                <input type="email" class="form-control" name="email" value="<?= $data["email"] ?>">
                             </div>
                             <button type="submit" class="btn btn-primary">Zmień dane</button>
                         </form>
                     </div>
                     <!-- ZMIANA HASŁA -->
                     <div class="tab-pane fade" id="pills-password" role="tabpanel" aria-labelledby="pills-password-tab">
-                        <form id="displaydata" style="max-width:400px;">
+                        <form id="displaydata" style="max-width:400px;" method="POST" action="/inc/requests/profile/update_settings.php">
+                            <input type="hidden" name="type" value="password">
                             <div class="mb-3">
                                 <label class="form-label">Stare hasło</label>
                                 <input type="password" name="oldpassword" class="form-control">
@@ -82,7 +84,44 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/settings/controler.php');
                         </form>
                     </div>
                     <!-- USTAWIENIA PUBLICZNE -->
-                    <div class="tab-pane fade" id="pills-public" role="tabpanel" aria-labelledby="pills-public-tab">...c</div>
+                    <div class="tab-pane fade" id="pills-public" role="tabpanel" aria-labelledby="pills-public-tab">
+                        <form method="POST" action="/inc/requests/profile/update_settings.php">
+                        <input type="hidden" name="type" value="details">
+                        <div class="about mb-3">
+                            <h4><b>ZAKŁADKA O NAS</b></h4>
+                            <!-- EDITOR -->
+                            <textarea name="about" id="desceditor">
+                                <?= $data['about'] ?>
+                            </textarea>
+                        </div>
+                        <div class="contactdetails">
+                            <h4><b>DANE KONTAKTOWE</b></h4>
+                            <!-- START ROW-->
+                            <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                                <div class="col-12 col-md-4 mb-3">
+                                    <label>Telefon</label>
+                                    <input type="tel" class="form-control" name="phone" value="<?= $data['phone_public'] ?>">
+                                </div>
+                                <div class="col-12 col-md-4 mb-3">
+                                    <label>Adres E-MAIL</label>
+                                    <input type="email" class="form-control" name="email" value="<?= $data['email_public'] ?>">
+
+                                </div>
+                                <div class=" col-12 col-md-4 mb-3">
+                                    <label>Lokalizacja</label>
+                                    <select name="location" class="form-control" id="">
+                                        <option value="" default>Brak</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- END ROW -->
+                            <button type="submit" class="btn btn-primary">Zapisz informacje</button>
+
+                        </form>
+                        </div>
+                    </div>
                     <!-- USTAWIENIA ZAAWANSOWANE -->
                     <div class="tab-pane fade" id="pills-advanced" role="tabpanel" aria-labelledby="pills-contact-tab">
                         <h2 style="color:var(--bs-danger);"><b>Usuwanie konta</b></h2>
@@ -134,6 +173,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/settings/controler.php');
 
 
     <?php require($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/scripts.php') ?>
+    <script src="/assets/libs/tinymce/tinymce.min.js"></script>
     <script src="/assets/js/settings.js"></script>
 </body>
 

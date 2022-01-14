@@ -1,6 +1,7 @@
 $('#table').bootstrapTable({
     url: '/inc/requests/classfields-member.php?userid=' + userid.toString(),
     locale: "pl_PL",
+    paginationParts: ['pageList']
 
 })
 

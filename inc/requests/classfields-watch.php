@@ -12,6 +12,9 @@ if(!isset($_GET['search'])){
     $search = htmlspecialchars($_GET['search']);
 }
 
+//Query params controler
+require_once($_SERVER["DOCUMENT_ROOT"].'/inc/watch/query-params-controler.php');
+
 
 require_once($_SERVER['DOCUMENT_ROOT']."/config/database.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/config/config.php");
@@ -50,28 +53,23 @@ $classfields = $database->select("classfield",
   "[>]classfield_photo" => ["id" => "classfield_id", "AND" => [
                 "main=" => 1
             ]
-        ]
+  ],
+    "[>]geo_wojewodztwo" => ["woj_id" => "id"]
 
  ],
  ["classfield.id", "classfield.title", "classfield.created_at", "classfield.location", "classfield.cost","classfield_photo.photo_hash",
-],[
-    'LIMIT' => [$_GET['offset'], $_GET['limit']],
-    'ORDER' => [
-        "classfield.created_at" => 'DESC'
-    ],
-    'OR' =>[
-        'classfield.title[~]' => $search
-
-    ]
-]);
+],$query_params);
 foreach ($classfields as $key => $value) {
 
     $classfields[$key]['cost'] = cost_formatter($value['cost']);
     $classfields[$key]['link'] = '/post/' . clean($value['title']) . "-" . $value['id'];
 }
 
+//REMOVE FROM QUERY LIMIT AND OFFSET FOR COUNT AND TOTAL
+unset($query_params['LIMIT']);
 
-$total = $database->count("classfield");
+
+$total = $database->count("classfield", $query_params);
 $returndata['total'] = $total;
 $returndata['totalNotFiltered'] = $total;
 
