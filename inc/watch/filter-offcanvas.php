@@ -16,7 +16,7 @@
                         <option value="4">Akcesoria</option>
                     </select>
                 </div>
-                <label class="form-label">Miejscowość</label>
+                <label class="form-label">Miejscowość / Województwo</label>
                 <div class="input-group mb-3" style="max-width:100%;">
                     <select class="form-control citypicker" id="citypicker" name="osm_id" placeholder="Szukaj...">
                         <option value="" disabled selected>Szukaj...</option>

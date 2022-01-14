@@ -2,15 +2,15 @@
 
 
     <!-- Section: Links  -->
-    <section class="border-top">
+    <section class="footer-main">
         <div class="container text-center text-md-start mt-5">
             <!-- Grid row -->
             <div class="row mt-3">
                 <!-- Grid column -->
                 <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                     <!-- Content -->
-                    <h6 class="text-uppercase fw-bold mb-4">
-                        <i class="fas fa-gem me-3"></i>GetPet
+                    <h6 class="text-uppercase fw-bold mb-4 footer-col-title">
+                        <i class="fas fa-paw me-3"></i>GetPet
                     </h6>
                     <p>
                         GetPet to miejsce, w którym można znaleźć wszystkie ogłoszenia o zwierzętach, adopcje i nie tylko. Możesz również zamieścić bezpłatne ogłoszenie na naszej stronie.
@@ -21,7 +21,7 @@
                 <!-- Grid column -->
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                     <!-- Links -->
-                    <h6 class="text-uppercase fw-bold mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4 footer-col-title">
                         SOCIAL MEDIA
                     </h6>
                     <p>
@@ -39,7 +39,7 @@
                 <!-- Grid column -->
                 <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                     <!-- Links -->
-                    <h6 class="text-uppercase fw-bold mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4 footer-col-title">
                         Przydatne linki
                     </h6>
                     <p>
@@ -54,7 +54,7 @@
                 <!-- Grid column -->
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                     <!-- Links -->
-                    <h6 class="text-uppercase fw-bold mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4 footer-col-title">
                         KONTAKT
                     </h6>
                     <p>

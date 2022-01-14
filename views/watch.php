@@ -20,7 +20,16 @@
     ?>
 
     <div class="watch">
-        <h1>PRZEGLĄDAJ OGŁOSZENIA</h1>
+        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|} ms-1 me-1">
+            <div class="col-12 col-md-8 align-self-end mb-3">
+                <span class="watch-title">Przeglądaj ogłoszenia</span>
+            </div>
+            <div class="col-12 col-md-4  mb-3 mt-3 d-flex justify-content-end">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilter" aria-controls="offcanvasExample">
+                    <i class="fas fa-filter"></i> Filtry wyszukiwania
+                </button>
+            </div>
+        </div>
         <?php
         require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/watch/classfields.php')
         ?>

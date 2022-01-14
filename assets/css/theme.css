@@ -1,3 +1,6 @@
+body{
+    scroll-behavior: smooth
+}
 .navbar{
     padding-top: .8rem;
     padding-bottom: .8rem;
@@ -10,21 +13,37 @@
 .navbar-brand i.logo {
    color: #543884; 
 }
-.navbar .vl{
-  width: 3px;
-  background-color:#543884;
-  height:30px;
-}
 .main-banner{
-    min-height: 600px;
     background-size:cover;
     background-position: top;
+    background-color: #ffffff;
+    padding:0px 0px 80px 0px;;
 }
 .main-banner .main-banner-card{
     min-width: 30%;
     display: inline-block;
     max-width:400px;
     margin:40px;
+}
+.main-banner .banner-title{
+    font-size:60px;
+    color:black;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom:20px;
+}
+.main-banner .center-banner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+.main-banner .searchbtn{
+    color: #fff;
+    background-color:#430091;
+}
+.main-banner .searchbox{
+    width: 100%;
 }
 body{
     background-color: #f7f7f9;
@@ -34,9 +53,9 @@ body{
 
 }
 .main-classfields .title-classdields{
-    text-align:center;
-    font-size: 2.3rem;
-    color: #505050;
+font-size: 1.8rem;
+    color: black;
+    font-weight: 100;
 }
 .main-classfields .hl-custom{
     width: 50%;
@@ -51,6 +70,7 @@ body{
     height:250px;
     background-size: cover;
     background-position: center;
+    position:relative;
 }
 .classfield-card-preview .card-title{
    overflow: hidden;
@@ -68,19 +88,16 @@ body{
    min-height:105px;
 }
 .classfield-card-preview {
-    max-width: 18rem;
     margin-left:auto;
     margin-right: auto;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    /* border-top-left-radius: 20px;
+    border-top-right-radius: 20px; */
 }
 .classfield-card-preview .card-text{
     position:absolute;
     bottom: 15px;
 }
 .main-classfields .classfields-cards{
-    padding-top: 30px;
-    width: 80%;
     margin: auto;
 }
 .main-classfields .classfields-cards .cardcol{
@@ -113,4 +130,62 @@ body{
     height: 100%;
     line-height: inherit;
     padding: 0.5rem 1rem;
+}
+.footer-main{
+    border-top:5px solid #430091;
+}
+.footer-col-title{
+    color:#430091;
+}
+.cost-badge{
+    color:#fff;
+    background-color: #430091;
+    border-radius:10px;
+    margin:5px;
+    padding:4px 10px;
+    position:absolute;
+    bottom:0px;
+    font-weight: 600;
+    font-size:12px;
+    right:0px;
+}
+.btn-primary{
+    background-color:#430091!important;
+    border: none;
+}
+.nav-link.active{
+    color: #fff;
+    background-color: #430091!important;
+}
+.nav-link{
+    color: #430091;
+}
+.nav-link:hover{
+    color: #1e0041;
+}
+.popularne-kategorie{
+    width: 100%;
+}
+.main-banner .banner-image{
+    display:block;
+    margin:auto;
+}
+.view-more-card{
+    height:100%;
+    background-color: #430091;
+    color:#fff;
+    text-align:center;
+}
+.view-more-card .icon{
+    font-size:100px;
+}
+.view-more-card a{
+    font-size: 20px;
+    font-weight: 600;
+    display:block;
+    text-decoration:none;
+    color: #fff;
+}
+.card.classfield-card-preview.view-more-card:hover {
+    background-color: #310466;
 }
