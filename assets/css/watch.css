@@ -12,3 +12,8 @@
 .select2-container.select2-container--default.select2-container--open  {
   z-index: 5000;
 }
+.watch-title{
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 700;
+}

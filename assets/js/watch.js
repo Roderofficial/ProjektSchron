@@ -1,9 +1,11 @@
 var map;
 var selected_location;
+var radius_picker;
 
 $('#table').bootstrapTable({
     url: '/inc/requests/classfields-watch.php',
     locale: "pl_PL",
+    paginationParts: ['pageList']
 
 })
 
@@ -67,7 +69,7 @@ $(function(){
 $(document).ready(function () {
     citypicker("#citypicker", selected_location);
     $('.category-select').select2({theme: "bootstrap-5"});
-    $('#radius').select2({ theme: "bootstrap-5" });
+    radius_picker = $('#radius').select2({ theme: "bootstrap-5" });
 
 
 });
@@ -82,6 +84,14 @@ $('#citypicker').on('select2:selecting', function (e) {
     console.log('Selecting: ', e.params.args.data);
     console.log('test')
     console.log("Response from select request", selected_location);
+    //Disable radius if województwo 
+    if(selected_location.properties.place_rank == 8){
+        radius_picker[0].disabled = true;
+        radius_picker.prop("selectedIndex", 0).change()
+
+    }else{
+        radius_picker[0].disabled = false; 
+    }
 
     // const styles = [
     //     /* We are using two different styles for the polygons:
