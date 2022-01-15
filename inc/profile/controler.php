@@ -10,7 +10,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/config/config.php');
 
 $data = $database->select("user",
 ["[>]user_roles" => ["user_roleID" => "id"]],
-["user.userid", "user.username", "user.date_created", "user.avatar_hash", "user.banner_hash", "user.verified", "user.about", "user.banned", "user.phone_public", "user.email_public", "user.website_public", "user.user_roleID", "user_roles.role_name", "user_roles.role_icon"], 
+["user.userid", "user.username", "user.date_created", "user.avatar_hash", "user.banner_hash", "user.verified", "user.about", "user.banned", "user.phone_public", "user.email_public", "user.user_roleID", "user_roles.role_name", "user_roles.role_icon"], 
 [
     'user.userid' => htmlspecialchars($_GET['id'])
     

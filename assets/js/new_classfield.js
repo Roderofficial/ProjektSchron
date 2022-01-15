@@ -117,9 +117,10 @@ $("#classfield").submit(function (event) {
         y: 'top',
       }
     });
-  var submitBtn = $(this).find("input[type=submit]");
   var data = $('#classfield').serialize();
-  console.log(data);
+    
+  //Animations
+  var animations = new updating_animations('#classfield')
 
 
   $.ajax({
@@ -129,19 +130,20 @@ $("#classfield").submit(function (event) {
     processData: false,
     contentType: false,
     beforeSend: function () {
-      submitBtn.prop("disabled", true);
+      animations.disable();
+      
     },
     success: function (response) {
 
       notyf.success("Konto zostało utworzone pomyślnie. Automatyczne przekierowanie...")
-      console.log(response);
+      window.location.replace(response);
 
     },
     error: function (response) {
       notyf.error(`Błąd ${response.status}: ${response.responseText}`)
       grecaptcha.reset();
+      animations.enable();
 
-      console.table(response);
     }
   });
 });
