@@ -8,8 +8,10 @@ $("#loginform").submit(function (event) {
                 y: 'top',
             }
         });
-    var submitBtn = $(this).find("input[type=submit]");
+
     var data = $('#loginform').serialize();
+    var animations = new updating_animations('#loginform');
+
 
 
     $.ajax({
@@ -17,7 +19,7 @@ $("#loginform").submit(function (event) {
         url: "/inc/requests/auth/validate_login.php",
         data: data,
         beforeSend: function () {
-            submitBtn.prop("disabled", true);
+            animations.disable();
         },
         success: function(response){
 
@@ -34,7 +36,8 @@ $("#loginform").submit(function (event) {
                 notyf.error("Twoje konto zostało zablokowane! <br /> Jeśli uważasz, że to błąd, skontaktuj się z administracją.")
             }
             
-            console.table(response);
+            animations.enable();
+
         }
          });
 });
@@ -83,6 +86,8 @@ $(".login-switch-passwordreset").click(function (e) {
 $("#registerform").submit(function (event) {
     event.preventDefault();
     var form = $(this);
+
+
     var notyf = new Notyf(
         {
             duration: 6000,
@@ -91,9 +96,8 @@ $("#registerform").submit(function (event) {
                 y: 'top',
             }
         });
-    var submitBtn = $(this).find("input[type=submit]");
     var data = $('#registerform').serialize();
-    console.log(data);
+    var animations = new updating_animations('#registerform');
 
 
     $.ajax({
@@ -101,10 +105,11 @@ $("#registerform").submit(function (event) {
         url: "/inc/requests/auth/register.php",
         data: data,
         beforeSend: function () {
-            submitBtn.prop("disabled", true);
+            animations.disable();
+             
+
         },
         success: function (response) {
-            $("#registerform :input").prop("disabled", true);
 
             notyf.success("Konto zostało utworzone pomyślnie. Automatyczne przekierowanie...")
             console.log(response);
@@ -116,10 +121,34 @@ $("#registerform").submit(function (event) {
 
         },
         error: function (response) {
+            animations.enable();
             notyf.error(`Błąd ${response.status}: ${response.responseText}`)
             grecaptcha.reset();
-
-            console.table(response);
         }
     });
 });
+
+//btn
+class updating_animations{
+    constructor(form){
+        this.form = $(form);
+        this.submitbtn = this.form.find('button[type=submit]')[0];
+        this.beforesubmit = this.submitbtn.innerHTML;
+        console.log(this.beforesubmit);
+
+    }
+
+    disable(){
+        this.form.find(":input").prop("disabled", true);
+        this.submitbtn.innerHTML = `
+        <i class="fas fa-spinner fa-spin"></i> Przetwarzanie
+        `
+
+    }
+
+    enable(){
+        this.form.find(":input").prop("disabled", false);
+        this.submitbtn.innerHTML = this.beforesubmit;
+
+    }
+}
