@@ -9,7 +9,7 @@ $database = new Medoo([
     'host' => '167.86.120.16',
     'database' => 'schron',
     'username' => 'root',
-    'password' => '@Maniaczyn123!mysql',
+    'password' => 'Radekp123!!!',
     'charset' => 'utf8',
  
 

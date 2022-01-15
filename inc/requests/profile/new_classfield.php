@@ -182,7 +182,6 @@ for ($i = 0; $i < count($_FILES['images']['name']); $i++) {
 
 }
 
-var_dump(strval($location_data["features"][0]["geometry"]["coordinates"][0])) ;
 //ADD CLASSFIELD TO DATABASE
 $database->insert("classfield", 
 [
@@ -229,6 +228,8 @@ foreach($filenameupload as $single_image_name){
     ]);
 }
 
+
+echo '/post/'.clean($_POST['title']).'-'.$insert_id;
 
 
 

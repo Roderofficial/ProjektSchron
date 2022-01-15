@@ -14,6 +14,9 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/settings/controler.php');
     <title>Ustawienia profilu - GetPet.pl</title>
     <?php require($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/head.php'); ?>
     <link rel="stylesheet" href="/assets/css/settings.css">
+    <script type="text/javascript">
+        var public_location = <?php echo json_encode($data['location_public']); ?>;
+    </script>
 </head>
 
 <body>
@@ -66,107 +69,109 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/settings/controler.php');
                     </div>
                     <!-- ZMIANA HASŁA -->
                     <div class="tab-pane fade" id="pills-password" role="tabpanel" aria-labelledby="pills-password-tab">
-                        <form id="displaydata" style="max-width:400px;" method="POST" action="/inc/requests/profile/update_settings.php">
+                        <form id="passwordupdate" style="max-width:400px;" method="POST" action="/inc/requests/profile/update_settings.php">
                             <input type="hidden" name="type" value="password">
                             <div class="mb-3">
                                 <label class="form-label">Stare hasło</label>
-                                <input type="password" name="oldpassword" class="form-control">
+                                <input type="password" name="oldpassword" class="form-control" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Nowe hasło hasło</label>
-                                <input type="password" name="newpassword1" class="form-control">
+                                <input type="password" name="newpassword1" class="form-control" minlength="8" maxlength="255" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Powtórz nowe hasło</label>
-                                <input type="password" name="newpassword2" class="form-control">
+                                <input type="password" name="newpassword2" class="form-control" minlength="8" maxlength="255" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Zmień hasło</button>
                         </form>
                     </div>
                     <!-- USTAWIENIA PUBLICZNE -->
                     <div class="tab-pane fade" id="pills-public" role="tabpanel" aria-labelledby="pills-public-tab">
-                        <form method="POST" action="/inc/requests/profile/update_settings.php">
-                        <input type="hidden" name="type" value="details">
-                        <div class="about mb-3">
-                            <h4><b>ZAKŁADKA O NAS</b></h4>
-                            <!-- EDITOR -->
-                            <textarea name="about" id="desceditor">
+                        <form method="POST" id="advanceddata" action="/inc/requests/profile/update_settings.php">
+                            <input type="hidden" name="type" value="details">
+                            <div class="about mb-3">
+                                <h4><b>ZAKŁADKA O NAS</b></h4>
+                                <!-- EDITOR -->
+                                <textarea name="about" id="desceditor">
                                 <?= $data['about'] ?>
                             </textarea>
-                        </div>
-                        <div class="contactdetails">
-                            <h4><b>DANE KONTAKTOWE</b></h4>
-                            <!-- START ROW-->
-                            <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
-                                <div class="col-12 col-md-4 mb-3">
-                                    <label>Telefon</label>
-                                    <input type="tel" class="form-control" name="phone" value="<?= $data['phone_public'] ?>">
-                                </div>
-                                <div class="col-12 col-md-4 mb-3">
-                                    <label>Adres E-MAIL</label>
-                                    <input type="email" class="form-control" name="email" value="<?= $data['email_public'] ?>">
-
-                                </div>
-                                <div class=" col-12 col-md-4 mb-3">
-                                    <label>Lokalizacja</label>
-                                    <select name="location" class="form-control" id="">
-                                        <option value="" default>Brak</option>
-
-                                    </select>
-                                </div>
                             </div>
+                            <div class="contactdetails">
+                                <h4><b>DANE KONTAKTOWE</b></h4>
+                                <!-- START ROW-->
+                                <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                                    <div class="col-12 col-md-4 mb-3">
+                                        <label>Telefon</label>
+                                        <input type="tel" class="form-control" name="phone" value="<?= $data['phone_public'] ?>">
+                                    </div>
+                                    <div class="col-12 col-md-4 mb-3">
+                                        <label>Adres E-MAIL</label>
+                                        <input type="email" class="form-control" name="email" value="<?= $data['email_public'] ?>">
 
-                            <!-- END ROW -->
-                            <button type="submit" class="btn btn-primary">Zapisz informacje</button>
+                                    </div>
+                                    <div class=" col-12 col-md-4 mb-3">
+                                        <label>Lokalizacja</label>
+                                        <div class="input-group mb-3" style="max-width:100%;">
+                                            <select class="form-control citypicker" id="citypicker" name="location" placeholder="Szukaj...">
+                                                <option value="" disabled selected>Szukaj...</option>
+                                            </select>
+                                            <button class="btn btn-outline-secondary" type="button" id="search-city-btn">Wyczyść</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- END ROW -->
+                                <button type="submit" class="btn btn-primary">Zapisz informacje</button>
 
                         </form>
-                        </div>
-                    </div>
-                    <!-- USTAWIENIA ZAAWANSOWANE -->
-                    <div class="tab-pane fade" id="pills-advanced" role="tabpanel" aria-labelledby="pills-contact-tab">
-                        <h2 style="color:var(--bs-danger);"><b>Usuwanie konta</b></h2>
-                        <p>W przypadku gdy użytkownik zdecyuje się usunąć konto z serwisu, nie będzie możliwe jego przywrócenie. Dane kasowane są ze strony bezpowrotnie.</p>
-                        <hr>
-                        <form id="displaydata" style="max-width:400px;">
-                            <div class="mb-3">
-                                <label class="form-label">Obecne hasło</label>
-                                <input type="password" name="password" class="form-control" autocomplete="off" required>
-                            </div>
-
-                            <div class="form-check mb-3">
-                                <input type="checkbox" class="form-check-input" name="sure" required>
-                                <label class="form-check-label">Jestem pewny/a tego co robię.</label>
-                            </div>
-                            <button type="submit" class="btn btn-danger"><i class="fas fa-user-slash"></i> Usuń konto</button>
-                        </form>
-                    </div>
-                    <!-- INFORMACJE O KONCIE -->
-                    <div class="tab-pane fade" id="pills-info" role="tabpanel" aria-labelledby="pills-info-tab">
-                        <table class="table table-sm table-bordered">
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Numer identyfikacyjny użytkownika</th>
-                                    <td><?= $data["userid"] ?></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Data założenia konta</th>
-                                    <td><?= $data["date_created"] ?></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Konto zweryfikowane przez administrację</th>
-                                    <td><?= ($data["verified"]) ? "Tak" : "Nie" ?></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Poziom uprawnień</th>
-                                    <td><?= $data["role_icon"], " ", $data["role_name"] ?></td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
+                <!-- USTAWIENIA ZAAWANSOWANE -->
+                <div class="tab-pane fade" id="pills-advanced" role="tabpanel" aria-labelledby="pills-contact-tab">
+                    <h2 style="color:var(--bs-danger);"><b>Usuwanie konta</b></h2>
+                    <p>W przypadku gdy użytkownik zdecyuje się usunąć konto z serwisu, nie będzie możliwe jego przywrócenie. Dane kasowane są ze strony bezpowrotnie.</p>
+                    <hr>
+                    <form id="displaydata" style="max-width:400px;">
+                        <div class="mb-3">
+                            <label class="form-label">Obecne hasło</label>
+                            <input type="password" name="password" class="form-control" autocomplete="off" required>
+                        </div>
 
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" name="sure" required>
+                            <label class="form-check-label">Jestem pewny/a tego co robię.</label>
+                        </div>
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-user-slash"></i> Usuń konto</button>
+                    </form>
+                </div>
+                <!-- INFORMACJE O KONCIE -->
+                <div class="tab-pane fade" id="pills-info" role="tabpanel" aria-labelledby="pills-info-tab">
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <th scope="row">Numer identyfikacyjny użytkownika</th>
+                                <td><?= $data["userid"] ?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Data założenia konta</th>
+                                <td><?= $data["date_created"] ?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Konto zweryfikowane przez administrację</th>
+                                <td><?= ($data["verified"]) ? "Tak" : "Nie" ?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Poziom uprawnień</th>
+                                <td><?= $data["role_icon"], " ", $data["role_name"] ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
         </div>
+    </div>
 
     </div>
 
@@ -177,4 +182,4 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/settings/controler.php');
     <script src="/assets/js/settings.js"></script>
 </body>
 
-</html>
+</html> 6
