@@ -1,5 +1,20 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"].'/config/database.php');
+require_once($_SERVER["DOCUMENT_ROOT"].'/assets/libs/mekrodb.php');
+
+
+//Database data
+DB::$user = $db_login;
+DB::$password = $db_password;
+DB::$dbName = $db_database;
+DB::$host = $db_host; //defaults to localhost if omitted
+DB::$encoding = 'utf8'; // defaults to latin1 if omitted
+DB::debugMode(False);
+
+$where = new WhereClause("and");
+$where->add("classfield_photo.main=%i", 1);
+
+use Medoo\Medoo;
 
 $query_params = array();
 
@@ -7,8 +22,9 @@ $query_params = array();
 $categories = $database->select("classfield_category", "ctid");
 if(!(!isset($_GET["category-select"]) || empty($_GET["category-select"]) || !is_numeric($_GET["category-select"]) || !in_array($_GET["category-select"], $categories))){
     $query_params["classfield_categoryid"] = intval($_GET["category-select"]);
+    $where->add("classfield_categoryid=%i", intval($_GET["category-select"]));
 }
-
+ 
 //Standard params limit, offset
 //Validate data
 if (!isset($_GET['offset']) || !isset($_GET['limit']) || !is_numeric($_GET['offset']) || !isset($_GET['limit'])) {
@@ -43,37 +59,55 @@ if(isset($_GET['osm_id']) && !empty($_GET['osm_id'])){
         //sprawdzanie czy to województwo
         if($location_data["features"][0]["properties"]["place_rank"] == 8){
             $query_params["geo_wojewodztwo.osm_id"] = $_GET['osm_id'];
+            $where->add("geo_wojewodztwo.osm_id=%s", $_GET['osm_id']);
 
         }
         //sprawdzanie czy to miejscowość
-        elseif ($location_data["features"][0]["properties"]["place_rank"] >= 12 && $location_data["features"][0]["properties"]["place_rank"] >= 18){
+        elseif ($location_data["features"][0]["properties"]["place_rank"] >= 12 && $location_data["features"][0]["properties"]["place_rank"] <= 18){
             //sprawdzanie czy użytkownik podał promień
             if(isset($_GET['radius']) && is_numeric($_GET["radius"]) && $_GET["radius"] > 0){
                 //Promień jest podany
                 $query_params['OR']["classfield.osm_id"] = $_GET['osm_id'];
+                $query_params['OR']['"tak"'] = Medoo::raw('distance(geo_lat, geo_long, '.$location_data["features"][0]["geometry"]["coordinates"][1].','. $location_data["features"][0]["geometry"]["coordinates"][0].','. $_GET["radius"].')');
+
+                $subclause = $where->addClause('or'); // add a sub-clause with ORs
+                $subclause->add("classfield.osm_id=%s",
+                    $_GET['osm_id']
+                );
+                $radiusquery = 'distance(geo_lat, geo_long, ' . $location_data["features"][0]["geometry"]["coordinates"][1] . ',' . $location_data["features"][0]["geometry"]["coordinates"][0] . ',' . $_GET["radius"] . ') =%s';
+                $subclause->add($radiusquery, "tak");
+
+
 
             }else{
                 //Promienia nie ma lub jest równy 0
                 $query_params["classfield.osm_id"] = $_GET['osm_id'];
+                $where->add("classfield.osm_id=%s", $_GET['osm_id']);
+
             }
 
         }
 
         
     }
+
+
 }
 
 
+//COST FILTER
+if((isset($_GET['cost_min']) && is_numeric($_GET['cost_min']) && $_GET['cost_min'] >= 0) || (isset($_GET['cost_max']) && is_numeric($_GET['cost_max']) && $_GET['cost_max'] >= 0)){
+    $costclause = $where->addClause('and'); // add a sub-clause with ORs
+    if((isset($_GET['cost_min']) && is_numeric($_GET['cost_min']) && $_GET['cost_min'] >= 0)){
+        $costclause->add("cost>=%i", $_GET['cost_min']);
+    }
+    if ((isset($_GET['cost_max']) && is_numeric($_GET['cost_max']) && $_GET['cost_max'] >= 0)) {
+        $costclause->add("cost<=%i", $_GET['cost_max']);
+    }
 
+}
 
-// var_dump($query_params);
-
-
-// $data = $database->debug()->select("classfield", [
-//     "[>]geo_wojewodztwo" => ["woj_id" => "id"]
-// ],
-//  ['classfield.id'],$query_params);
-
-// var_dump($data);
-
+$results = DB::query("SELECT classfield.id, classfield.title, classfield.created_at,classfield.location, classfield.cost,classfield_photo.photo_hash FROM classfield INNER JOIN classfield_photo ON classfield.id = classfield_photo.classfield_id WHERE %l ORDER BY classfield.created_at DESC LIMIT %i OFFSET %i;", $where, $_GET['limit'], $_GET['offset']);
+$count_filtered = DB::query("SELECT COUNT(classfield.id) FROM classfield INNER JOIN classfield_photo ON classfield.id = classfield_photo.classfield_id WHERE %l", $where);
+$total_count =DB::query("SELECT COUNT(classfield.id) FROM classfield");
 ?>

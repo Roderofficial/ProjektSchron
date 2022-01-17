@@ -216,4 +216,5 @@ function queryParams(params) {
 $("#searchform").submit(function (event) {
     event.preventDefault();
     $('#table').bootstrapTable('refresh')
+    $('#table').bootstrapTable('selectPage', 1)
 });
