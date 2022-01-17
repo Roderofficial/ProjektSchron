@@ -42,8 +42,9 @@ $("#loginform").submit(function (event) {
          });
 });
 
-//TOOLTIPS
+//on page ready
 $(function () {
+    //TOOLTIPS ENABLE
     $('[data-toggle="tooltip"]').tooltip()
 })
 class login_modal_page{
@@ -152,3 +153,14 @@ class updating_animations{
 
     }
 }
+//social login
+$(".btn_facebook-login").click(function (e){
+
+    //open login window
+    var social_window = window.open('/inc/requests/auth/social_login.php', 'window name', 'window settings');
+    console.log(social_window);
+    social_window.addEventListener('beforeunload', function (e) {
+        // the absence of a returnValue property on the event will guarantee the browser unload happens
+        window.location.reload();
+      });
+});

@@ -18,11 +18,11 @@
                             <small><a class="login-switch-passwordreset" href="#">Resetuj hasło</a></small>
                         </div>
                         <input type="hidden" id="redirect" name="redirect">
-                        <button type="submit" class="btn btn-primary" style="margin: auto; display:block; padding-left: 20px; padding-right:20px; ">Zaloguj</button>
+                        <button type="submit" class="btn btn-primary btn-facebook-login" style="margin: auto; display:block; padding-left: 20px; padding-right:20px; ">Zaloguj</button>
                     </form>
 
                     <hr />
-                    <button type="button" class="btn btn-dark w-100 mb-2"><i class="fab fa-facebook me-2"></i> Zaloguj korzystając z Facebook'a</button> <br />
+                    <button type="button" class="btn btn-dark w-100 mb-2 btn_facebook-login"><i class="fab fa-facebook me-2"></i> Zaloguj korzystając z Facebook'a</button> <br />
                     <!-- <button type="button" class="btn btn-dark w-100 mb-2"><i class="fab fa-google me-2"></i> Zaloguj korzystając z Google'a</button> <br />
                     <button type="button" class="btn btn-dark w-100 mb-2"><i class="fab fa-twitter me-2"></i> Zaloguj korzystając z Twtitter'a</button> -->
 
@@ -66,7 +66,7 @@
                     </form>
 
                     <hr />
-                    <button type="button" class="btn btn-dark w-100 mb-2"><i class="fab fa-facebook me-2"></i> Zaloguj korzystając z Facebook'a</button> <br />
+                    <button type="button" class="btn btn-dark w-100 mb-2 btn_facebook-login"><i class="fab fa-facebook me-2"></i> Zaloguj korzystając z Facebook'a</button> <br />
                 </div>
                 <div class="modal-footer">
                     <small>Masz już konto? <b><u><a href="#" class="login-switch-login">Zaloguj się</a></u></b></small>
