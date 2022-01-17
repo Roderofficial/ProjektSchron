@@ -86,3 +86,15 @@
 .avatar:hover > .avatar-update{
     display:flex;
 }
+.provider_facebook{
+    
+    color: #0043ff;
+    font-size: 34px;
+    border-radius: 50%;
+    background: #fff;
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    margin-left: -18px;
+    border: 2px solid #fff;
+}
