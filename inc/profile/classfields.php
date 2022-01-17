@@ -1,6 +1,6 @@
 <p class="card-title-custom">OGŁOSZENIA</p>
 
-<table id="table" data-search="true" data-pagination="true" data-page-size="8" data-show-custom-view="true" data-custom-view="customViewFormatter">
+<table id="table" data-pagination="true" data-page-size="8" data-show-custom-view="true" data-custom-view="customViewFormatter">
     <thead>
         <tr>
             <th data-field="id">id</th>
