@@ -1,68 +1,94 @@
    <?php
-
-   @session_start();
-   @session_destroy();
-    $config = [
-        // Location where to redirect users once they authenticate with a provider
-        'callback' => 'http://localhost/inc/requests/auth/social_login.php',
-
-        // Providers specifics
-        'providers' => [
-            'Facebook' => [
-                'enabled' => true,     // Optional: indicates whether to enable or disable Twitter adapter. Defaults to false
-                'keys' => [
-                    'id' => '1010413889820967', // Required: your Twitter consumer key
-                    'secret' => '03db1ab080a1e659d31f00bbe5680ba7'  // Required: your Twitter consumer secret
-                ]
-            ],
-            'Google' => ['enabled' => true,
-             'keys' => ['id' => '416110151599-6nh6gfcj7uo1duvrphcgprnngektsvk1.apps.googleusercontent.com', 
-             'secret' => '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'],
-                'scope'    => 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
-                'authorize_url_parameters' => [
-                    'approval_prompt' => 'force', // to pass only when you need to acquire a new refresh token.
-                    'access_type' => 'offline'
-                ]
-            
-            ],
-        ]
-    ];
-
     // Include Hybridauth's basic autoloader
     require $_SERVER['DOCUMENT_ROOT'] . '/assets/libs/socialauth/autoload.php';
+    require_once($_SERVER["DOCUMENT_ROOT"].'/config/database.php');
+    $config = [
+        // Location where to redirect users once they authenticate with Facebook
+        // For this example we choose to come back to this same script
+        'callback' => 'http://localhost/inc/requests/auth/social_login.php',
     
-
-    // Import Hybridauth's namespace
-
-    // And so on
+        // Facebook application credentials
+        'keys' => [
+            'id' => '1010413889820967', // Required: your Facebook application id
+            'secret' => '03db1ab080a1e659d31f00bbe5680ba7'  // Required: your Facebook application secret 
+        ]
+    ];
+    
     try {
-        // Feed configuration array to Hybridauth
-        $hybridauth = new Hybridauth\Hybridauth($config);
-
-        // Then we can proceed and sign in with Twitter as an example. If you want to use a diffirent provider, 
-        // simply replace 'Twitter' with 'Google' or 'Facebook'.
-
-        // Attempt to authenticate users with a provider by name
-        // This call will basically do one of 3 things...
-        // 1) Redirect away (with exit) to show an authentication screen for a provider (e.g. Facebook's OAuth confirmation page)
-        // 2) Finalize an incoming authentication and store access data in a session
-        // 3) Confirm a session exists and do nothing
-        $adapter = $hybridauth->authenticate('Facebook');
-
-        // Returns a boolean of whether the user is connected with Twitter
+        // Instantiate Facebook's adapter directly
+        $adapter = new Hybridauth\Provider\Facebook($config);
+    
+        // Attempt to authenticate the user with Facebook
+        $adapter->authenticate();
+    
+        // Returns a boolean of whether the user is connected with Facebook
         $isConnected = $adapter->isConnected();
+        //Successfull login into facebook
+        if($isConnected == True){
+            $userProfile = $adapter->getUserProfile();
+            //var_dump($userProfile->emailVerified);
 
-        // Retrieve the user's profile
-        $userProfile = $adapter->getUserProfile();
+            //Check if user has verified email
+            if(empty($userProfile->emailVerified)){
+                http_response_code(403);
+                echo 'Musisz posiadać zweryfikowany email na portalu społecznościowym aby się zalogować.';
+                exit();
+            }
 
-        // Inspect profile's public attributes
-        var_dump($userProfile);
 
-        // Disconnect the adapter (log out)
-        $adapter->disconnect();
-    } catch (\Exception $e) {
-        echo "Ooophs, we got an error: " . $e->getMessage();
-        echo " <br />Error code: " . $e->getCode();
+            // //Validate email
+            $validate_has_user = $database->has("user", ["email" => $userProfile->emailVerified]);
+            
+            
+            //Login when user exist in database
+            if($validate_has_user){
+                $results = $database->select("user", ["userid","username", "email", "banned", "password", "avatar_hash"], ["email" => $userProfile->emailVerified]);
+
+                //Check password member when exist
+                if($results[0]['banned'] == 1){
+                    http_response_code(403);
+                    exit();
+                }
+                @session_start();
+                $_SESSION['userdata']['userid'] = $results[0]['userid'];
+                $_SESSION['userdata']['username'] = $results[0]['username'];
+                $_SESSION['userdata']['avatar'] = $results[0]['avatar_hash'];
+                $_SESSION['login'] = True;
+            }else{
+                //Register user
+                $database->insert("user",[
+                    "username" => $userProfile->displayName,
+                    "email" => strtolower($userProfile->emailVerified),
+                    "provider" => "facebook"
+                ]);
+                
+                
+                //LOGIN
+                $results = $database->select("user", "*", ["email" => strtolower($userProfile->emailVerified)]);
+                @session_start();
+                $_SESSION['userdata']['userid'] = $results[0]['userid'];
+                $_SESSION['userdata']['username'] = $results[0]['username'];
+                $_SESSION['userdata']['avatar'] = $results[0]['avatar_hash'];
+                $_SESSION['login'] = True;
+                
+            }
+
+
+
+            // Inspect profile's public attributes
+            var_dump($userProfile);
+
+            // Disconnect the adapter (log out)
+            $adapter->disconnect();
+
+            echo "<script>self.close();</script>";
+            
+        }
+     
+
+    }
+    catch(\Exception $e){
+        echo 'Oops, we ran into an issue! ' . $e->getMessage();
     }
 
     ?>
