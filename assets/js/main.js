@@ -157,7 +157,7 @@ class updating_animations{
 $(".btn_facebook-login").click(function (e){
 
     //open login window
-    var social_window = window.open('/inc/requests/auth/social_login.php', 'window name', 'window settings');
+    var social_window = window.open('/inc/requests/auth/social_login.php', 'Logowanie Facebook');
     console.log(social_window);
     social_window.addEventListener('beforeunload', function (e) {
         // the absence of a returnValue property on the event will guarantee the browser unload happens
