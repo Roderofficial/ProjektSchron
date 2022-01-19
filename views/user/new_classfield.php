@@ -107,10 +107,7 @@
                                         <option value="" disabled selected>Szukaj...</option>
                                     </select>
                                 </div>
-                                <div class="col-lg-6 col-12">
-                                    <label>Mapa podglądowa</label>
-                                    <div class="map-box" id="map-box"></div>
-                                </div>
+                                
                             </div>
 
                         </div>
