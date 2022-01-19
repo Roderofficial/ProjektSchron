@@ -33,6 +33,9 @@ if(strlen($_POST['title']) < 10 || strlen($_POST['title']) > 80){
     exit();
 }
 
+//Sanitize title
+ $_POST['title'] = strip_tags($_POST["title"]);
+ 
 //Description
 if(!isset($_POST['description']) || empty($_POST['description'])){
     http_response_code(400);

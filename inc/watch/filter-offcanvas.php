@@ -37,8 +37,6 @@
                     </select>
                 </div>
 
-                <div class="map-box mb-3" id="map-box" style="margin-bottom:20px;"></div>
-
                 <label class="form-label">Cena</label>
                 <div class="input-group mb-3">
                     <span class="input-group-text">Od</span>

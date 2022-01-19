@@ -1,6 +1,7 @@
 var map;
 var selected_location;
 var radius_picker;
+var citypicker_obj;
 
 $('#table').bootstrapTable({
     url: '/inc/requests/classfields-watch.php',
@@ -46,28 +47,10 @@ function responseHandler(res) {
     return res
 }
 
-//onready
-$(function(){
-    const map = new ol.Map({
-        target: 'map-box',
-
-        layers: [
-            new ol.layer.Tile({
-                source: new ol.source.OSM(),
-            }),
-        ],
-        view: new ol.View({
-            center: ol.proj.fromLonLat(['19.134422', '52.215933']),
-            zoom: 13
-        })
-    });
-
-    //MAPBOX GENERATE
-})
 
 
 $(document).ready(function () {
-    citypicker("#citypicker", selected_location);
+    citypicker_obj = citypicker("#citypicker", selected_location);
     $('.category-select').select2({theme: "bootstrap-5"});
     radius_picker = $('#radius').select2({ theme: "bootstrap-5" });
 
@@ -215,6 +198,51 @@ function queryParams(params) {
 //search btn
 $("#searchform").submit(function (event) {
     event.preventDefault();
+    form = event;
+    console.log(event);
+    // var serialize_obj = $("#searchform").serialize();
+    // current_page = location.protocol + '//' + location.host + location.pathname;
+    // document.location.href = current_page + '?' + serialize_obj;
+    // console.log(serialize_obj)
     $('#table').bootstrapTable('refresh')
     $('#table').bootstrapTable('selectPage', 1)
+
 });
+
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+    return false;
+};
+
+//update on page load attributes if exist for main page data
+$(function(){
+    //update min cost
+    var data_cost_min = getUrlParameter('osm_id');
+    
+    
+
+
+    //update cost man
+    var data_osm_id = getUrlParameter('osm_id');
+    $.get("https://nominatim.openstreetmap.org/lookup?osm_ids=" + data_osm_id + "&format=json", function (data) {
+
+        console.log(data[0]);
+        var newOption = new Option(data[0].display_name, data_osm_id, false, false);
+        $('#citypicker').append(newOption).trigger('change');
+        $('#citypicker').select2('refresh');
+    });
+    
+
+
+})

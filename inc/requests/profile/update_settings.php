@@ -54,6 +54,9 @@ if($_POST["type"] == "displaydata"){
             exit();
         }
 
+
+        
+
         $displayname_update = 1;
     }
 
@@ -63,6 +66,9 @@ if($_POST["type"] == "displaydata"){
     }
 
     if($displayname_update == 1){
+        //Remove special chars from displayname
+        $_POST["displayname"] = strip_tags($_POST["displayname"]); 
+
         $database->update("user", ["username" => $_POST["displayname"]], ["userid" => $_SESSION['userdata']['userid']]);
         $_SESSION["userdata"]["username"] = $_POST["displayname"];
     }
