@@ -51,7 +51,6 @@ function responseHandler(res) {
 
 $(document).ready(function () {
     citypicker_obj = citypicker("#citypicker", selected_location);
-    $('.category-select').select2({theme: "bootstrap-5"});
     radius_picker = $('#radius').select2({ theme: "bootstrap-5" });
 
 
@@ -76,119 +75,9 @@ $('#citypicker').on('select2:selecting', function (e) {
         radius_picker[0].disabled = false; 
     }
 
-    // const styles = [
-    //     /* We are using two different styles for the polygons:
-    //      *  - The first style is for the polygons themselves.
-    //      *  - The second style is to draw the vertices of the polygons.
-    //      *    In a custom `geometry` function the vertices of a polygon are
-    //      *    returned as `MultiPoint` geometry, which will be used to render
-    //      *    the style.
-    //      */
-    //     new ol.style.Style({
-    //         stroke: new ol.style.Stroke({
-    //             color: 'blue',
-    //             width: 3,
-    //         }),
-    //         fill: new ol.style.Fill({
-    //             color: 'rgba(0, 0, 255, 0.1)',
-    //         }),
-    //     }),
-    //     new ol.style.Style({
-    //         image: new ol.style.Circle({
-    //             radius: 5,
-    //             fill: new ol.style.Fill({
-    //                 color: 'orange',
-    //             }),
-    //         }),
-    //         geometry: function (feature) {
-    //             // return the coordinates of the first ring of the polygon
-    //             const coordinates = feature.getGeometry().getCoordinates()[0];
-    //             return new MultiPoint(coordinates);
-    //         },
-    //     }),
-    // ];
-    // const geojsonObject = {
-    //     'type': 'FeatureCollection',
-    //     'crs': {
-    //         'type': 'name',
-    //         'properties': {
-    //             'name': 'EPSG:3857',
-    //         },
-    //     },
-    //     'features': [
-    //         {
-    //             'type': 'Feature',
-    //             'geometry': {
-    //                 'type': 'Polygon',
-    //                 'coordinates': [
-    //                     [
-    //                         [-5e6, 6e6],
-    //                         [-5e6, 8e6],
-    //                         [-3e6, 8e6],
-    //                         [-3e6, 6e6],
-    //                         [-5e6, 6e6],
-    //                     ],
-    //                 ],
-    //             },
-    //         },
-    //         {
-    //             'type': 'Feature',
-    //             'geometry': {
-    //                 'type': 'Polygon',
-    //                 'coordinates': [
-    //                     [
-    //                         [-2e6, 6e6],
-    //                         [-2e6, 8e6],
-    //                         [0, 8e6],
-    //                         [0, 6e6],
-    //                         [-2e6, 6e6],
-    //                     ],
-    //                 ],
-    //             },
-    //         },
-    //         {
-    //             'type': 'Feature',
-    //             'geometry': {
-    //                 'type': 'Polygon',
-    //                 'coordinates': [
-    //                     [
-    //                         [1e6, 6e6],
-    //                         [1e6, 8e6],
-    //                         [3e6, 8e6],
-    //                         [3e6, 6e6],
-    //                         [1e6, 6e6],
-    //                     ],
-    //                 ],
-    //             },
-    //         },
-    //         {
-    //             'type': 'Feature',
-    //             'geometry': {
-    //                 'type': 'Polygon',
-    //                 'coordinates': [
-    //                     [
-    //                         [-2e6, -1e6],
-    //                         [-1e6, 1e6],
-    //                         [0, -1e6],
-    //                         [-2e6, -1e6],
-    //                     ],
-    //                 ],
-    //             },
-    //         },
-    //     ],
-    // };
 
-    // const source = new ol.layer.Vector({
-    //     features: new ol.source.GeoJSON().readFeatures(geojsonObject),
-    // });
+})
 
-    // const layer = new ol.layer.VectorLayer({
-    //     source: source,
-    //     style: styles,
-    // });
-
-    // map.addLayer(layer);
-});
 function queryParams(params) {
     $("#searchform").serializeArray().map(function(val){
         params[val.name] = val.value
@@ -227,6 +116,8 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 //update on page load attributes if exist for main page data
 $(function(){
+    //Category selector
+
     //update min cost
     var data_cost_min = getUrlParameter('osm_id');
     
@@ -235,14 +126,44 @@ $(function(){
 
     //update cost man
     var data_osm_id = getUrlParameter('osm_id');
+
     $.get("https://nominatim.openstreetmap.org/lookup?osm_ids=" + data_osm_id + "&format=json", function (data) {
 
         console.log(data[0]);
-        var newOption = new Option(data[0].display_name, data_osm_id, false, false);
+        var newOption = new Option(data[0].display_name, data_osm_id, false, true);
         $('#citypicker').append(newOption).trigger('change');
         $('#citypicker').select2('refresh');
+        refresh_table();
     });
-    
+
+
+    //Load categories and auto
+    $.get("/inc/requests/categories.php", function (data) {
+        //Append wszystkie
+        var object = $("#category-select");
+        object.append(new Option("Wszystkie", "-1"))
+
+        //Items from json request
+        data.forEach(element => {
+            object.append(new Option(element.text, element.id))
+        });
+
+        var category = getUrlParameter('category-select');
+        if (category != false) {
+            console.log(category);
+            $(`#category-select option[value=${category}]`).prop('selected', true);
+            console.log('change state')
+            refresh_table();
+        }
+    });
+
+
 
 
 })
+function refresh_table(){
+    $('#table').bootstrapTable('refresh')
+    $('#table').bootstrapTable('selectPage', 1)
+    console.log('refresh')
+
+}

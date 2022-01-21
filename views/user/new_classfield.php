@@ -60,12 +60,7 @@
                             <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
                                 <div class="col-lg-6 col-12">
                                     <label>Kategoria</label>
-                                    <select class="category-select form-control" name="category" style="width:100%;" required>
-                                        <option value="-1" selected disabled>Wybierz kategorię</option>
-                                        <option value="1">Psy</option>
-                                        <option value="2">Koty</option>
-                                        <option value="3">Konie</option>
-                                        <option value="4">Akcesoria</option>
+                                    <select class="category-select form-control" name="category" id="new-classfield-category-picker" style="width:100%;" required>
                                     </select>
                                 </div>
                                 <div class="col-lg-6 col-12">

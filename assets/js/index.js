@@ -46,6 +46,56 @@ function addClassfield(data){
     )
 
 }
+
+//Citypicker
+function citypicker(tag) {
+    $(tag).select2(
+        {
+            theme: 'bootstrap-5',
+            ajax: {
+                url: 'https://nominatim.openstreetmap.org/search',
+                type: "GET",
+                delay: 500,
+                minimumInputLength: 3,
+                allowClear: 1,
+                data: function (params) {
+                    return {
+                        q: params.term,
+                        format: 'geojson',
+                        addressdetails: 1,
+                        countrycodes: "pl",
+                        dedupe: 1,
+                        extratags: 1,
+                        limit: 1,
+                        polygon_geojson: 1
+                    };
+                },
+                processResults: function (data) {
+                    console.log(data)
+                    var res = data.features.map(function (item) {
+                        if ((item.properties.place_rank >= 12 && item.properties.place_rank <= 18) || item.properties.place_rank == 8) {
+                            console.log(item)
+                            selected_location = item;
+                            return { id: item.properties.osm_type.charAt(0).toUpperCase() + item.properties.osm_id, text: item.properties.display_name };
+                        } else {
+                            return {}
+                        }
+
+
+                    });
+                    return {
+                        results: res
+                    };
+                }
+            },
+
+        });
+}
+
+
+//ONLOAD
 $(function () {
     getData();
+    citypicker("#citypicker");
+    category_public_insert("#category-select");
 });
