@@ -14,7 +14,7 @@
             <div class="card-body">
                 <p class="custom-card-text" style="font-size: 20px;">DANE KONTAKTOWE</p>
                 <div class="contactdetail">
-                    <button type="button" class="btn btn-outline-success w-100 btn-lg" id="getcontactbtn"><i class="far fa-address-book"></i> Pokaż dane kontaktowe</button>
+                    <button type="button" class="btn btn-outline-primary w-100 btn-lg" id="getcontactbtn" style="font-weight: 500;"><i class="far fa-address-book"></i> Pokaż dane kontaktowe</button>
                 </div>
             </div>
         </div>

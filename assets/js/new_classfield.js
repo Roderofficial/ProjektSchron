@@ -68,6 +68,17 @@ $(function(){
   citypickeradd('.citypicker')
 
   //category selector
+  $.get("/inc/requests/categories.php", function (data) {
+
+    //Append wybierz
+    var def_option = $("#new-classfield-category-picker").append(new Option("Wybierz...", "-1",true))
+    $('#new-classfield-category-picker option[value="-1"]').attr('disabled', 'disabled');
+
+    //Items from json request
+    data.forEach(element => {
+      $("#new-classfield-category-picker").append(new Option(element.text, element.id))
+    });
+  });
   $('.category-select').select2({ theme: "bootstrap-5" });
 
   //add map

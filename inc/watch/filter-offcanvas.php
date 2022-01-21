@@ -8,12 +8,7 @@
             <div class="mb-3">
                 <label class="form-label">Kategoria</label>
                 <div class="mb-3 category" style="max-width:100%;">
-                    <select class="category-select form-control" name="category-select">
-                        <option value="-1" selected>Wszystkie</option>
-                        <option value="1">Psy</option>
-                        <option value="2">Koty</option>
-                        <option value="3">Konie</option>
-                        <option value="4">Akcesoria</option>
+                    <select class="category-select form-control" name="category-select" id="category-select">
                     </select>
                 </div>
                 <label class="form-label">Miejscowość / Województwo</label>

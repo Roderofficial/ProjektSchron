@@ -22,7 +22,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/post/controler.php');
 
 <body>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/navbar/navbar.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/navbar/navbar.php');
     require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/post/main_post.php');
 
     ?>

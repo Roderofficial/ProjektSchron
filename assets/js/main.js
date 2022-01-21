@@ -164,3 +164,40 @@ $(".btn_facebook-login").click(function (e){
         window.location.reload();
       });
 });
+
+class public_category_select{
+    constructor(obj_id){
+        this.obj_id = obj_id;
+    }
+
+    update_select(){
+
+
+    }
+
+}
+function category_public_insert(object_id) {
+    console.log(object_id);
+    var object = $(object_id)
+    
+    $.get("/inc/requests/categories.php", { async: false }, function (data) {
+        //Append wszystkie
+        object.append(new Option("Wszystkie", "-1"))
+
+        //Items from json request
+        data.forEach(element => {
+            object.append(new Option(element.text, element.id))
+        });
+
+    });
+    console.log($(this.object_id));
+    console.log('cat loaded')
+}
+function escapeHtml(unsafe) {
+    return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
