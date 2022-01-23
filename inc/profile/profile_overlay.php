@@ -16,7 +16,7 @@
             }
             ?>
 
-            <?= ($data['provider'] == "facebook") ? '<i class="fab fa-facebook provider_facebook"></i>': null; ?>
+            <?= ($data['provider'] == "facebook") ? '<i class="fab fa-facebook provider_facebook position-absolute top-100 start-50 translate-middle"></i>': null; ?>
         </div>
 
 
