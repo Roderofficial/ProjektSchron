@@ -18,7 +18,7 @@
         </div>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="/profile/<?= $_SESSION['userdata']['userid'] ?>">Mój profil</a>
-        <a class="dropdown-item" href="#">Moje ogłoszenia</a>
+        <a class="dropdown-item" href="/u/moje-ogloszenia">Moje ogłoszenia</a>
         <a class="dropdown-item" href="/u/ustawienia">Ustawienia</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="/inc/requests/auth/logout.php"><i class="fas fa-sign-out-alt"></i> Wyloguj</a>
