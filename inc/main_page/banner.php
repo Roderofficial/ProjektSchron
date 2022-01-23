@@ -8,16 +8,18 @@
                     <div class="searchbox">
                         <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
                             <div class="col-lg-5 mb-3">
+                                <label>Kategorie</label>
                                 <select class="category-select form-control" name="category-select" id="category-select">
                                 </select>
                             </div>
                             <div class="col-12 col-lg-4  mb-3">
+                                <label>Miejscowość</label>
                                 <select class="form-control citypicker" id="citypicker" name="osm_id" placeholder="Szukaj..." style="width:100%;">
                                     <option value="" disabled selected>Szukaj...</option>
                                 </select>
                             </div>
-                            <div class="col-lg-3  mb-3">
-                                <button type="submit" class="btn searchbtn w-100"><i class="fas fa-search"></i> Szukaj</button>
+                            <div class="col-lg-3  mb-3 align-self-end">
+                                <button type="submit" class="btn searchbtn w-100 "><i class="fas fa-search"></i> Szukaj</button>
                             </div>
                         </div>
                     </div>

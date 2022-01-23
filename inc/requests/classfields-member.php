@@ -18,7 +18,11 @@ $classfields = $database->select("classfield",
  ],
  ["classfield.id", "classfield.title", "classfield.created_at", "classfield.location", "classfield.cost","classfield_photo.photo_hash",
 ],[
-    "user.userid" => $_GET['userid']
+    "AND" => [
+            "user.userid" => $_GET['userid'],
+            "classfield.enabled" => 1
+    ]
+    
 ]
 );
 foreach($classfields as $key => $value){

@@ -92,9 +92,9 @@
     font-size: 34px;
     border-radius: 50%;
     background: #fff;
-    position: absolute;
+    /* position: absolute;
     bottom: -15px;
     left: 50%;
-    margin-left: -18px;
+    margin-left: -18px; */
     border: 2px solid #fff;
 }

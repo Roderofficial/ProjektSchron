@@ -14,10 +14,9 @@
 
 <body>
 
-    <div class="container d-flex h-100">
-        <div class="row justify-content-center align-self-center">
+    <div class="container d-flex h-100 mb-3 mt-3">
+        <div class="row justify-content-center align-self-center" style="margin:auto;">
             <div class="spinner-border justify-content-center" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
             </div>
             <h3>Logowanie za pomocą Facebook</h3>
         </div>

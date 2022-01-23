@@ -13,6 +13,7 @@ DB::debugMode(False);
 
 $where = new WhereClause("and");
 $where->add("classfield_photo.main=%i", 1);
+$where->add("classfield.enabled=%i", 1);
 
 use Medoo\Medoo;
 
