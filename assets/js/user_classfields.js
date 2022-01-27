@@ -1,6 +1,19 @@
 //table actual
-$('#table').bootstrapTable({
-    url: '/inc/requests/profile/user_classfields.php',
+var active_table = $('#active-table');
+active_table.bootstrapTable({
+    url: '/inc/requests/profile/user_classfields.php?state=1',
+    queryParamsType: {state: 1},
+    locale: "pl_PL",
+    paginationParts: ['pageList']
+
+})
+
+
+//disactive table
+var disactive_table = $('#disactive-table');
+disactive_table.bootstrapTable({
+    url: '/inc/requests/profile/user_classfields.php?state=0',
+    queryParamsType: { state: 1 },
     locale: "pl_PL",
     paginationParts: ['pageList']
 
@@ -35,7 +48,7 @@ $(document).on('click', '.action-refresh', function (event) {
                 title: 'Pomyślnie odświeżono ogłoszenie!'
             })
 
-            $('#table').bootstrapTable('refresh');
+            active_table.bootstrapTable('refresh');
 
 
 
@@ -105,7 +118,7 @@ $(document).on('click', '.action-remove', function (event) {
                         'success'
                     )
 
-                    $('#table').bootstrapTable('refresh');
+                    active_table.bootstrapTable('refresh');
                     
 
                    
@@ -129,6 +142,77 @@ $(document).on('click', '.action-remove', function (event) {
 
 });
 
+//archive button
+$(document).on('click', '.action-archive', function (event) {
+    var classfield_id = $(this).data('cid');
+    Swal.fire({
+        title: 'Czy chcesz zakończyć i zarchiwizować to ogłoszenie?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#430091',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Tak, kontynuuj',
+        cancelButtonText: `Anuluj`,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            //WHEN REMOVE SUCCESS
+
+            //show waiting box
+            Swal.fire({
+                title: 'Proszę czekać!',
+                html: `Trwa wykonywanie akcji. <br />
+                <div class="spinner-border spinner-border-sm" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                `,// add html attribute if you want or remove
+                icon: 'info',
+                allowOutsideClick: false,
+                showCancelButton: false,
+                showConfirmButton: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                },
+            });
+
+
+            //Ajax request
+            $.ajax({
+                type: "POST",
+                url: "/inc/requests/post/archive_post.php",
+                data: { 'id': classfield_id },
+                success: function (response) {
+                    console.log(response);
+                    Swal.fire(
+                        'Sukces!',
+                        'Akcja została wykonana pomyślnie.',
+                        'success'
+                    )
+
+                    active_table.bootstrapTable('refresh');
+                    disactive_table.bootstrapTable('refresh');
+
+
+
+
+                },
+                error: function (response) {
+                    console.log(response);
+                    Swal.fire(
+                        'Błąd ' + response.status,
+                        '' + response.responseText,
+                        'error'
+                    )
+
+                }
+            });
+
+
+
+        }
+    })
+
+})
+
 function customViewFormatter(data) {
     var template = $('#card-template').html()
     var view = '';
@@ -149,7 +233,7 @@ function customViewFormatter(data) {
     } else {
         return `<div class="card">
     <div class="card-body">
-        <p class="card-text">Brak aktywnych ogłoszeń </p>
+        <p class="card-text">Brak ogłoszeń </p>
     </div>
     </div>`
     }

@@ -5,6 +5,12 @@ if(!isset($_SESSION["userdata"]["userid"])){
     exit();
 }
 
+if (!isset($_GET["state"]) || !in_array(intval($_GET["state"]), array(1,0))) {
+    http_response_code(400);
+    exit();
+}
+$state  = $_GET["state"];
+
 require_once($_SERVER['DOCUMENT_ROOT']."/config/database.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/config/config.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/inc/functions/sfm.php");
@@ -19,9 +25,14 @@ $classfields = $database->select("classfield",
         ]
 
  ],
- ["classfield.id", "classfield.title", "classfield.created_at", "classfield.expire_at", "classfield.location", "classfield.cost","classfield_photo.photo_hash",
+ ["classfield.id", "classfield.title", "classfield.created_at", "classfield.expire_at", "classfield.enabled", "classfield.location", "classfield.cost","classfield_photo.photo_hash",
 ],[
-    "user.userid" => $_SESSION["userdata"]["userid"]
+    "AND" =>[
+        "user.userid" => $_SESSION["userdata"]["userid"],
+        "classfield.enabled" => intval($state)
+    ]
+    
+
 ]
 );
 foreach($classfields as $key => $value){

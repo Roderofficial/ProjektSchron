@@ -1,4 +1,5 @@
 var editor;
+var cat_select;
 function citypickeradd(tag) {
   $(tag).select2(
     {
@@ -61,10 +62,94 @@ var uppy = new Uppy.Core({
 })
 .use(Uppy.ImageEditor, { target: Uppy.Dashboard })
 
+function edit_mode_init(){
+  console.log('edit init')
+
+  //loading information
+
+  var load_info = Swal.fire({title: "Ładowanie informacji",text:  "Twoje ogłoszenie jest pobierane, proszę czekać", icon: "info", showCancelButton: false, showConfirmButton: false})
+  //Get edit mode
+  var mode = getUrlParameter('mode');
+  if (mode == 'edit') {
+
+    var edit_id = getUrlParameter('id');
+    console.log(edit_id);
+    if (edit_id == false) {
+      Swal.fire('Błąd!', 'Nieprawidłowy argument ID', 'error').then(function () {
+        window.location = "/";
+      });
+      
+    }
+
+
+    //Download classfield data
+    console.log('ajax');
+    $.ajax({
+      type: "GET",
+      url: "/inc/requests/profile/new_classfield_edit_data.php",
+      data: {id: edit_id},
+      success: function (response) {
+        console.log(response);
+
+        //isnert data
+        $("[name='title']").val(response.title);
+        tinymce.activeEditor.setContent(response.description, { format: 'raw' });
+
+        cat_select.val(response.classfield_categoryid);
+        cat_select.trigger('change');
+
+        $("[name='cost']").val(response.cost);
+
+        $("[name='phone']").val(response.phone);
+
+        $("[name='email']").val(response.email);
+
+
+        var newOption = new Option(response.location, response.osm_id, false, true);
+        $("[name='osm_id']").append(newOption).trigger('change');
+
+
+        //Load images
+        response.photos.forEach(function (item, index) {
+
+          fetch(`/assets/images/classfields/${item}`)
+          .then((response) => response.blob())
+          .then((blob) => {
+            uppy.addFile({
+              name: item,
+              type: blob.type,
+              data: blob
+            });
+          });
+        });
+
+
+
+
+
+
+        load_info.close();
+      },
+      error: function (response) {
+        animations.enable();
+        notyf.error(`Błąd ${response.status}: ${response.responseText}`)
+        Swal.fire('Błąd!', 'Kod błędu: '+ response.status, 'error').then(function () {
+          window.location = "/";
+        });
+        return;
+      }
+    });
+
+
+  }
+}
+
+
 
 //on site ready
 $(function(){
   //city picker
+  
   citypickeradd('.citypicker')
 
   //category selector
@@ -79,7 +164,7 @@ $(function(){
       $("#new-classfield-category-picker").append(new Option(element.text, element.id))
     });
   });
-  $('.category-select').select2({ theme: "bootstrap-5" });
+  cat_select = $('.category-select').select2({ theme: "bootstrap-5" });
 
   //add map
   const map = new ol.Map({
@@ -97,22 +182,30 @@ $(function(){
   });
 
   //tinymce
-  //tinymce
   editor = tinymce.init({
     selector: '#desceditor',
     plugins: 'lists advlist',
     toolbar: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent",
     menubar: false,
+    object_resizing: true,
+    height: 400
   });
 
 
-  //only numer input
+  //init edit mode
+  edit_mode_init();
 })
 
 $("#classfield").submit(function (event) {
   event.preventDefault();
   $("#description").val(tinymce.activeEditor.getContent());
   var formdata = new FormData(this);
+  //Check if is edit
+  if(getUrlParameter("mode") != false){
+    formdata.append("mode", getUrlParameter("mode"));
+    formdata.append("update_id", getUrlParameter("id"));
+
+  }
   pondFiles = uppy.getFiles();
   for (var i = 0; i < pondFiles.length; i++) {
     // append the blob file
