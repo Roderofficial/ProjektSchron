@@ -10,11 +10,7 @@ $(function () {
             prevEl: ".swiper-button-prev",
         },
     });
-    //MAP ICON POINT
-    // const iconFeature = new ol.Feature({
-    //     geometry: new ol.geom.Point(ol.proj.fromLonLat([geo_long, geo_lat])),
-    //     name: 'Somewhere near Nottingham',
-    // });
+
 
     //MAP CIRCLE
     var centerLongitudeLatitude = ol.proj.fromLonLat([geo_long, geo_lat]);
@@ -70,8 +66,8 @@ $("#getcontactbtn").click(function () {
         success: function (response) {
             var contact_details = `
             <div class="d-grid gap-2">
-                <a href="tel:${response.phone}" class="btn btn-outline-primary"" role="button" aria-disabled="true"><i class="fas fa-phone-alt"></i> ${response.phone}</a>
-                <a href="mailto:${response.email}" class="btn btn-outline-primary"" role="button" aria-disabled="true"><i class="far fa-envelope"></i> ${response.email}</a>
+                <a href="tel:${response.phone}" class="btn btn-outline-primary"" role="button" aria-disabled="true"><i class="fas fa-phone-alt me-1"></i> ${response.phone}</a>
+                <a href="mailto:${response.email}" class="btn btn-outline-primary"" role="button" aria-disabled="true"><i class="fas fa-envelope me-1"></i> ${response.email}</a>
             </div>
             `
             $(".contactdetail").html(contact_details);

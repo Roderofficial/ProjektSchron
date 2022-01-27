@@ -34,6 +34,20 @@
 
     <!-- RIGHT SIDE -->
     <div class="right-side col-lg-8 order-0 order-lg-1">
+
+        <?php
+        //Enabled card
+        if($data["enabled"] == 0){
+            echo '
+            <div class="card bg-warning mb-3">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-ban"></i> Przeglądasz archiwalne ogłoszenie!</h5>
+                </div>
+            </div>
+            ';
+
+        }
+        ?>
         <div class="card post-header">
             <div class="card-body w-100">
                 <!-- IMAGES -->
@@ -64,23 +78,7 @@
             </div>
         </div>
 
-        <!-- DETAILS -->
-        <div class="card post-details">
-            <div class="card-body w-100">
-                <!-- END IMAGES -->
-                <h2 class="w-100 desc-title custom-card-text">CHARAKTERYSTYKA</h2>
-                <div class="row">
-                    <div class="col-lg-4 detail"><i class="fas fa-check-circle"></i> <span>Szczepiony</span></div>
-                    <div class="col-lg-4 detail"><i class="fas fa-check-circle"></i> <span>Odrobaczony</span></div>
-                    <div class="col-lg-4 detail"><i class="fas fa-check-circle"></i> <span>Sprząta</span></div>
-                    <div class="col-lg-4 detail"><i class="fas fa-check-circle"></i> <span>Gotuje</span></div>
-                    <div class="col-lg-4 detail"><i class="fas fa-check-circle"></i> <span>Sam się wyprowadza</span></div>
-                    <div class="col-lg-4 detail"><i class="fas fa-check-circle"></i> <span>Lubi kwiaty</span></div>
-                    <div class="col-lg-4 detail"><i class="fas fa-check-circle"></i> <span>Świeżak</span></div>
-
-                </div>
-            </div>
-        </div>
+        
 
         <!-- DATA AND I PARAMETRY -->
         <div class="card post-details">

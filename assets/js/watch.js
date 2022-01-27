@@ -63,9 +63,6 @@ $(document).on('select2:open', () => {
 
 //Update select map
 $('#citypicker').on('select2:selecting', function (e) {
-    console.log('Selecting: ', e.params.args.data);
-    console.log('test')
-    console.log("Response from select request", selected_location);
     //Disable radius if województwo 
     if(selected_location.properties.place_rank == 8){
         radius_picker[0].disabled = true;
@@ -88,7 +85,6 @@ function queryParams(params) {
 $("#searchform").submit(function (event) {
     event.preventDefault();
     form = event;
-    console.log(event);
     // var serialize_obj = $("#searchform").serialize();
     // current_page = location.protocol + '//' + location.host + location.pathname;
     // document.location.href = current_page + '?' + serialize_obj;
@@ -115,7 +111,6 @@ $(function(){
 
     $.get("https://nominatim.openstreetmap.org/lookup?osm_ids=" + data_osm_id + "&format=json", function (data) {
 
-        console.log(data[0]);
         var newOption = new Option(data[0].display_name, data_osm_id, false, true);
         $('#citypicker').append(newOption).trigger('change');
         $('#citypicker').select2('refresh');
@@ -136,9 +131,7 @@ $(function(){
 
         var category = getUrlParameter('category-select');
         if (category != false) {
-            console.log(category);
             $(`#category-select option[value=${category}]`).prop('selected', true);
-            console.log('change state')
             refresh_table();
         }
     });
@@ -150,6 +143,5 @@ $(function(){
 function refresh_table(){
     $('#table').bootstrapTable('refresh')
     $('#table').bootstrapTable('selectPage', 1)
-    console.log('refresh')
 
 }

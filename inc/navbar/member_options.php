@@ -3,7 +3,7 @@
     <button class="btn btn-secondary dropdown-toggle topbtn" style="margin-right:10px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fas fa-user"></i> Mój profil
     </button>
-    <div class="dropdown-menu" style="margin-top: 18px; white-space: nowrap;">
+    <div class="dropdown-menu" style="margin-top: 18px; white-space: nowrap; z-index: 9999;">
         <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
             <div class="col align-items-center justify-content-center">
                 <?php
