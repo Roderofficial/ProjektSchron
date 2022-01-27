@@ -37,10 +37,8 @@ function citypickeradd(tag) {
           };
         },
         processResults: function (data) {
-          console.log(data)
           var res = data.features.map(function (item) {
             if (item.properties.place_rank >= 12) {
-              console.log(item)
               selected_location = item;
               return { id: item.properties.osm_type.charAt(0).toUpperCase() + item.properties.osm_id, text: item.properties.display_name };
             } else {
@@ -73,7 +71,6 @@ $("form").submit(function(e){
     var action_form = e.currentTarget.getAttribute('action')
     var data_form  = new FormData(this);
     test = form;
-    console.log(data_form);
 
     //Animations
     var animations = new updating_animations('#' + test.currentTarget.id);
@@ -91,15 +88,11 @@ $("form").submit(function(e){
 
       //Success
       success: function (data) {
-          console.log(data);
-          console.info('sukces')
           notyf.success("Dane zostały zapisane pomyślnie.")
       },
 
       //Error
       error: function (data){
-          console.error(data)
-          console.info('błąd')
           notyf.error(`Błąd ${data.status}: ${data.responseText}`)
       },
 
@@ -112,5 +105,4 @@ $("form").submit(function(e){
       processData: false
   });
     
-    console.log(data);
 });

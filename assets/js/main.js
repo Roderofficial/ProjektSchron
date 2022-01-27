@@ -113,7 +113,6 @@ $("#registerform").submit(function (event) {
         success: function (response) {
 
             notyf.success("Konto zostało utworzone pomyślnie. Automatyczne przekierowanie...")
-            console.log(response);
             
             setTimeout(function(e){
                 location.reload();
@@ -135,7 +134,6 @@ class updating_animations{
         this.form = $(form);
         this.submitbtn = this.form.find('button[type=submit]')[0];
         this.beforesubmit = this.submitbtn.innerHTML;
-        console.log(this.beforesubmit);
 
     }
 
@@ -158,7 +156,6 @@ $(".btn_facebook-login").click(function (e){
 
     //open login window
     var social_window = window.open('/inc/requests/auth/social_login.php', 'Logowanie Facebook');
-    console.log(social_window);
     social_window.addEventListener('beforeunload', function (e) {
         // the absence of a returnValue property on the event will guarantee the browser unload happens
         window.location.reload();
@@ -177,7 +174,6 @@ class public_category_select{
 
 }
 function category_public_insert(object_id) {
-    console.log(object_id);
     var object = $(object_id)
     
     $.get("/inc/requests/categories.php", { async: false }, function (data) {
@@ -190,8 +186,6 @@ function category_public_insert(object_id) {
         });
 
     });
-    console.log($(this.object_id));
-    console.log('cat loaded')
 }
 function escapeHtml(unsafe) {
     return unsafe

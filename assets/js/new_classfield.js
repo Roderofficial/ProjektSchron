@@ -1,5 +1,6 @@
 var editor;
 var cat_select;
+var editor_data = null;
 function citypickeradd(tag) {
   $(tag).select2(
     {
@@ -23,10 +24,8 @@ function citypickeradd(tag) {
           };
         },
         processResults: function (data) {
-          console.log(data)
           var res = data.features.map(function (item) {
             if (item.properties.place_rank >= 12 && item.properties.place_rank <= 18) {
-              console.log(item)
               selected_location = item;
               return { id: item.properties.osm_type.charAt(0).toUpperCase() + item.properties.osm_id, text: item.properties.display_name };
             } else {
@@ -63,17 +62,16 @@ var uppy = new Uppy.Core({
 .use(Uppy.ImageEditor, { target: Uppy.Dashboard })
 
 function edit_mode_init(){
-  console.log('edit init')
-
-  //loading information
-
-  var load_info = Swal.fire({title: "Ładowanie informacji",text:  "Twoje ogłoszenie jest pobierane, proszę czekać", icon: "info", showCancelButton: false, showConfirmButton: false})
   //Get edit mode
   var mode = getUrlParameter('mode');
   if (mode == 'edit') {
 
+    //loading information
+
+    var load_info = Swal.fire({ title: "Ładowanie informacji", text: "Twoje ogłoszenie jest pobierane, proszę czekać", icon: "info", showCancelButton: false, showConfirmButton: false, allowOutsideClick: false })
+
+
     var edit_id = getUrlParameter('id');
-    console.log(edit_id);
     if (edit_id == false) {
       Swal.fire('Błąd!', 'Nieprawidłowy argument ID', 'error').then(function () {
         window.location = "/";
@@ -83,17 +81,22 @@ function edit_mode_init(){
 
 
     //Download classfield data
-    console.log('ajax');
     $.ajax({
       type: "GET",
       url: "/inc/requests/profile/new_classfield_edit_data.php",
       data: {id: edit_id},
       success: function (response) {
-        console.log(response);
+
+        //Change titles and button name
+        $("#labelnewclassfieldtitle").html("Edytuj ogłoszenie");
+        $("#formclassfieldsubmit").html("Zapisz zmiany");
 
         //isnert data
         $("[name='title']").val(response.title);
         tinymce.activeEditor.setContent(response.description, { format: 'raw' });
+
+        //for safe update textarea
+        document.getElementById("description").value = response.description;
 
         cat_select.val(response.classfield_categoryid);
         cat_select.trigger('change');
@@ -131,8 +134,7 @@ function edit_mode_init(){
         load_info.close();
       },
       error: function (response) {
-        animations.enable();
-        notyf.error(`Błąd ${response.status}: ${response.responseText}`)
+        load_info.close();
         Swal.fire('Błąd!', 'Kod błędu: '+ response.status, 'error').then(function () {
           window.location = "/";
         });
@@ -189,11 +191,15 @@ $(function(){
     menubar: false,
     object_resizing: true,
     height: 400
+  }).then(function (){
+
+    //init edit mode
+    edit_mode_init();
   });
 
 
-  //init edit mode
-  edit_mode_init();
+  
+  
 })
 
 $("#classfield").submit(function (event) {
@@ -208,8 +214,19 @@ $("#classfield").submit(function (event) {
   }
   pondFiles = uppy.getFiles();
   for (var i = 0; i < pondFiles.length; i++) {
-    // append the blob file
-    formdata.append('images[]', pondFiles[i].data);
+    if (pondFiles[i].data instanceof Blob){
+      const myFile = new File([pondFiles[i].data], pondFiles[i].meta.name, {
+        type: pondFiles[i].meta.type,
+      });
+
+      // append the file
+      formdata.append('images[]', myFile);
+    }else{
+      // append the file
+      formdata.append('images[]', pondFiles[i].data);
+
+    }
+
   }
 
   var form = $(this);
@@ -239,7 +256,29 @@ $("#classfield").submit(function (event) {
     },
     success: function (response) {
 
-      notyf.success("Konto zostało utworzone pomyślnie. Automatyczne przekierowanie...")
+      var mode = getUrlParameter('mode');
+      if(mode == "edit"){
+        Swal.fire({
+          icon: 'success',
+          title: 'Sukces!',
+          text: 'Ogłoszenie zostało zaktualizowane, nastąpi przekierowanie!',
+          showCancelButton: false, // There won't be any cancel button
+          showConfirmButton: false, // There won't be any confirm button
+          allowOutsideClick: false
+        })
+
+      }else{
+        Swal.fire({
+          icon: 'success',
+          title: 'Sukces!',
+          text: 'Ogłoszenie zostało pomyślnie dodane, nastąpi przekierowanie!',
+          showCancelButton: false, // There won't be any cancel button
+          showConfirmButton: false, // There won't be any confirm button
+          allowOutsideClick: false
+        })
+      }
+
+      
       window.location.replace(response);
 
     },

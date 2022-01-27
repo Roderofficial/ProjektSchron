@@ -23,7 +23,7 @@
     <div class="new-classfield-box">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Nowe ogłoszenie</h5>
+                <h5 class="card-title" id="labelnewclassfieldtitle">Nowe ogłoszenie</h5>
                 <form method="POST" id="classfield">
 
                     <!-- OBRAZY -->
@@ -113,7 +113,7 @@
                         <div style="text-align:center;">
                             <div class="g-recaptcha mb-3" style="display:inline-block" data-sitekey="6Ldl6d8dAAAAANuCA-InONqkE0EIWnuoMRDyIqGb"></div>
                         </div>
-                        <button class="btn btn-primary" type="submit">Dodaj ogłoszenie</button>
+                        <button class="btn btn-primary" type="submit" id="formclassfieldsubmit">Dodaj ogłoszenie</button>
 
                     </div>
 
