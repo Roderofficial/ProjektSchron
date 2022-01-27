@@ -6,6 +6,8 @@ require_once($_SERVER['DOCUMENT_ROOT']. '/config/database.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/assets/libs/htmlsanitizer/HTMLPurifier.auto.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/inc/functions/sfm.php');
 
+use Medoo\Medoo;
+
 
 if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
     $secret = $grechapta_secret;
@@ -21,6 +23,12 @@ if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response
     echo 'Brak rechapty!';
     exit();
 }
+
+
+
+
+
+
 //title
 if(!isset($_POST['title']) || empty($_POST['title'])){
     http_response_code(400);
@@ -185,54 +193,153 @@ for ($i = 0; $i < count($_FILES['images']['name']); $i++) {
 
 }
 
-//ADD CLASSFIELD TO DATABASE
-$database->insert("classfield", 
-[
-    "classfield_categoryid" => $_POST['category'],
-    "title" => $_POST["title"],
-    "description" => $_POST["description"],
-    "location" => $location_name,
-    "geo_long" => strval($location_data["features"][0]["geometry"]["coordinates"][0]),
-    "geo_lat" => strval($location_data["features"][0]["geometry"]["coordinates"][1]),
-    "osm_id" => $_POST['osm_id'],
-    "user_id" => $_SESSION['userdata']['userid'],
-    "cost" => strval($_POST['cost']),
-    "email" => $_POST["email"],
-    "phone" => $_POST["phone"]
+
+if (isset($_POST["mode"]) && $_POST["mode"] == "edit") {
+
+    //Check if in edit mode insert id post exist
+    if (!isset($_POST["update_id"]) || !is_numeric($_POST["update_id"])) {
+        http_response_code(400);
+        echo "Wymagane ID do aktualizacji";
+        exit();
+    }
 
 
-]);
+    //Check if exist
+    $old_classfield = $database->select("classfield", ["user_id"], ["id" => $_POST["update_id"]]);
 
-//Check if classfield addes successfull
-if($database->error != NULL){
-    http_response_code(500);
-    echo "Błąd podczas dodawania ogłoszenia, skontaktuj się z administratorem";
-    exit();
-}
+    if(count($old_classfield) == 0){
+        http_response_code(404);
+        echo 'Ogłoszenie nie istnieje!';
+        exit();
+    }
 
-//Get id insert
-$insert_id = $database->id();
+    if($old_classfield[0]["user_id"] != $_SESSION["userdata"]["userid"]){
+        http_response_code(403);
+        echo 'Brak uprawnień!';
+        exit();
+    }
 
-//Add images
-//Primary image add
-$database->insert("classfield_photo",[
-    "photo_hash" => $filenameupload[0],
-    "classfield_id" => $insert_id,
-    "main" => 1
-]);
-unset($filenameupload[0]);
 
-//Add other images
-foreach($filenameupload as $single_image_name){
+    //Update classfield
+    $database->update(
+        "classfield",
+        [
+            "classfield_categoryid" => $_POST['category'],
+            "title" => $_POST["title"],
+            "description" => $_POST["description"],
+            "location" => $location_name,
+            "geo_long" => strval($location_data["features"][0]["geometry"]["coordinates"][0]),
+            "geo_lat" => strval($location_data["features"][0]["geometry"]["coordinates"][1]),
+            "osm_id" => $_POST['osm_id'],
+            "user_id" => $_SESSION['userdata']['userid'],
+            "updated_at" => Medoo::raw('NOW()'),
+            "cost" => strval($_POST['cost']),
+            "email" => $_POST["email"],
+            "phone" => $_POST["phone"]
+        ],
+        ["id" => $_POST["update_id"]]
+    );
+
+    //Download old images
+    $old_images = $database->select("classfield_photo", "photo_hash", ["classfield_id" => $_POST["update_id"]]);
+    $database->delete("classfield_photo", ["classfield_id" => $_POST["update_id"]]);
+
+    //Add new images
+    //Add images
+    //Primary image add
+
+
     $database->insert("classfield_photo", [
-        "photo_hash" => $single_image_name,
-        "classfield_id" => $insert_id,
-        "main" => 0
+        "photo_hash" => $filenameupload[0],
+        "classfield_id" => $_POST["update_id"],
+        "main" => 1
     ]);
+    unset($filenameupload[0]);
+
+    //Add other images
+    foreach ($filenameupload as $single_image_name) {
+        $database->insert("classfield_photo", [
+            "photo_hash" => $single_image_name,
+            "classfield_id" => $_POST["update_id"],
+            "main" => 0
+        ]);
+    }
+
+
+   
+    //Remove old images
+
+    foreach ($old_images as $value) {
+        try{
+            //Remove image from files
+            unlink($_SERVER['DOCUMENT_ROOT'] . $images_classfield_location . $value);
+
+        }catch (Exception $e){}
+    }
+
+    echo '/post/' . clean($_POST['title']) . '-' . $_POST["update_id"];
+
+
+}else{
+
+    //Normal insert into database
+    //ADD CLASSFIELD TO DATABASE
+    $database->insert("classfield", 
+    [
+        "classfield_categoryid" => $_POST['category'],
+        "title" => $_POST["title"],
+        "description" => $_POST["description"],
+        "location" => $location_name,
+        "geo_long" => strval($location_data["features"][0]["geometry"]["coordinates"][0]),
+        "geo_lat" => strval($location_data["features"][0]["geometry"]["coordinates"][1]),
+        "osm_id" => $_POST['osm_id'],
+        "user_id" => $_SESSION['userdata']['userid'],
+        "cost" => strval($_POST['cost']),
+        "email" => $_POST["email"],
+        "phone" => $_POST["phone"]
+    ]);
+
+    // //Check if classfield addes successfull
+    if($database->error != NULL){
+        http_response_code(500);
+        echo "Błąd podczas dodawania ogłoszenia, skontaktuj się z administratorem";
+        exit();
+    }
+    // //Get id insert
+    $insert_id = $database->id();
+
+    //Add images
+    //Primary image add
+
+
+    $database->insert("classfield_photo",[
+        "photo_hash" => $filenameupload[0],
+        "classfield_id" => $insert_id,
+        "main" => 1
+    ]);
+    unset($filenameupload[0]);
+
+    //Add other images
+    foreach($filenameupload as $single_image_name){
+        $database->insert("classfield_photo", [
+            "photo_hash" => $single_image_name,
+            "classfield_id" => $insert_id,
+            "main" => 0
+        ]);
+    }
+
+
+    echo '/post/'.clean($_POST['title']).'-'.$insert_id;
+
+
 }
 
 
-echo '/post/'.clean($_POST['title']).'-'.$insert_id;
+
+
+
+
+
 
 
 

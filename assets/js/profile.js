@@ -55,7 +55,6 @@ $("#bannerupdate").click(function () {
     input.onchange = _ => {
         // you can use this method to get file and perform respective operations
         let files = Array.from(input.files);
-        console.log(files);
 
         //create form with image to send
         var fd = new FormData();
@@ -71,7 +70,6 @@ $("#bannerupdate").click(function () {
 
             //Success
             success: function (data) {
-                console.log(data);
                 notyf.success('Pomyślnie zaktualizowano banner!');
                 $('.background-image').css('background-image', 'url("' + data + '")');
             },
@@ -116,7 +114,6 @@ $("#avatar-update").click(function () {
     input.onchange = _ => {
         // you can use this method to get file and perform respective operations
         let files = Array.from(input.files);
-        console.log(files);
 
         //create form with image to send
         var fd = new FormData();
@@ -132,7 +129,6 @@ $("#avatar-update").click(function () {
 
             //Success
             success: function (data) {
-                console.log(data);
                 notyf.success('Pomyślnie zaktualizowano avatar!');
                 $('.avatar').css('background-image', 'url("' + data + '")');
             },

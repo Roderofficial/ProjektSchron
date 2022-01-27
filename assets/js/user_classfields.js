@@ -29,7 +29,6 @@ $(document).on('click', '.action-refresh', function (event) {
         url: "/inc/requests/post/refresh.php",
         data: { 'id': classfield_id },
         success: function (response) {
-            console.log(response);
             //Toastr
             const Toast = Swal.mixin({
                 toast: true,
@@ -54,7 +53,6 @@ $(document).on('click', '.action-refresh', function (event) {
 
         },
         error: function (response) {
-            console.log(response);
             Swal.fire(
                 'Błąd!',
                 '' + response.responseText,
@@ -70,6 +68,14 @@ $(document).on('click', '.action-refresh', function (event) {
 
 
 });
+//edit button
+
+$(document).on('click', '.action-edit', function (event) {
+    var classfield_id = $(this).data('cid');
+    window.location.replace("/u/dodaj?mode=edit&id="+classfield_id);
+
+})
+
 //remove button
 
 $(document).on('click', '.action-remove', function (event) {
@@ -111,7 +117,6 @@ $(document).on('click', '.action-remove', function (event) {
                 url: "/inc/requests/post/delete.php",
                 data: {'id': classfield_id},
                 success: function (response) {
-                    console.log(response);
                     Swal.fire(
                         'Sukces!',
                         'Akcja została wykonana pomyślnie.',
@@ -125,7 +130,6 @@ $(document).on('click', '.action-remove', function (event) {
 
                 },
                 error: function (response) {
-                    console.log(response);
                     Swal.fire(
                         'Błąd ' + response.status,
                         ''+response.responseText,
@@ -181,7 +185,6 @@ $(document).on('click', '.action-archive', function (event) {
                 url: "/inc/requests/post/archive_post.php",
                 data: { 'id': classfield_id },
                 success: function (response) {
-                    console.log(response);
                     Swal.fire(
                         'Sukces!',
                         'Akcja została wykonana pomyślnie.',
@@ -196,7 +199,6 @@ $(document).on('click', '.action-archive', function (event) {
 
                 },
                 error: function (response) {
-                    console.log(response);
                     Swal.fire(
                         'Błąd ' + response.status,
                         '' + response.responseText,
