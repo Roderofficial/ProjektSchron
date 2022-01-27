@@ -51,7 +51,7 @@
         <div class="tab-content" id="pills-tabContent">
             <!-- AKTUALNE -->
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                <table id="table" data-pagination="true" data-page-size="8" data-show-custom-view="true" data-custom-view="customViewFormatter">
+                <table id="active-table" data-pagination="true" data-page-size="8" data-show-custom-view="true" data-custom-view="customViewFormatter">
                     <thead>
                         <tr>
                             <th data-field="id">id</th>
@@ -67,7 +67,21 @@
             </div>
 
             <!-- Zakończone-->
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <table id="disactive-table" data-pagination="true" data-page-size="8" data-show-custom-view="true" data-custom-view="customViewFormatter">
+                    <thead>
+                        <tr>
+                            <th data-field="id">id</th>
+                            <th data-field="title">title</th>
+                            <th data-field="location">location</th>
+                            <th data-field="cost">cost</th>
+                            <th data-field="photo_hash">photo_hash</th>
+                            <th data-field="link">link</th>
+                            <th data-field="created_at">created_at</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
 
         </div>
 
@@ -87,7 +101,7 @@
                 <div class="col-md-10">
                     <div class="card-body">
                         <a class="card-title" href="%link%">%title%</a>
-                        <p class="card-text"><small>Data dodania: %create_time% <br /> Data wygaśnięcia: <b><span style="color:red;">%expire_time%</span></b>                            </small></p>
+                        <p class="card-text"><small>Data dodania: %create_time% <br /> Data wygaśnięcia: <b><span style="color:red;">%expire_time%</span></b> </small></p>
                         <div class="bottom-control">
                             <div class="d-grid gap-2 d-md-block">
                                 <button type="button" class="btn btn-primary action-refresh" data-cid="%cid%"><i class="fas fa-redo"></i> Odśwież</button>
@@ -119,7 +133,7 @@
 
 
     <?php require($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/scripts.php') ?>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <script src="/assets/js/user_classfields.js"></script>
 </body>
 
