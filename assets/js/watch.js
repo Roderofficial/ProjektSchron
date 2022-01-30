@@ -98,24 +98,22 @@ $("#searchform").submit(function (event) {
 
 //update on page load attributes if exist for main page data
 $(function(){
-    //Category selector
-
-    //update min cost
-    var data_cost_min = getUrlParameter('osm_id');
-    
-    
-
 
     //update cost man
     var data_osm_id = getUrlParameter('osm_id');
 
-    $.get("https://nominatim.openstreetmap.org/lookup?osm_ids=" + data_osm_id + "&format=json", function (data) {
+    if(data_osm_id != false){
+        $.get("https://nominatim.openstreetmap.org/lookup?osm_ids=" + data_osm_id + "&format=json", function (data) {
 
-        var newOption = new Option(data[0].display_name, data_osm_id, false, true);
-        $('#citypicker').append(newOption).trigger('change');
-        $('#citypicker').select2('refresh');
-        refresh_table();
-    });
+            var newOption = new Option(data[0].display_name, data_osm_id, false, true);
+            $('#citypicker').append(newOption).trigger('change');
+            $('#citypicker').select2('refresh');
+            refresh_table();
+        });
+
+    }
+
+
 
 
     //Load categories and auto
@@ -130,10 +128,13 @@ $(function(){
         });
 
         var category = getUrlParameter('category-select');
-        if (category != false) {
-            $(`#category-select option[value=${category}]`).prop('selected', true);
-            refresh_table();
+        if(category != false){
+            if (category != false) {
+                $(`#category-select option[value=${category}]`).prop('selected', true);
+                refresh_table();
+            }
         }
+
     });
 
 

@@ -3,7 +3,7 @@
     RewriteRule "^post/(.*)$" "/views/post.php?posttitle=$1"
     RewriteRule "^profile/(.*)$" "/views/profile.php?id=$1"
     RewriteRule ^ogloszenia$ /views/watch.php [L]
-    RewriteRule ^password-recovery(.*)$ /views/user/password_recovery.php [L]
+    RewriteRule ^resetuj-haslo(.*)$ /views/user/password_recovery.php [L]
     RewriteRule ^u/dodaj(.*)$ /views/user/new_classfield.php [L]
     RewriteRule ^u/ustawienia(.*)$ /views/user/settings.php [L]
     RewriteRule ^u/moje-ogloszenia(.*)$ /views/user/user_classfields.php [L]

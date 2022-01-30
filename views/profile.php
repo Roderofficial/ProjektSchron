@@ -31,6 +31,9 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/profile/controler.php');
         require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/profile/classfields.php');
         require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/profile/more_details.php');
 
+        //ADS 
+        require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/ads/szeroka_reklama.php');
+
         ?>
     </div>
 

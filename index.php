@@ -15,6 +15,10 @@
     <?php require_once($_SERVER['DOCUMENT_ROOT'].'/inc/navbar/navbar.php');
     require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/main_page/banner.php');
     require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/main_page/classfield.php');
+
+
+    //ADS 
+    require_once($_SERVER["DOCUMENT_ROOT"].'/inc/ads/szeroka_reklama.php');
     ?>
     
 
