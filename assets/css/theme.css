@@ -189,3 +189,6 @@ font-size: 1.8rem;
 .card.classfield-card-preview.view-more-card:hover {
     background-color: #310466;
 }
+body:not(.modal-open){
+  padding-right: 0px !important;
+}

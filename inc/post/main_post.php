@@ -1,4 +1,23 @@
 <div class="post row">
+    <?php
+    //ADS 
+    require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/ads/szeroka_reklama.php');
+    ?>
+
+    <?php
+    //Enabled card
+    if ($data["enabled"] == 0) {
+        echo '
+            <div class="card bg-warning mb-3 col-12">
+                <div class="card-body">
+                    <h4 class="card-title" style="margin-bottom:0px;"><i class="fas fa-ban"></i> Przeglądasz archiwalne ogłoszenie!</h4>
+                </div>
+            </div>
+            ';
+    }
+    ?>
+
+
     <!-- LEFT SIDE -->
     <div class="left-side col-lg-4 order-1 order-lg-0">
         <!-- LOCATION CARD -->
@@ -14,7 +33,7 @@
             <div class="card-body">
                 <p class="custom-card-text" style="font-size: 20px;">DANE KONTAKTOWE</p>
                 <div class="contactdetail">
-                    <button type="button" class="btn btn-outline-primary w-100 btn-lg" id="getcontactbtn" style="font-weight: 500;"><i class="far fa-address-book"></i> Pokaż dane kontaktowe</button>
+                    <button type="button" class="btn btn-outline-primary w-100 btn-lg" id="getcontactbtn" style="font-weight: 500;" <?= $data["enabled"] == 0 ? "Disabled" : null ?>><i class="far fa-address-book"></i> Pokaż dane kontaktowe</button>
                 </div>
             </div>
         </div>
@@ -34,20 +53,6 @@
 
     <!-- RIGHT SIDE -->
     <div class="right-side col-lg-8 order-0 order-lg-1">
-
-        <?php
-        //Enabled card
-        if($data["enabled"] == 0){
-            echo '
-            <div class="card bg-warning mb-3">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-ban"></i> Przeglądasz archiwalne ogłoszenie!</h5>
-                </div>
-            </div>
-            ';
-
-        }
-        ?>
         <div class="card post-header">
             <div class="card-body w-100">
                 <!-- IMAGES -->
@@ -78,7 +83,7 @@
             </div>
         </div>
 
-        
+
 
         <!-- DATA AND I PARAMETRY -->
         <div class="card post-details">
@@ -90,4 +95,8 @@
             </div>
         </div>
     </div>
+    <?php
+    //ADS 
+    require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/ads/szeroka_reklama.php');
+    ?>
 </div>

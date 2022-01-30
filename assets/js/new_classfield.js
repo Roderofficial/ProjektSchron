@@ -66,6 +66,12 @@ function edit_mode_init(){
   var mode = getUrlParameter('mode');
   if (mode == 'edit') {
 
+    //Change names
+    //Change titles and button name
+    document.title = "Edytuj ogłoszenie - GetPet.pl";
+    $("#labelnewclassfieldtitle").html("Edytuj ogłoszenie");
+    $("#formclassfieldsubmit").html("Zapisz zmiany");
+
     //loading information
 
     var load_info = Swal.fire({ title: "Ładowanie informacji", text: "Twoje ogłoszenie jest pobierane, proszę czekać", icon: "info", showCancelButton: false, showConfirmButton: false, allowOutsideClick: false })
@@ -86,10 +92,6 @@ function edit_mode_init(){
       url: "/inc/requests/profile/new_classfield_edit_data.php",
       data: {id: edit_id},
       success: function (response) {
-
-        //Change titles and button name
-        $("#labelnewclassfieldtitle").html("Edytuj ogłoszenie");
-        $("#formclassfieldsubmit").html("Zapisz zmiany");
 
         //isnert data
         $("[name='title']").val(response.title);

@@ -19,6 +19,11 @@
 
 
     <div class="container mt-3">
+
+        <?php
+        //ADS 
+        require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/ads/szeroka_reklama.php');
+        ?>
         <!-- top nav -->
         <div class="top-nav">
             <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|} mb-3">
@@ -68,7 +73,7 @@
 
             <!-- Zakończone-->
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                <table id="disactive-table" data-pagination="true" data-page-size="8" data-show-custom-view="true" data-custom-view="customViewFormatter">
+                <table id="disactive-table" data-pagination="true" data-page-size="8" data-show-custom-view="true" data-custom-view="endedcustomViewFormatter">
                     <thead>
                         <tr>
                             <th data-field="id">id</th>
@@ -86,12 +91,15 @@
         </div>
 
 
-
+        <?php
+        //ADS 
+        require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/ads/szeroka_reklama.php');
+        ?>
 
 
     </div>
 
-    <!-- TEMPLATE -->
+    <!-- ACTIVE CARD TEMPLATE -->
     <template id="card-template">
         <div class="card mb-3 classfield-user">
             <div class="row g-0" style="min-height: 200px;">
@@ -130,10 +138,48 @@
     </template>
     <!-- END CARD TEMPLATE -->
 
+    <!-- ENDED CARD TEMPLATE -->
+    <template id="card-template-ended">
+        <div class="card mb-3 classfield-user">
+            <div class="row g-0" style="min-height: 200px;">
+                <div class="col-md-2">
+                    <div class="img-card" style="background-image: url('/assets/images/classfields/%photo_hash%');"></div>
+                </div>
+                <div class="col-md-10">
+                    <div class="card-body">
+                        <a class="card-title" href="%link%">%title%</a>
+                        <p class="card-text"><small>Data dodania: %create_time% <br /> Data zakończenia: <b><span style="color:red;">%expire_time%</span></b> </small></p>
+                        <div class="bottom-control">
+                            <div class="d-grid gap-2 d-md-block">
+                                <button type="button" class="btn btn-success action-active" data-cid="%cid%"><i class="fas fa-sync-alt"></i> Aktywuj</button>
+                                <!-- DROPDOWN -->
+                                <div class="dropdown d-md-inline-block">
+                                    <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-wrench"></i> Zarządzaj
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                        <li><button class="dropdown-item action-edit" type="button" data-cid="%cid%"><i class="fas fa-pen"></i> Edytuj</button></li>
+                                        <li><button class="dropdown-item action-remove" type="button" data-cid="%cid%"><i class="fas fa-trash-alt"></i> Usuń</button></li>
+                                    </ul>
+                                </div>
+
+
+                                <!-- END DROPDOWN -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </template>
+    <!-- END CARD TEMPLATE -->
+
 
 
     <?php require($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/scripts.php') ?>
-    
+
     <script src="/assets/js/user_classfields.js"></script>
 </body>
 

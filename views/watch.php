@@ -20,6 +20,10 @@
     ?>
 
     <div class="watch">
+        <?php
+            //ADS 
+            require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/ads/szeroka_reklama.php');
+        ?>
         <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|} ms-1 me-1">
             <div class="col-12 col-md-8 align-self-end mb-3">
                 <span class="watch-title">Przeglądaj ogłoszenia</span>
@@ -31,7 +35,10 @@
             </div>
         </div>
         <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/watch/classfields.php')
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/watch/classfields.php');
+
+        //ADS 
+        require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/ads/szeroka_reklama.php');
         ?>
 
     </div>
