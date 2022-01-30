@@ -211,3 +211,18 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
     return false;
 };
+
+$("#unewclassfield").click(function (){
+    Swal.fire({
+        icon: 'info',
+        text: 'Aby dodać ogłoszenie musisz się zalgowować!',
+        confirmButtonText:'Logowanie',
+        showCloseButton: true,
+        focusConfirm: false,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.close();
+            $('#loginModal').modal('show')
+        }
+    })
+});

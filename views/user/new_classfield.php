@@ -1,3 +1,7 @@
+<?php
+require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/new_classfield/controler.php');
+?>
+
 <!doctype html>
 <html lang="pl">
 
@@ -16,7 +20,6 @@
 
 <body>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/navbar/navbar.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/navbar/navbar.php');
 
     ?>
 
@@ -80,12 +83,12 @@
                             <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
                                 <div class="col-lg-6 col-12">
                                     <label>Adres e-mail</label>
-                                    <input type="email" class="form-control" name="email" placeholder="name@example.com" required>
+                                    <input type="email" class="form-control" name="email" placeholder="name@example.com" value="<?= $placeholder["email_public"] ?>" required>
 
                                 </div>
                                 <div class="col-lg-6 col-12">
                                     <label>Telefon</label>
-                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="+48 123 456 789" pattern="(?<!\w)(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w)" required>
+                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="+48 123 456 789" pattern="(?<!\w)(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w)" value="<?= $placeholder["phone_public"] ?>" required>
 
                                 </div>
                             </div>
@@ -102,7 +105,7 @@
                                         <option value="" disabled selected>Szukaj...</option>
                                     </select>
                                 </div>
-                                
+
                             </div>
 
                         </div>
@@ -122,7 +125,10 @@
 
             </form>
         </div>
-    </div>
+        <?php
+        //ADS 
+        require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/ads/szeroka_reklama.php');
+        ?>
     </div>
 
 

@@ -72,7 +72,7 @@ $(document).on('click', '.action-refresh', function (event) {
 
 $(document).on('click', '.action-edit', function (event) {
     var classfield_id = $(this).data('cid');
-    window.location.replace("/u/dodaj?mode=edit&id="+classfield_id);
+    window.location.href = "/u/dodaj?mode=edit&id="+classfield_id;
 
 })
 
@@ -215,6 +215,54 @@ $(document).on('click', '.action-archive', function (event) {
 
 })
 
+//Active
+$(document).on('click', '.action-active', function (event) {
+    var classfield_id = $(this).data('cid');
+    var btn = $(this);
+    btn.prop("disabled", true);
+    $.ajax({
+        type: "POST",
+        url: "/inc/requests/post/active_post.php",
+        data: { 'id': classfield_id },
+        success: function (response) {
+            //Toastr
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Pomyślnie aktywowano ogłoszenie!'
+            })
+
+            active_table.bootstrapTable('refresh');
+            disactive_table.bootstrapTable('refresh');
+
+
+
+        },
+        error: function (response) {
+            Swal.fire(
+                'Błąd!',
+                '' + response.responseText,
+                'error'
+            )
+
+            btn.prop("disabled", false);
+
+        }
+    });
+
+});
+
 function customViewFormatter(data) {
     var template = $('#card-template').html()
     var view = '';
@@ -240,4 +288,30 @@ function customViewFormatter(data) {
     </div>`
     }
 }
+function endedcustomViewFormatter(data) {
+    var template = $('#card-template-ended').html()
+    var view = '';
+    if (data.length != 0) {
+        $.each(data, function (i, row) {
+            view += template.replace('%NAME%', row.name)
+                .replace('%title%', row.title)
+                .replaceAll('%cid%', row.id)
+                .replace('%link%', row.link)
+                .replace('%location%', row.location)
+                .replace('%photo_hash%', row.photo_hash)
+                .replace('%create_time%', row.created_at)
+                .replace('%expire_time%', row.expire_at)
+                .replace('%cost%', row.cost)
+        })
+
+        return `<div class="row mx-0">${view}</div>`
+    } else {
+        return `<div class="card">
+    <div class="card-body">
+        <p class="card-text">Brak ogłoszeń </p>
+    </div>
+    </div>`
+    }
+}
+
 
