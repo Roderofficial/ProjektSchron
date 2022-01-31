@@ -90,10 +90,20 @@ function citypicker(tag) {
         });
 }
 
+function popular_categories(){
+    $.get("/inc/requests/popular-categories.php", function (data, status) {
+        data.forEach(element => {
+            $('.popular-categories').append(`<a href="/ogloszenia?category-select=${element.classfield_categoryid}" role="button" class="btn btn-outline-primary btn-sm me-2">${element.category_icon} ${element.category_title}</a>`)
+        });
+    });
+}
+
 
 //ONLOAD
 $(function () {
+    popular_categories();
     getData();
     citypicker("#citypicker");
     category_public_insert("#category-select");
+    
 });

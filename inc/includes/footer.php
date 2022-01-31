@@ -61,6 +61,14 @@
                         <i class="fas fa-envelope me-3"></i>
                         kontakt@getpet.pl
                     </p>
+                    <p>
+                        <i class="fas fa-phone-alt fa-flip-horizontal me-3"></i>
+                        +48 667 664 866
+                    </p>
+                    <p>
+                        <i class="fab fa-discord me-3"></i>
+                        roder#7188
+                    </p>
                 </div>
                 <!-- Grid column -->
             </div>
