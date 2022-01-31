@@ -25,13 +25,9 @@
                     </div>
                 </form>
                 <div class="popularne-kategorie text-left mb-3">
-                    <span style="font-weight: 600;">Popularne kategorie: </span>
+                    <p style="font-weight: 600;" class="mb-1">Popularne kategorie: </p>
                     <!-- POPULAR BUTTONS -->
-                    <a href="#" role="button" class="btn btn-outline-primary btn-sm me-2"><i class="fas fa-dog"></i> Psy</a>
-                    <a role="button" class="btn btn-outline-primary btn-sm me-2"><i class="fas fa-cat"></i> Koty</a>
-                    <a role="button" class="btn btn-outline-primary btn-sm me-2"><i class="fas fa-horse"></i> Konie</a>
-                    <a role="button" class=" btn btn-outline-primary btn-sm me-2"><i class="fas fa-boxes"></i> Akcesoria</a>
-                    <a role="button" class="btn btn-outline-primary btn-sm me-2"><i class="fas fa-hand-holding-heart"></i> Usługi</a>
+                    <div class="popular-categories mb-3"></div>
                 </div>
 
             </div>
