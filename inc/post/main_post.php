@@ -94,6 +94,13 @@
 
             </div>
         </div>
+
+
+    </div>
+    <div class="col-12  order-3">
+        <div class=" justify-content-end d-flex">
+            <span class="badge bg-dark">Identyfikator ogłoszenia: <?= htmlspecialchars($id) ?></span>
+        </div>
     </div>
     <?php
     //ADS 
