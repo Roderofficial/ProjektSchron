@@ -25,13 +25,10 @@
                         SOCIAL MEDIA
                     </h6>
                     <p>
-                        <a href="#!" class="text-reset text-decoration-none"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="https://www.facebook.com/GetPetpl-102726948997479" class="text-reset text-decoration-none"><i class="fab fa-facebook-f"></i> Facebook</a>
                     </p>
                     <p>
-                        <a href="#!" class="text-reset text-decoration-none"><i class="fab fa-twitter"></i> Twitter</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset text-decoration-none"><i class="fab fa-instagram"></i> Instagram</a>
+                        <a href="https://discord.gg/5DvXh9fTSG" class="text-reset text-decoration-none"><i class="fab fa-discord"></i> Discord</a>
                     </p>
                 </div>
                 <!-- Grid column -->
@@ -43,10 +40,7 @@
                         Przydatne linki
                     </h6>
                     <p>
-                        <a href="#!" class="text-reset">Blog</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">Pomoc</a>
+                        <a href="https://pomoc.getpet.pl" class="text-reset"><i class="fas fa-info me-3"></i>Pomoc</a>
                     </p>
                 </div>
                 <!-- Grid column -->
@@ -59,11 +53,11 @@
                     </h6>
                     <p>
                         <i class="fas fa-envelope me-3"></i>
-                        kontakt@getpet.pl
+                        <a href="mailto:kontakt@getpet.pl" class="text-reset text-decoration-none">kontakt@getpet.pl</a>
                     </p>
                     <p>
                         <i class="fas fa-phone-alt fa-flip-horizontal me-3"></i>
-                        +48 667 664 866
+                        <a href="tel:+48667664866" class="text-reset text-decoration-none">+48 667 664 866</a>
                     </p>
                     <p>
                         <i class="fab fa-discord me-3"></i>

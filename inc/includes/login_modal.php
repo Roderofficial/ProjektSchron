@@ -46,7 +46,7 @@
                     <!-- LOGIN FORM-->
                     <form method="POST" id="registerform">
                         <div class="mb-3">
-                            <label>Nazwa użytkownika/obiektu</label>
+                            <label>Nazwa użytkownika / obiektu</label>
                             <input type="text" class="form-control" autocomplete="username" placeholder="Nazwa użytkownika" name="username" required>
                         </div>
                         <div class="mb-3">
@@ -57,10 +57,14 @@
                             <label>Hasło</label>
                             <input type="password" class="form-control" placeholder="hasło" autocomplete="current-password" name=" password" required>
                         </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rulesandterms" required>
+                            <label class="form-check-label" for="rulesandterms">Akceptuję Regulamin i <a href="/assets/docs/polityka_prywatnosci.pdf">Politykę Prytwatności </a></label>
+                        </div>
                         <input type="hidden" id="redirect" name="redirect">
                         <div style="text-align:center;">
                             <div class="g-recaptcha mb-3" style="display:inline-block" data-sitekey="6Ldl6d8dAAAAANuCA-InONqkE0EIWnuoMRDyIqGb"></div>
-                            
+
                         </div>
                         <button type="submit" class="btn btn-primary" style="margin: auto; display:block; padding-left: 20px; padding-right:20px; ">Zarejestruj</button>
                     </form>

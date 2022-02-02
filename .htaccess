@@ -14,3 +14,4 @@
 	Header set X-XSS-Protection "1; mode=block"
     Header always append X-Frame-Options SAMEORIGIN
 </IfModule>
+
