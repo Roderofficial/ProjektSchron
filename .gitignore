@@ -1,2 +1,4 @@
-/assets/images
+/assets/images/avatars/*
+/assets/images/backgrounds/*
+/assets/images/classfields/*
 /test/
