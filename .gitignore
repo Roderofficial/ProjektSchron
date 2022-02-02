@@ -1,2 +1,7 @@
-/assets/images
+/assets/images/avatars/*
+!/assets/images/avatars/default.jpg
+/assets/images/backgrounds/*
+!/assets/images/backgrounds/default.jpg
+/assets/images/classfields/*
+!/assets/images/classfields/index.html
 /test/
