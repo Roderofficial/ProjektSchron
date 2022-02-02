@@ -34,7 +34,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/config/database.php');
 $config = [
     // Location where to redirect users once they authenticate with Facebook
     // For this example we choose to come back to this same script
-    'callback' => 'http://localhost/inc/requests/auth/social_login.php',
+    'callback' => 'https://getpet.pl/inc/requests/auth/social_login.php',
 
     // Facebook application credentials
     'keys' => [
