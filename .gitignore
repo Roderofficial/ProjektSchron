@@ -1,7 +1,12 @@
 /assets/images/avatars/*
+<<<<<<< HEAD
 !/assets/images/avatars/default.jpg
 /assets/images/backgrounds/*
 !/assets/images/backgrounds/default.jpg
 /assets/images/classfields/*
 !/assets/images/classfields/index.html
+=======
+/assets/images/backgrounds/*
+/assets/images/classfields/*
+>>>>>>> f3d8813d7d8914a236e87c7ef2308da9643d8cb6
 /test/
