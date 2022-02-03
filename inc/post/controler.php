@@ -14,6 +14,7 @@ function generate_images($data){
 }
 if(!isset($_GET['posttitle']) || empty($_GET['posttitle'])){
     http_response_code(400);
+    header("Location: /error/400");
     exit();
 }
 $tmp = (explode("-", $_GET['posttitle']));
@@ -30,6 +31,7 @@ $data = $database->select("classfield",
 );
 if($data == Null){
     http_response_code(404);
+    header("Location: /error/404");
     exit();
 }
 $data = $data[0];
