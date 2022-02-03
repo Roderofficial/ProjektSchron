@@ -1,10 +1,8 @@
 <?php
 //Check if user is already logged
+require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/functions/secure.php');
 @session_start();
-if(!isset($_SESSION['login']) || $_SESSION['login'] != 1){
-    http_response_code(401);
-    exit();
-}
+require_login();
 
 require_once($_SERVER["DOCUMENT_ROOT"].'/config/database.php');
 $data = $database->select("user",[

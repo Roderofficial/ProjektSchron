@@ -1,3 +1,8 @@
+<?php
+    require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/functions/secure.php');
+    @session_start();
+    require_login();
+?>
 <!doctype html>
 <html lang="pl">
 
