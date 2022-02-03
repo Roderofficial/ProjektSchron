@@ -7,6 +7,7 @@
     RewriteRule ^u/dodaj(.*)$ /views/user/new_classfield.php [L]
     RewriteRule ^u/ustawienia(.*)$ /views/user/settings.php [L]
     RewriteRule ^u/moje-ogloszenia(.*)$ /views/user/user_classfields.php [L]
+    RewriteRule ^error/(.*)$ /views/errors/error.php?id=$1 [L]
     Header set X-Robots-Tag "noindex, follow" env=NOINDEXFOLLOW
 </IfModule>
 
@@ -18,3 +19,9 @@
 RedirectMatch 404 /\.git
 RedirectMatch 404 /\.gitignore
 
+ErrorDocument 404 /error/404
+ErrorDocument 403 /error/403
+ErrorDocument 402 /error/402
+ErrorDocument 401 /error/401
+ErrorDocument 400 /error/400
+ErrorDocument 451 /error/451
