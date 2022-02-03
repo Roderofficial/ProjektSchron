@@ -33,7 +33,7 @@ if(strlen($_POST['username']) < 5 || strlen($_POST['username']) > 32){
 }
 
 //Password validate
-if (strlen($_POST['password']) < 5 || strlen($_POST['password']) > 32) {
+if (!isset($_POST["password"]) || empty($_POST["password"])) {
     http_response_code(403);
     echo 'Hasło jest wymagane.';
     exit();
