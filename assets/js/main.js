@@ -1,3 +1,11 @@
+//Login request
+
+function advanced_recaptcha_reset(){
+    var c = $('.g-recaptcha').length;
+    for (var i = 0; i < c; i++)
+        grecaptcha.reset(i);
+}
+
 $("#loginform").submit(function (event) {
     event.preventDefault();
     var notyf = new Notyf(
@@ -40,6 +48,50 @@ $("#loginform").submit(function (event) {
 
         }
          });
+});
+
+
+//Password recovery request
+$("#passresetform").submit(function (event) {
+    event.preventDefault();
+    var notyf = new Notyf(
+        {
+            duration: 4000,
+            position: {
+                x: 'center',
+                y: 'top',
+            }
+        });
+
+    var data = $('#passresetform').serialize();
+    var animations = new updating_animations('#passresetform');
+
+
+
+    $.ajax({
+        type: "POST",
+        url: "/inc/requests/auth/reset_password_send.php",
+        data: data,
+        beforeSend: function () {
+            animations.disable();
+        },
+        success: function (response) {
+
+            notyf.success("Wiadomość została wysłana na adres e-mail.")
+            $('#passresetform').trigger("reset");
+            console.log(response);
+            advanced_recaptcha_reset()
+            animations.enable();
+
+        },
+        error: function (response) {
+            notyf.error(`Błąd ${response.status}: ${response.responseText}`);
+            $('#passresetform').trigger("reset");
+            advanced_recaptcha_reset()
+            animations.enable();
+
+        }
+    });
 });
 
 //on page ready
@@ -123,7 +175,7 @@ $("#registerform").submit(function (event) {
         error: function (response) {
             animations.enable();
             notyf.error(`Błąd ${response.status}: ${response.responseText}`)
-            grecaptcha.reset();
+            advanced_recaptcha_reset()
         }
     });
 });
