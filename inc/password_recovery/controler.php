@@ -1,6 +1,7 @@
 <?php
 if(!isset($_GET["token"])){
     http_response_code(400);
+    header("Location: /error/400");
     echo 'Token jest wymagany!';
     exit();
 
@@ -8,6 +9,7 @@ if(!isset($_GET["token"])){
 
 if(!isset($_GET["email"])){
     http_response_code(400);
+    header("Location: /error/400");
     echo 'E-Mail jest wymagany!';
     exit();
 }
@@ -23,6 +25,7 @@ $token_data = $database->select("user", ["[>]password_recovery" => ["userid" => 
 //if not found
 if(empty($token_data)){
     http_response_code(404);
+    header("Location: /error/404");
     exit();
 }
 
