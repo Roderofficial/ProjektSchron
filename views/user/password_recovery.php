@@ -1,3 +1,7 @@
+<?php
+require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/password_recovery/controler.php');
+?>
+
 <!doctype html>
 <html lang="pl">
 
@@ -7,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>zoomory</title>
+    <title>Resetuj hasło - GetPet.pl</title>
     <?php require($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/head.php'); ?>
 </head>
 
@@ -21,8 +25,10 @@
     <div class="card" style="max-width: 800px; margin:auto; margin-top:20px;">
         <div class="card-body">
             <h5 class="card-title">Resetowanie hasła</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Konto: Radosław Pochopień</h6>
-            <form>
+            <h6 class="card-subtitle mb-2 text-muted">Konto: <?= $token_data[0]["username"] ?></h6>
+            <form id="pwdreset">
+                <input type="hidden" name="token" value="<?= $_GET["token"] ?>">
+                <input type="hidden" name="email" value="<?= $_GET["email"] ?>">
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Nowe hasło</label>
                     <input type="password" name="password1" class="form-control" minlength="8" required>

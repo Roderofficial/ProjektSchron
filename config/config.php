@@ -6,5 +6,9 @@ $default_banner= "/assets/images/avatars/default.jpg";
 $default_avatar = "/assets/images/backgrounds/default.jpg";
 $images_classfield_location = "/assets/images/classfields/";
 $grechapta_secret = '6Ldl6d8dAAAAAA10S-dYdGWTcOvnVrFdvYjtJQyX';
-$filetype_allowed = array("image/jpeg", "image/png", "image/jpg")
+$filetype_allowed = array("image/jpeg", "image/png", "image/jpg");
+
+$config["mail"]["host"] = "91.192.164.15";
+$config["mail"]["username"] = "noreply@getpet.pl";
+$config["mail"]["password"] = "8GwLb9ZUdX";
 ?>

@@ -91,7 +91,7 @@
                         </div>
                         <input type="hidden" id="redirect" name="redirect">
                         <div style="text-align:center;">
-                            <div class="g-recaptcha mb-3" id="resetchapta" name="googlecaptcha" style="display:inline-block" data-sitekey="6Ldl6d8dAAAAANuCA-InONqkE0EIWnuoMRDyIqGb"></div>
+                            <div class="g-recaptcha mb-3" style="display:inline-block" data-tabindex="301" data-sitekey="6Ldl6d8dAAAAANuCA-InONqkE0EIWnuoMRDyIqGb"></div>
                         </div>
                         <button type="submit" class="btn btn-primary" style="margin: auto; display:block; padding-left: 20px; padding-right:20px; ">Resetuj hasło</button>
                     </form>

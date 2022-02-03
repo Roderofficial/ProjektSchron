@@ -103,16 +103,13 @@ try {
 
 
 
-        // Inspect profile's public attributes
-        var_dump($userProfile);
-
         // Disconnect the adapter (log out)
         $adapter->disconnect();
 
         echo "<script>self.close();</script>";
     }
 } catch (\Exception $e) {
-    echo 'Oops, we ran into an issue! ' . $e->getMessage();
+    error_log($e->getMessage());
 }
 
 ?>
