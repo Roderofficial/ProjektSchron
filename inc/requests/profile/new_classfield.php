@@ -151,6 +151,10 @@ if (!$location_data["features"][0]["properties"]["address"]["country_code"] == "
 $location_name = (explode(", ", $location_data["features"][0]["properties"]["display_name"]))[0];
 
 
+//Województwo 
+$wojewodztwo = $database->select("geo_wojewodztwo", "id", ["osm_name" => $location_data["features"][0]["properties"]["address"]["state"]]);
+
+
 //Zdjęcia
 if(!isset($_FILES["images"])){
     http_response_code(400);
@@ -237,7 +241,8 @@ if (isset($_POST["mode"]) && $_POST["mode"] == "edit") {
             "updated_at" => Medoo::raw('NOW()'),
             "cost" => strval($_POST['cost']),
             "email" => $_POST["email"],
-            "phone" => $_POST["phone"]
+            "phone" => $_POST["phone"],
+            "woj_id" => $wojewodztwo[0]
         ],
         ["id" => $_POST["update_id"]]
     );
@@ -298,7 +303,8 @@ if (isset($_POST["mode"]) && $_POST["mode"] == "edit") {
         "user_id" => $_SESSION['userdata']['userid'],
         "cost" => strval($_POST['cost']),
         "email" => $_POST["email"],
-        "phone" => $_POST["phone"]
+        "phone" => $_POST["phone"],
+        "woj_id" => $wojewodztwo[0]
     ]);
 
     // //Check if classfield addes successfull
@@ -326,7 +332,7 @@ if (isset($_POST["mode"]) && $_POST["mode"] == "edit") {
         $database->insert("classfield_photo", [
             "photo_hash" => $single_image_name,
             "classfield_id" => $insert_id,
-            "main" => 0
+            "main" => 0,
         ]);
     }
 
