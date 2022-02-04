@@ -1,41 +1,43 @@
 <hr />
 <?php
-if (!empty($data['about'])) {
+//Check if display card
+if (!empty($data['about']) || !empty($data['email_public']) || !empty($data['phone_punblic']) || !empty($data['website_public'])) {
+    $about = null;
+    $contact_details = null;
+
+    if (!empty($data['email_public']) || !empty($data['phone_punblic']) || !empty($data['website_public'])) {
+        $phone_public = null;
+        $email_public = null;
+        $website_public = null;
+        if (!empty($data['phone_public'])) {
+            $phone_public = '<div class="col-sm-12 col-lg-4 mb-3 align-self-center"><a class="btn btn-primary align-middle" href="tel:' . $data['phone_public'] . '" role="button"><i class="fas fa-phone me-2"></i>' . $data['phone_public'] . '</a></div>';
+        }
+        if (!empty($data['email_public'])) {
+            $email_public = '<div class="col-sm-12 col-lg-4 mb-3 align-self-center"><a class="btn btn-primary align-middle" href="mailto:' . $data['email_public'] . '" role="button"><i class="fas fa-envelope-open-text me-2"></i> ' . $data['email_public'] . '</a></div>';
+        }
+        if (!empty($data['location_public'])) {
+            $website_public = '<div class="col-sm-12 col-lg-4 mb-3 align-self-center"><div class="location align-middle"><i class="fas fa-map-marker-alt me-2"></i> <div class="location_content" style="display:contents;">Ładowanie...</div></div></div>';
+        }
+        $contact_details = '<div class="border-top">
+            <p class="card-title-custom mt-3">KONTAKT</p>
+            <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                ' . $phone_public . $email_public . $website_public . '
+
+            </div>
+    </div>';
+
+
+    if(!empty($data['about'])){
+        $about = '<p class="card-title-custom">O NAS</p><p> ' . $data['about'] . '</p>';
+    }
     echo '<div class="card">
     <div class="card-body">
-        <p class="card-title-custom">O NAS</p>
-        <p> ' . $data['about'] . '</p>
+        '.$about.$contact_details.'
     </div>
 </div>';
 }
 
 
-
-if (!empty($data['email_public']) || !empty($data['phone_punblic']) || !empty($data['website_public'])) {
-    $phone_public = null;
-    $email_public = null;
-    $website_public = null;
-    if (!empty($data['phone_public'])) {
-        $phone_public = '<p class="contact-detail"><i class="fas fa-phone"></i>' . $data['phone_public'] . '</p>';
-    }
-    if (!empty($data['email_public'])) {
-        $email_public = '<p class="contact-detail"><i class="fas fa-envelope-open-text"></i> ' . $data['email_public'] . '</p>';
-    }
-    if (!empty($data['website_public'])) {
-        $website_public = '<p class="contact-detail"><i class="far fa-newspaper"></i> <a href="' . $data['website_public'] . '">' . $data['website_public'] . '</a> </p>';
-    }
-    echo '<div class="card">
-    <div class="card-body">
-        <p class="card-title-custom">KONTAKT</p>
-        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
-            <div class="col">' . $phone_public . $email_public . $website_public . '</div>
-            <div class="col">
-                b5-col
-            </div>
-
-        </div>
-    </div>
-</div>';
 }
 
 ?>

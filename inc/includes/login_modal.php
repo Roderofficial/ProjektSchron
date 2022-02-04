@@ -31,9 +31,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <small>
-                        <p>Nie masz jeszcze konta? <a href="#" class="login-switch-register"><b><u>Zarejestruj się</u></b></a> lub skorzystaj z logowania za pomocą zewnętrznego serwisu.</p>
-                    </small>
+                        <small>Nie masz jeszcze konta? <a href="#" class="login-switch-register"><b><u>Zarejestruj się</u></b></a> lub skorzystaj z logowania za pomocą zewnętrznego serwisu.</small>
                 </div>
             </div>
 
@@ -97,9 +95,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <small>
                         <small>Masz już konto? <b><u><a href="#" class="login-switch-login">Zaloguj się</a></u></b></small>
-                    </small>
                 </div>
 
             </div>
