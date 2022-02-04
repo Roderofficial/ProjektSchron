@@ -4,7 +4,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/functions/secure.php');
 @session_start();
 require_login();
 
-require_once($_SERVER["DOCUMENT_ROOT"].'/config/database.php');
+require($_SERVER["DOCUMENT_ROOT"].'/config/database.php');
 $data = $database->select("user",[
     "[>]user_roles" => ["user_roleID" => "id"]
 ],[

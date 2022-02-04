@@ -1,10 +1,7 @@
 <?php
+require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/functions/secure.php');
 @session_start();
-if (!isset($_SESSION['userdata']['userid'])) {
-    http_response_code(401);
-    echo 'Użytkownik niezalogowany!';
-    exit();
-}
+require_login(0);
 
 //Validate if post id exist
 if (!isset($_POST['id']) || !is_numeric($_POST['id']) || empty($_POST['id'])) {

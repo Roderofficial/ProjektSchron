@@ -1,9 +1,7 @@
 <?php
+require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/functions/secure.php');
 @session_start();
-if(!isset($_SESSION["userdata"]["userid"])){
-    http_response_code(400);
-    exit();
-}
+require_login();
 
 if (!isset($_GET["state"]) || !in_array(intval($_GET["state"]), array(1,0))) {
     http_response_code(400);
@@ -11,7 +9,7 @@ if (!isset($_GET["state"]) || !in_array(intval($_GET["state"]), array(1,0))) {
 }
 $state  = $_GET["state"];
 
-require_once($_SERVER['DOCUMENT_ROOT']."/config/database.php");
+require($_SERVER['DOCUMENT_ROOT']."/config/database.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/config/config.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/inc/functions/sfm.php");
 
