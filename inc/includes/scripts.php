@@ -19,3 +19,5 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/login_modal.php');
 <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
+<script src="https://skrypt-cookies.pl/id/9738db0cb514b682.js"></script>
