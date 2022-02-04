@@ -192,3 +192,6 @@ font-size: 1.8rem;
 body:not(.modal-open){
   padding-right: 0px !important;
 }
+#cookie{
+    border-radius:10px;
+}
