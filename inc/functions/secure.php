@@ -9,6 +9,20 @@ function require_login(){
         
         exit();
     }
+
+    //Check banned
+    require($_SERVER["DOCUMENT_ROOT"].'/config/database.php');
+    $banned_count = $database->count("user", ["userid" => $_SESSION["userdata"]["userid"], "banned" => 1]);
+    if($banned_count > 0){
+        @session_start();
+        @session_destroy();
+
+        http_response_code(403);
+        header("Location: /error/403");
+
+        exit();
+    }
+
 }
 
 ?>
