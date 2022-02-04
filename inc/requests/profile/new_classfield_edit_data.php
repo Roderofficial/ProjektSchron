@@ -3,6 +3,7 @@
     require_once($_SERVER["DOCUMENT_ROOT"].'/inc/functions/secure.php');
     require_once($_SERVER["DOCUMENT_ROOT"].'/config/database.php');
     require_once($_SERVER["DOCUMENT_ROOT"].'/config/config.php');
+    require_login();
 
     if(!isset($_GET["id"]) || !is_numeric($_GET["id"])){
         http_response_code(400);

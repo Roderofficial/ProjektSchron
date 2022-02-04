@@ -1,10 +1,12 @@
 <?php
 //Chapta
 @session_start();
-require_once($_SERVER['DOCUMENT_ROOT']. '/config/config.php');
-require_once($_SERVER['DOCUMENT_ROOT']. '/config/database.php');
+require($_SERVER['DOCUMENT_ROOT']. '/config/config.php');
+require($_SERVER['DOCUMENT_ROOT']. '/config/database.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/assets/libs/htmlsanitizer/HTMLPurifier.auto.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/inc/functions/sfm.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/functions/secure.php');
+require_login(0);
 
 use Medoo\Medoo;
 

@@ -1,9 +1,10 @@
 <?php
+require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/functions/secure.php');
 @session_start();
-if(!isset($_SESSION['login']) || $_SESSION['login'] != 1){
-    http_response_code(400);
-    exit();
-}
+require_login(0);
+
+
+
 if(!isset($_FILES["file"]["name"])){
     http_response_code(400);
     exit();
@@ -13,7 +14,7 @@ if(!isset($_POST["type"])){
     exit();
 }
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/config/database.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/config/database.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/functions/sfm.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/config/config.php');
 

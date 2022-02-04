@@ -1,11 +1,16 @@
 <?php
 
-function require_login(){
+function require_login($redirect =1){
     ob_start();
     @session_start();
     if(!isset($_SESSION["userdata"]["userid"])){
         http_response_code(401);
-        header("Location: /error/401");
+        if($redirect == 1){
+            header("Location: /error/401");
+        } else {
+            echo "Użytkownik niezalogowany!";
+        }
+        
         
         exit();
     }
@@ -18,7 +23,11 @@ function require_login(){
         @session_destroy();
 
         http_response_code(403);
-        header("Location: /error/403");
+        if ($redirect == 1) {
+            header("Location: /error/403");
+        }else{
+            echo "Użytkownik zbanowany!";
+        }
 
         exit();
     }

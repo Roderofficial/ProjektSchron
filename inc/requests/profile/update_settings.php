@@ -1,5 +1,9 @@
 <?php
+require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/functions/secure.php');
 @session_start();
+require_login(0);
+
+
 //var_dump($_POST);
 if(!isset($_POST['type']) || empty($_POST['type'])){
     echo 'Kod błędu: US01';
@@ -8,7 +12,7 @@ if(!isset($_POST['type']) || empty($_POST['type'])){
 }
 
 //requires
-require_once($_SERVER["DOCUMENT_ROOT"].'/config/database.php');
+require($_SERVER["DOCUMENT_ROOT"].'/config/database.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/assets/libs/htmlsanitizer/HTMLPurifier.auto.php');
 
 
