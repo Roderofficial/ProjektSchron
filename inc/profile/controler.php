@@ -25,7 +25,8 @@ $data = $data[0];
 
 //Ban detect
 if ($data['banned'] == 1) {
-    http_response_code(403);
+    http_response_code(404);
+    header("Location: /error/404");
     exit();
 }
 
