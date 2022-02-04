@@ -144,3 +144,42 @@ $("#avatar-update").click(function () {
     };
     input.click();
 });
+
+function public_location_update(){
+    console.log(location_public)
+    if (location_public == null){
+        return
+    }
+
+    $.ajax({
+        type: "GET",
+        url: "https://nominatim.openstreetmap.org/lookup?format=json&osm_ids="+location_public,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            if(response[0].display_name != null){
+                $('.location_content').html(response[0].display_name);
+
+            }else{
+                Swal.fire(
+                    'Błąd!',
+                    'Nie udało się załadować lokalizacji!',
+                    'error'
+                )
+            }
+            
+
+        },
+        error: function (response) {
+            Swal.fire(
+                'Błąd!',
+                'Nie udało się załadować lokalizacji!',
+                'error'
+            )
+
+        }
+    });
+}
+$(() =>{
+    public_location_update()
+})

@@ -16,6 +16,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/profile/controler.php');
     <link rel="stylesheet" href="/assets/css/profile.css">
     <script type="text/javascript">
         var userid = <?php echo json_encode($data['userid']); ?>;
+        var location_public = <?= isset($data['location_public']) ? json_encode($data['location_public']) : json_encode(null) ?>;
     </script>
 </head>
 
