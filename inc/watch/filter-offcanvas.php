@@ -40,7 +40,7 @@
                     <input type="text" class="form-control" aria-label="10 000 zł" placeholder="10 000 zł" name="cost_max">
 
                 </div>
-                <button class="btn btn-primary btn-sm" role="button">Za darmo</button>
+                <button type="button" class="btn btn-primary btn-sm btn-free">Za darmo</button>
                 <br />
             </div>
             <hr>
