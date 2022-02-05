@@ -88,12 +88,12 @@ $("form").submit(function(e){
 
       //Success
       success: function (data) {
-          notyf.success("Dane zostały zapisane pomyślnie.")
+        swaltoast("success", "Ustawienia zostały zapisane pomyślnie!")
       },
 
       //Error
       error: function (data){
-          notyf.error(`Błąd ${data.status}: ${data.responseText}`)
+        swaltoast("error", `Błąd ${data.status}: ${data.responseText}`)
       },
 
       complete: function(){
@@ -106,3 +106,7 @@ $("form").submit(function(e){
   });
     
 });
+
+$(".btn-search-clear").click((e) => {
+  $('#citypicker').val(null).trigger('change');
+})

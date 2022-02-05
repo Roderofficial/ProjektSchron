@@ -16,7 +16,7 @@
                     <select class="form-control citypicker" id="citypicker" name="osm_id" placeholder="Szukaj...">
                         <option value="" disabled selected>Szukaj...</option>
                     </select>
-                    <button class="btn btn-outline-secondary" type="button" id="search-city-btn">Wyczyść</button>
+                    <button class="btn btn-outline-secondary btn-search-clear" type="button">Wyczyść</button>
                 </div>
                 <label class="form-label">Promień</label>
                 <div class="radius-picker-div mb-3" style="max-width:100%; margin-bottom:20px;">

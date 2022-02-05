@@ -22,10 +22,8 @@ function citypicker(tag){
                     };
                 },
                 processResults: function (data) {
-                    console.log(data)
                     var res = data.features.map(function (item) {
                         if ((item.properties.place_rank >= 12 && item.properties.place_rank <= 18) || item.properties.place_rank == 8) {
-                            console.log(item)
                             selected_location = item;
                             return { id: item.properties.osm_type.charAt(0).toUpperCase() + item.properties.osm_id, text: item.properties.display_name };
                         } else {

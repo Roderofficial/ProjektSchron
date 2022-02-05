@@ -146,3 +146,7 @@ function refresh_table(){
     $('#table').bootstrapTable('selectPage', 1)
 
 }
+
+$(".btn-search-clear").click((e) =>{
+    $('#citypicker').val(null).trigger('change');
+})

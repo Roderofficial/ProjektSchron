@@ -285,7 +285,7 @@ $("#classfield").submit(function (event) {
 
     },
     error: function (response) {
-      notyf.error(`Błąd ${response.status}: ${response.responseText}`)
+      swaltoast("error", `Błąd ${response.status}: ${response.responseText}`)
       grecaptcha.reset();
       animations.enable();
 

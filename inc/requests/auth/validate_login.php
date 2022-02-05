@@ -43,7 +43,6 @@ $_SESSION['userdata']['username'] = $results[0]['username'];
 $_SESSION['userdata']['avatar'] = $results[0]['avatar_hash'];
 $_SESSION['login'] = True;
 
-var_dump($_SESSION);
 
 
 
