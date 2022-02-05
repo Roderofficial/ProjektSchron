@@ -15,6 +15,8 @@ $db_database = "schron_production";
 // $db_database = "schron";
 // use Medoo\Medoo;
 
+use Medoo\Medoo;
+
 $database = new Medoo([
     // [required]
     'type' => 'mysql',
