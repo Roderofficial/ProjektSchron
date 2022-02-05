@@ -11,7 +11,7 @@ if (!isset($_POST['id']) || !is_numeric($_POST['id']) || empty($_POST['id'])) {
 }
 
 //Database require etc.
-require_once($_SERVER["DOCUMENT_ROOT"] . '/config/database.php');
+require($_SERVER["DOCUMENT_ROOT"] . '/config/database.php');
 
 //Check if classfield exist in database
 $results = $classfields = $database->select(
