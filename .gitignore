@@ -5,3 +5,4 @@
 /assets/images/classfields/*
 !/assets/images/classfields/index.html
 /test/
+config/database.php
