@@ -76,7 +76,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/settings/controler.php');
                                 <input type="password" name="oldpassword" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Nowe hasło hasło</label>
+                                <label class="form-label">Nowe hasło</label>
                                 <input type="password" name="newpassword1" class="form-control" minlength="8" maxlength="255" required>
                             </div>
                             <div class="mb-3">
