@@ -116,7 +116,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/settings/controler.php');
                                             <select class="form-control citypicker" id="citypicker" name="location" placeholder="Szukaj...">
                                                 <option value="" disabled selected>Szukaj...</option>
                                             </select>
-                                            <button class="btn btn-outline-secondary" type="button" id="search-city-btn">Wyczyść</button>
+                                            <button class="btn btn-outline-secondary btn-search-clear" type="button" id="search-city-btn">Wyczyść</button>
                                         </div>
                                     </div>
                                 </div>
