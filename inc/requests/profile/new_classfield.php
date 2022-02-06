@@ -201,6 +201,9 @@ for ($i = 0; $i < count($_FILES['images']['name']); $i++) {
 
 
 if (isset($_POST["mode"]) && $_POST["mode"] == "edit") {
+    //////////////////////
+    //      EDIT MODE   //
+    //////////////////////
 
     //Check if in edit mode insert id post exist
     if (!isset($_POST["update_id"]) || !is_numeric($_POST["update_id"])) {
@@ -288,6 +291,10 @@ if (isset($_POST["mode"]) && $_POST["mode"] == "edit") {
 
 
 }else{
+    //////////////////////
+    //      NEW MODE    //
+    //////////////////////
+
 
     //Normal insert into database
     //ADD CLASSFIELD TO DATABASE
@@ -304,7 +311,8 @@ if (isset($_POST["mode"]) && $_POST["mode"] == "edit") {
         "cost" => strval($_POST['cost']),
         "email" => $_POST["email"],
         "phone" => $_POST["phone"],
-        "woj_id" => $wojewodztwo[0]
+        "woj_id" => $wojewodztwo[0],
+        "expire_at" => Medoo::raw("DATE_ADD(NOW(), INTERVAL 30 DAY)")
     ]);
 
     // //Check if classfield addes successfull
