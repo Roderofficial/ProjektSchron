@@ -32,6 +32,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/post/controler.php');
 
 
     <?php require($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/scripts.php') ?>
+
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/build/ol.js"></script>
     <script src="/assets/js/post.js"></script>
 
 

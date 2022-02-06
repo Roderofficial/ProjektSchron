@@ -170,21 +170,6 @@ $(function(){
   });
   cat_select = $('.category-select').select2({ theme: "bootstrap-5" });
 
-  //add map
-  const map = new ol.Map({
-    target: 'map-box',
-
-    layers: [
-      new ol.layer.Tile({
-        source: new ol.source.OSM(),
-      }),
-    ],
-    view: new ol.View({
-      center: ol.proj.fromLonLat(['19.134422', '52.215933']),
-      zoom: 13
-    })
-  });
-
   //tinymce
   editor = tinymce.init({
     selector: '#desceditor',
