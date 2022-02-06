@@ -13,7 +13,7 @@
                         <i class="fas fa-paw me-3"></i>GetPet
                     </h6>
                     <p>
-                        GetPet to miejsce, w którym można znaleźć wszystkie ogłoszenia o zwierzętach, adopcje i nie tylko. Możesz również zamieścić bezpłatne ogłoszenie na naszej stronie.
+                        GetPet to miejsce, w którym można znaleźć ogłoszenia o zwierzętach, akcesoriach, usługach i nie tylko. Możesz również zamieścić bezpłatne ogłoszenie na naszej stronie.
                     </p>
                 </div>
                 <!-- Grid column -->
