@@ -12,7 +12,7 @@
 <!-- SLIDER -->
 <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
-<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
 <!-- ADS -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3633819687172356" crossorigin="anonymous"></script>
 
@@ -31,4 +31,3 @@
 </script>
 <link rel="stylesheet" href="/assets/css/theme.css">
 <meta name="theme-color" content="#5c0073">
-<meta name="robots" content="noindex">

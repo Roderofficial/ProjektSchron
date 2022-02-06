@@ -77,7 +77,7 @@ $("#passresetform").submit(function (event) {
         },
         success: function (response) {
 
-            notyf.success("Wiadomość została wysłana na adres e-mail.")
+            swaltoast("success","Wiadomość została wysłana na adres e-mail.")
             $('#passresetform').trigger("reset");
             console.log(response);
             advanced_recaptcha_reset()
