@@ -84,6 +84,7 @@ if(!empty($accounts)){
         $mail->SMTPAutoTLS = false;
         $mail->CharSet = 'UTF-8';
         $mail->Hostname = 'localhost';
+        $mail->XMailer    = ''; 
 
         //Recipients
         $mail->setFrom($config["mail"]["username"], 'GetPet.pl');
