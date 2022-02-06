@@ -21,3 +21,4 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/login_modal.php');
 </script>
 
 <script src="https://skrypt-cookies.pl/id/9738db0cb514b682.js"></script>
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
