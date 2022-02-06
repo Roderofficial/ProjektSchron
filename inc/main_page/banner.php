@@ -3,7 +3,7 @@
         <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}" style="max-width:100%; padding:20px 0px;">
             <div class="col-lg-7 align-items-center pr-2 pl-2 center-banner">
                 <span class="banner-title">Wszystko co związane ze zwierzętami znajdziesz tutaj!</span>
-                <p>GetPet to miejsce, w którym można znaleźć wszystkie ogłoszenia o zwierzętach, adopcje i nie tylko. Możesz również zamieścić bezpłatne ogłoszenie na naszej stronie.</p>
+                <p>GetPet to miejsce, w którym można znaleźć ogłoszenia o zwierzętach, akcesoriach, usługach i nie tylko. Możesz również zamieścić bezpłatne ogłoszenie na naszej stronie.</p>
                 <form method="GET" action="/ogloszenia" style="width:100%;">
                     <div class="searchbox">
                         <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
