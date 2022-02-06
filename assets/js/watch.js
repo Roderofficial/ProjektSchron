@@ -150,3 +150,8 @@ function refresh_table(){
 $(".btn-search-clear").click((e) =>{
     $('#citypicker').val(null).trigger('change');
 })
+
+$(".btn-free").click(() =>{
+    $("[name='cost_min']").val(0);
+    $("[name='cost_max']").val(0);
+})
