@@ -1,3 +1,5 @@
+Sitemap: https://getpet.pl/sitemap.xml
 User-agent: *
-Allow: /
 Disallow: /u/
+
+
