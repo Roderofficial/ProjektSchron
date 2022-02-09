@@ -9,6 +9,7 @@
 
 
     <title>Darmowy serwis ogłoszeniowy ze zwierzętami - GetPet.pl</title>
+    <meta property="og:image" content="https://getpet.pl/assets/images/banner_show.jpg" />
     <?php require($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/head.php'); ?>
 </head>
 
