@@ -1,4 +1,5 @@
 Sitemap: https://getpet.pl/sitemap.xml
+Sitemap: https://getpet.pl/sitemap-post.xml
 User-agent: *
 Disallow: /u/
 
