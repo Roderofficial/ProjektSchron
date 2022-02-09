@@ -9,6 +9,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/post/controler.php');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/assets/css/post.css">
+    <meta property="og:image" content="https://getpet.pl/assets/images/classfields/<?= $images[0]["photo_hash"] ?>" />
+    <meta property="og:title" content="<?= htmlspecialchars($data['title']) ?>" />
 
 
     <title><?= $data['title'] ?> - getpet.pl</title>
