@@ -90,7 +90,7 @@
             <div class="card-body w-100">
                 <!-- END IMAGES -->
                 <h2 class="w-100 desc-title custom-card-text">OPIS</h2>
-                <p class="description w-100 placeholder"><?= $data["description"] ?></p>
+                <p class="description w-100 placeholder"><?= nl2br($data["description"]) ?></p>
 
             </div>
         </div>
