@@ -64,10 +64,16 @@ $("#getcontactbtn").click(function () {
         data: {"post_id": post_id},
         url: "/inc/requests/post/contact_details.php",
         success: function (response) {
+            if(response.email != null && response.email != ''){
+                var email_html = `<a href="mailto:${response.email}" class="btn btn-outline-primary"" role="button" aria-disabled="true"><i class="fas fa-envelope me-1"></i> ${response.email}</a>`;
+            }else{
+                var email_html = '';
+            }
+            console.log(response.email);
             var contact_details = `
             <div class="d-grid gap-2">
                 <a href="tel:${response.phone}" class="btn btn-outline-primary"" role="button" aria-disabled="true"><i class="fas fa-phone-alt me-1"></i> ${response.phone}</a>
-                <a href="mailto:${response.email}" class="btn btn-outline-primary"" role="button" aria-disabled="true"><i class="fas fa-envelope me-1"></i> ${response.email}</a>
+                ${email_html}
             </div>
             `
             $(".contactdetail").html(contact_details);
