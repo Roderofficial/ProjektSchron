@@ -267,8 +267,8 @@ var getUrlParameter = function getUrlParameter(sParam) {
 $("#unewclassfield").click(function (){
     Swal.fire({
         icon: 'info',
-        text: 'Aby dodać ogłoszenie musisz się zalgowować!',
-        confirmButtonText:'Logowanie',
+        text: 'Aby dodać ogłoszenie musisz się zalgowować lub zarejestrować!',
+        confirmButtonText:'Logowanie / Rejestracja',
         showCloseButton: true,
         focusConfirm: false,
     }).then((result) => {
