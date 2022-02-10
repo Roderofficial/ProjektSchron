@@ -53,6 +53,6 @@ if (intval($results[0]["enabled"]) == 1) {
 }
 
 $now_datetime = new DateTime();
-$new_date = date_add($now_datetime, date_interval_create_from_date_string('30 days'));
+$new_date = date_add($now_datetime, date_interval_create_from_date_string('90 days'));
 
 $database->update("classfield", ["enabled" => 1, "expire_at" => $now_datetime->format('Y-m-d'), "updated_at" => Medoo::raw("NOW()")], ["id" => $_POST['id']]);
