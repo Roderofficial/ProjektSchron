@@ -31,6 +31,7 @@
     $photos = $database->select("classfield_photo", "photo_hash",["classfield_id" => $_GET["id"]]);
     
     $data["photos"] = $photos;
+    $data["description"] = nl2br($data["description"]);
     echo json_encode($data);
 
 
