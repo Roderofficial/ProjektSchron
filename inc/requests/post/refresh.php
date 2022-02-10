@@ -51,15 +51,15 @@ $difference =  round($datediff / (60 * 60 * 24));
 
 
 
-if(!($difference <= 14)){
+if(!($difference <= 30)){
     http_response_code(400);
-    echo 'Nie można odświeżyć ogłoszenia. Ogłoszenie można odświeżyć dopiero <b>14 dni</b> przed terminem wygaśnięcia.';
+    echo 'Nie można odświeżyć ogłoszenia. Ogłoszenie można odświeżyć dopiero <b>30 dni</b> przed terminem wygaśnięcia.';
     exit();
 }
 
 //Refresh
 $now_datetime = new DateTime();
-$new_date = date_add($now_datetime, date_interval_create_from_date_string('30 days'));
+$new_date = date_add($now_datetime, date_interval_create_from_date_string('90 days'));
 
 
 $database->update("classfield", ["expire_at" => $new_date->format('Y-m-d')], ["id" => $_POST['id']]);

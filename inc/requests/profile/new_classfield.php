@@ -62,23 +62,20 @@ $_POST['description'] = $purifier->purify($_POST['description']);
 //Validate description size
 if (strlen(strip_tags($_POST['description'])) < 100 || strlen(strip_tags($_POST['description'])) > 6000) {
     http_response_code(400);
-    echo 'Opis jest za krótki lub za długi. 100<>6000';
+    echo 'Opis jest za krótki lub za długi. 100><6000';
     exit();
 }
 
 //Strict phones, emails na links in description and title
 //PHONE
 $regex_phone = "/(?:(?:(?:(?:\+|00)\d{2})?[ -]?(?:(?:\(0?\d{2}\))|(?:0?\d{2})))?[ -]?(?:\d{3}[- ]?\d{2}[- ]?\d{2}|\d{2}[- ]?\d{2}[- ]?\d{3}|\d{7})|(?:(?:(?:\+|00)\d{2})?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}))/";
-$_POST['description'] = preg_replace($regex_phone, "[usunięto telefon]", $_POST['description']);
 $_POST['title'] = preg_replace($regex_phone, "[usunięto telefon]", $_POST['title']);
 
 //EMAIL
 $regex_email = "/[^@\s]*@[^@\s]*\.[^@\s]*/";
-$_POST['description'] = preg_replace($regex_email, "[usunięto email]", $_POST['description']);
 $_POST['title'] = preg_replace($regex_email, "[usunięto email]", $_POST['title']);
 //LINKS
 $regex_urls = "/(http(s?):\/\/)?(www\.)?+[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)*/";
-$_POST['description'] = preg_replace($regex_urls, "[usunięto link]", $_POST['description']);
 $_POST['title'] = preg_replace($regex_urls, "[usunięto link]", $_POST['title']);
 
 
@@ -100,10 +97,18 @@ if(!isset($_POST['cost']) || !is_numeric(intval($_POST['cost'])) || $_POST['cost
 $_POST['cost'] = intval($_POST['cost']);
 
 
-if(!isset($_POST['email']) || empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-    http_response_code(400);
-    echo 'Adres email nie jest poprawny';
-    exit();
+if(!isset($_POST['email']) || empty($_POST['email'])){
+    $_POST["email"] = null;
+
+}else{
+    if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+        http_response_code(400);
+        echo 'Adres email nie jest poprawny';
+        exit();
+        
+    }else{
+        $email = $_POST['email'];
+    }
 }
 
 if(!isset($_POST['phone']) || empty($_POST['phone']) || !preg_match('/(?<!\w)(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w)/', $_POST['phone'])){
@@ -312,13 +317,15 @@ if (isset($_POST["mode"]) && $_POST["mode"] == "edit") {
         "email" => $_POST["email"],
         "phone" => $_POST["phone"],
         "woj_id" => $wojewodztwo[0],
-        "expire_at" => Medoo::raw("DATE_ADD(NOW(), INTERVAL 30 DAY)")
+        "expire_at" => Medoo::raw("DATE_ADD(NOW(), INTERVAL 90 DAY)")
     ]);
 
     // //Check if classfield addes successfull
     if($database->error != NULL){
         http_response_code(500);
         echo "Błąd podczas dodawania ogłoszenia, skontaktuj się z administratorem";
+        var_dump($database->error);
+        var_dump($database->errorInfo);
         exit();
     }
     // //Get id insert

@@ -83,6 +83,7 @@ font-size: 1.8rem;
    font-weight: 200;
    text-decoration: none;
    color: black;
+   font-weight: 500;
 }
 .classfield-card-preview .card-body{
    min-height:105px;
