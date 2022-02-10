@@ -28,6 +28,9 @@ $classfields = $database->select("classfield",
     "AND" =>[
         "user.userid" => $_SESSION["userdata"]["userid"],
         "classfield.enabled" => intval($state)
+    ],
+    "ORDER" => [
+        "created_at" => "DESC"
     ]
     
 
