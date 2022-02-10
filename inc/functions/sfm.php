@@ -15,7 +15,7 @@ function clean($string)
 function cost_formatter($cost)
 {
     if ($cost == 0) {
-        return '<i class="fas fa-donate"></i> Darmowe';
+        return '<i class="fa-solid fa-heart me-1"></i> Darmowe';
     }
     return number_format($cost, 0, ',', ' ').' zł';
 }
