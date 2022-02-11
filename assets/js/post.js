@@ -100,4 +100,8 @@ $("#getcontactbtn").click(function () {
 
 });
 //autolink
-$(".description").html(($(".description").html()).autoLink({ target: "_blank", rel: "nofollow", id: "1" }))
+$(".description").html(Autolinker.link($(".description").html(),{
+    newWindow: true,
+    urls: true,
+    phone: true
+}));
