@@ -155,3 +155,9 @@ $(".btn-free").click(() =>{
     $("[name='cost_min']").val(0);
     $("[name='cost_max']").val(0);
 })
+
+$('#table').on('page-change.bs.table', function (e, arg1) {
+    $('html, body').animate({
+        scrollTop: $('.bootstrap-table').offset().top - 20 //#DIV_ID is an example. Use the id of your destination on the page
+    }, 'slow');
+})
