@@ -2,17 +2,17 @@
 require_once($_SERVER['DOCUMENT_ROOT']. '/assets/libs/medoo/Medoo.php');
 // Using Medoo namespace.
 //PROD
-// $db_login = "schron_prod";
-// $db_password = "g3qpGNHO74HwJFzS";
-// $db_host = "167.86.120.16";
-// $db_database = "schron_production";
+$db_login = "schron_prod";
+$db_password = "g3qpGNHO74HwJFzS";
+$db_host = "167.86.120.16";
+$db_database = "schron_production";
 
 
 // //TESTS
-$db_login = "root";
-$db_password = "Radekp123!!!";
-$db_host = "167.86.120.16";
-$db_database = "schron";
+// $db_login = "root";
+// $db_password = "Radekp123!!!";
+// $db_host = "167.86.120.16";
+// $db_database = "schron";
 // use Medoo\Medoo;
 
 use Medoo\Medoo;
