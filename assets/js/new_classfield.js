@@ -149,7 +149,10 @@ function edit_mode_init(){
 }
 
 
-
+function iformat(icon) {
+  var originalOption = icon.element;
+  return $('<span>' + icon.text + '</span>');
+}
 //on site ready
 $(function(){
   //city picker
@@ -165,10 +168,13 @@ $(function(){
 
     //Items from json request
     data.forEach(element => {
-      $("#new-classfield-category-picker").append(new Option(element.text, element.id))
+      var option = $("#new-classfield-category-picker").append(new Option(element.icon + " " +element.text, element.id)).attr({"data-icon": element.icon})
     });
   });
-  cat_select = $('.category-select').select2({ theme: "bootstrap-5" });
+  cat_select = $('.category-select').select2({ theme: "bootstrap-5",
+    allowHtml: true,
+    templateSelection: iformat,
+    templateResult: iformat, });
 
   //tinymce
   editor = tinymce.init({
@@ -188,6 +194,7 @@ $(function(){
   
   
 })
+
 
 $("#classfield").submit(function (event) {
   event.preventDefault();
