@@ -95,4 +95,9 @@ $("#getcontactbtn").click(function () {
             
         }
     });
+
+
+
 });
+//autolink
+$(".description").html(($(".description").html()).autoLink({ target: "_blank", rel: "nofollow", id: "1" }))

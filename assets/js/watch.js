@@ -158,6 +158,6 @@ $(".btn-free").click(() =>{
 
 $('#table').on('page-change.bs.table', function (e, arg1) {
     $('html, body').animate({
-        scrollTop: $('.bootstrap-table').offset().top - 20 //#DIV_ID is an example. Use the id of your destination on the page
+        scrollTop: $('.bootstrap-table').offset().top - 20
     }, 'slow');
 })
