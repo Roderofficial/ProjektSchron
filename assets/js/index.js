@@ -98,10 +98,44 @@ function popular_categories(){
     });
 }
 
+//categories
+function categories_section(){
+    //Loader
+    $('.categories-columns').html(`
+    <div class="spinner-border" role="status" style="margin-bottom:10px;">
+    </div>
+    `)
+
+    $.get("/inc/requests/categories.php", function (data, status) {
+
+        //remove loader
+        $('.categories-columns').html('')
+
+        //data load
+        data.forEach(element => {
+            $('.categories-columns').append(`
+            <div class="col-6 col-md-3 col-lg-auto">
+                <a class="text-decoration-none" href="/ogloszenia?category-select=${element.id}">
+                    <span class="fa-stack">
+                        <span class="fa-stack-2x" style="color: ${element.color}"><i class="fa-solid fa-circle"></i></span>
+                        <span class="fa-stack-1x" style="color:#fff">${element.icon}</span>
+                    </span>
+                    <p class="title">${element.text}</p>
+                </a>
+
+            </div>
+            
+            `)
+            console.log('append')
+        });
+    });
+
+}
 
 //ONLOAD
 $(function () {
     popular_categories();
+    categories_section()
     getData();
     citypicker("#citypicker");
     category_public_insert("#category-select");

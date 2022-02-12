@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"].'/config/database.php');
 
-$categories = $database->select("classfield_category", ["ctid(id)", "category_title(text)", "category_icon(icon)"], 
+$categories = $database->select("classfield_category", ["ctid(id)", "category_title(text)", "category_icon(icon)", "color"], 
 ["ORDER" => [
     "orderby" => "DESC"
 ]]
