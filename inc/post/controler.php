@@ -6,7 +6,7 @@ function generate_images($data){
     require($_SERVER['DOCUMENT_ROOT'] . '/config/config.php');
     $return_data = '';
     foreach($data as $value){
-        $return_data .= '<div class="swiper-slide"><img src="'.$images_classfield_location.$value["photo_hash"].'"></div>';
+        $return_data .= '<div class="swiper-slide"><a data-fslightbox href="' . $images_classfield_location . $value["photo_hash"] . '"><img src="'.$images_classfield_location.$value["photo_hash"]. '"></a></div>';
         
     }
     return $return_data;
