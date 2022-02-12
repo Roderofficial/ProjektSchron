@@ -120,7 +120,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/new_classfield/controler.php');
                             <div class="g-recaptcha mb-3" style="display:inline-block" data-sitekey="6Ldl6d8dAAAAANuCA-InONqkE0EIWnuoMRDyIqGb"></div>
                         </div>
 
-                        <button class="btn btn-primary" type="submit" id="formclassfieldsubmit">Dodaj ogłoszenie</button>
+                        <button class="btn btn-primary" type="submit" id="formclassfieldsubmit"><i class="fa-solid fa-circle-plus"></i> Dodaj ogłoszenie</button>
 
                     </div>
 
