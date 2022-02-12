@@ -179,8 +179,9 @@ $(function(){
   //tinymce
   editor = tinymce.init({
     selector: '#desceditor',
-    plugins: 'lists advlist',
-    toolbar: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent",
+    plugins: 'lists advlist emoticons',
+    toolbar: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | emoticons",
+    language: 'pl',
     menubar: false,
     object_resizing: true,
     height: 400

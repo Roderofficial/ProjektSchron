@@ -1,6 +1,6 @@
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/config/config.php') ?>
 <div class="dropdown" style="display: inline;">
-    <button class="btn btn-secondary dropdown-toggle topbtn" style="margin-right:10px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    <button class="btn btn-dark dropdown-toggle" style="margin-right:10px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fas fa-user"></i> Mój profil
     </button>
     <div class="dropdown-menu" style="margin-top: 18px; white-space: nowrap; z-index: 9999;">

@@ -19,6 +19,14 @@ disactive_table.bootstrapTable({
 
 })
 
+function refresh_all_tables(){
+    active_table.bootstrapTable('refresh');
+    disactive_table.bootstrapTable('refresh');
+
+    active_table.bootstrapTable('selectPage', 1)
+    diactive_table.bootstrapTable('selectPage', 1)
+}
+
 //refresh button
 $(document).on('click', '.action-refresh', function (event) {
     var classfield_id = $(this).data('cid');
@@ -314,4 +322,28 @@ function endedcustomViewFormatter(data) {
     }
 }
 
+//queryparams
+function userclassfieldquery(params) {
+    //Searchbox
+    var searchboxval = $(".uc-searchbox").val()
+    if(searchboxval != null && searchboxval != ''){
+        params.q = searchboxval;
+    }
+
+    //Sortbox
+    params.sortid = $(".sort-box").val();
+
+    console.log('queryParams: ' + JSON.stringify(params))
+    return params
+}
+var searchboxtimer;
+$('.uc-searchbox').on('input', function () {
+    clearTimeout(searchboxtimer);
+    searchboxtimer = setTimeout(function () {
+        refresh_all_tables()
+    }, 1000); // Will do the ajax stuff after 1000 ms, or 1 s
+});
+$('.sort-box').on('change', function () {
+    refresh_all_tables();
+});
 
