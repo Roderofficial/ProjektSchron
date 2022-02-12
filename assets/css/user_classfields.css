@@ -11,3 +11,12 @@
     background-position: center; 
     background-size: cover;
 }
+@media (max-width: 991.98px) { 
+    .img-card{
+        height:300px!important;
+    }
+}
+
+.card{
+    padding:0px;
+}

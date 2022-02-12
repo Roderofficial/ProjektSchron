@@ -3,9 +3,24 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/functions/secure.php');
 @session_start();
 require_login();
 
+//State mode
 if (!isset($_GET["state"]) || !in_array(intval($_GET["state"]), array(1,0))) {
     http_response_code(400);
     exit();
+}
+//Select sort
+if (!isset($_GET["sortid"]) || !in_array(intval($_GET["sortid"]), array(0,1,2,3))) {
+    $_GET["sortid"] = 0;
+}
+$order_by_mode = ["expire_at", "expire_at", "created_at", "create_at"];
+$order_by_type = ["DESC", "ASC", "DESC", "ASC"];
+
+
+//Query search
+if (!isset($_GET["q"])) {
+    $q = "";
+}else{
+    $q = $_GET["q"];
 }
 $state  = $_GET["state"];
 
@@ -29,8 +44,12 @@ $classfields = $database->select("classfield",
         "user.userid" => $_SESSION["userdata"]["userid"],
         "classfield.enabled" => intval($state)
     ],
+    "OR" =>[
+            "title[~]" => $q,
+            "id[~]" => $q
+    ],
     "ORDER" => [
-        "created_at" => "DESC"
+            $order_by_mode[$_GET["sortid"]] => $order_by_type[$_GET["sortid"]]
     ]
     
 
