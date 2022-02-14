@@ -179,10 +179,13 @@ $(function(){
   //tinymce
   editor = tinymce.init({
     selector: '#desceditor',
-    plugins: 'lists advlist emoticons',
+    plugins: 'lists advlist emoticons paste',
+    paste_word_valid_elements: 'p,b,strong,i,em,ul,li,td',
+    deprecation_warnings: false,
     toolbar: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | emoticons",
     language: 'pl',
     menubar: false,
+    paste_as_text: true,
     object_resizing: true,
     height: 400
   }).then(function (){
