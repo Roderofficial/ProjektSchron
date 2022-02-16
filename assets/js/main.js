@@ -313,9 +313,6 @@ function validURL(str) {
 $(() =>{
     $('a').click(function (e) {
         if (link_is_external(this) && validURL($(this).attr('href'))){
-            console.log('extrenal')
-            console.log(this)
-            console.log(e)
             e.preventDefault();
 
             //Information
