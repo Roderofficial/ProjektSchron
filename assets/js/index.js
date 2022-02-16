@@ -37,7 +37,7 @@ function addClassfield(data){
                         <div class="cost-badge">${data.cost}</div>
                     </div>
                     <div class="card-body">
-                        <a href="${data.link}" class="card-title">${data.title}</a>
+                        <a href="${data.link}" class="card-title stretched-link">${data.title}</a>
                         <p class="card-text"><small class="text-muted"><i class="fas fa-map-marker-alt"></i> ${data.location}</small></p>
                     </div>
                 </div>

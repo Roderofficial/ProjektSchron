@@ -298,3 +298,41 @@ function swaltoast(type, message){
         title: message
     })
 }
+function link_is_external(link_element) {
+    return (link_element.host !== window.location.host);
+}
+function validURL(str) {
+    var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+        '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+    return !!pattern.test(str);
+}
+$(() =>{
+    $('a').click(function (e) {
+        if (link_is_external(this) && validURL($(this).attr('href'))){
+            console.log('extrenal')
+            console.log(this)
+            console.log(e)
+            e.preventDefault();
+
+            //Information
+            Swal.fire({
+                html: `<b>Link prowadzi do zewnętrznej strony, czy chcesz kontynować?</b> <br /> <br /> ${$(this).attr('href')}`,
+                icon: 'question',
+                showDenyButton: false,
+                showCancelButton: true,
+                confirmButtonText: 'Przejdź',
+                cancelButtonText: `Anuluj`,
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    window.location.href = $(this).attr('href')
+                }
+            })
+
+        }
+    })
+})
