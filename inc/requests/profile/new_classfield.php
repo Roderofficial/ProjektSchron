@@ -54,7 +54,7 @@ if(!isset($_POST['description']) || empty($_POST['description'])){
 }
 
 $puffier_config = HTMLPurifier_Config::createDefault();
-$puffier_config->set('HTML.Allowed', 'p,ul[style],ol,li,s,u,i,b,span[style],br,strong,em');
+$puffier_config->set('HTML.Allowed', 'p,ul[style],ol,li,s,u,i,b,span[style],strong,em');
 $puffier_config->set('CSS.AllowedProperties', 'text-align,text-decoration');
 $purifier = new HTMLPurifier($puffier_config);
 $_POST['description'] = $purifier->purify($_POST['description']);
