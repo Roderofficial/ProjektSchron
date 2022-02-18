@@ -109,7 +109,7 @@ $(".description").html(Autolinker.link($(".description").html(),{
 
 function more_classfields(){
   //Get more classfields
-  $.get( `http://localhost/inc/requests/more_classfields.php?lat=${geo_lat}&lon=${geo_long}`, function( data ) {
+  $.get( `/inc/requests/more_classfields.php?lat=${geo_lat}&lon=${geo_long}`, function( data ) {
   data.forEach(function(row) {
     addClassfield(row);
         });
