@@ -105,3 +105,47 @@ $(".description").html(Autolinker.link($(".description").html(),{
     urls: true,
     phone: true
 }));
+
+
+function more_classfields(){
+  //Get more classfields
+  $.get( `http://localhost/inc/requests/more_classfields.php?lat=${geo_lat}&lon=${geo_long}`, function( data ) {
+  data.forEach(function(row) {
+    addClassfield(row);
+        });
+    }).then(() =>{
+        //Add carousel
+    $(".owl-carousel").owlCarousel({
+        autoWidth:true,
+        margin:10,
+        dots: true,
+        lazyLoad: true,
+        animateIn: true,
+        loop: true,
+    });
+
+    });
+
+    
+}
+
+function addClassfield(data){
+    $(".owl-carousel").append(
+        `
+                <div class="card classfield-card-preview">
+                    <div style="background: url('/assets/images/classfields/${data.photo_hash}'); background-size: cover; background-position: center;" class="classfieldimage">
+                        <div class="cost-badge">${data.cost}</div>
+                    </div>
+                    <div class="card-body">
+                        <a href="${data.link}" class="card-title stretched-link">${data.title}</a>
+                        <p class="card-text"><small class="text-muted"><i class="fas fa-map-marker-alt"></i> ${data.location}</small></p>
+                    </div>
+                </div>
+        `
+    )
+
+}
+
+$(() =>{
+    more_classfields();
+})
