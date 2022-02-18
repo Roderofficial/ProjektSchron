@@ -77,3 +77,13 @@
   justify-content: center;
   align-items: center;
 }
+
+.classfield-card-preview{
+    width: 300px;
+}
+p.title-near-classfields {
+    font-size: 22px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #444444;
+}
