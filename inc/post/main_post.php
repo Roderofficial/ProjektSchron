@@ -97,12 +97,14 @@
 
 
     </div>
+
     <div class="col-12  order-3">
         <div class=" justify-content-end d-flex">
             <span class="badge bg-dark">Identyfikator ogłoszenia: <?= htmlspecialchars($id) ?></span>
         </div>
     </div>
     <?php
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/post/near_more_classfields.php');
     //ADS 
     require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/ads/szeroka_reklama.php');
     ?>
