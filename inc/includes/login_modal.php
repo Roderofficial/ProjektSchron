@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="modal-footer">
-                        <small>Nie masz jeszcze konta? <a href="#" class="login-switch-register"><b><u>Zarejestruj się</u></b></a> lub skorzystaj z logowania za pomocą zewnętrznego serwisu.</small>
+                    <small>Nie masz jeszcze konta? <a href="#" class="login-switch-register"><b><u>Zarejestruj się</u></b></a> lub skorzystaj z logowania za pomocą zewnętrznego serwisu.</small>
                 </div>
             </div>
 
@@ -57,7 +57,7 @@
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="rulesandterms" required>
-                            <label class="form-check-label" for="rulesandterms">Akceptuję Regulamin i <a href="/assets/docs/polityka_prywatnosci.pdf">Politykę Prytwatności </a></label>
+                            <label class="form-check-label" for="rulesandterms">Akceptuję <a href="/assets/docs/regulamin.pdf">Regulamin</a> i <a href="/assets/docs/polityka_prywatnosci.pdf">Politykę Prytwatności </a></label>
                         </div>
                         <input type="hidden" id="redirect" name="redirect">
                         <div style="text-align:center;">
@@ -95,7 +95,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                        <small>Masz już konto? <b><u><a href="#" class="login-switch-login">Zaloguj się</a></u></b></small>
+                    <small>Masz już konto? <b><u><a href="#" class="login-switch-login">Zaloguj się</a></u></b></small>
                 </div>
 
             </div>
