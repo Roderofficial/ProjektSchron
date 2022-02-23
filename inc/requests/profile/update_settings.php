@@ -52,7 +52,7 @@ if($_POST["type"] == "displaydata"){
     //Display name update
     if(isset($_POST["displayname"]) && !empty($_POST["displayname"])){
         //Check displayname length
-        if(strlen($_POST['displayname']) < 5 || strlen($_POST['displayname']) > 32){
+        if(strlen($_POST['displayname']) < 5 || strlen($_POST['displayname']) > 64){
             echo 'Nazwa użytkownika jest zbyt długa lub krótka';
             http_response_code(400);
             exit();
