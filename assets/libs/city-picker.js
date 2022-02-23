@@ -2,12 +2,13 @@ function citypicker(tag){
     $(tag).select2(
         {
             theme: 'bootstrap-5',
-            dropdownParent: $('#offcanvasFilter'),
+            
             ajax: {
                 url: 'https://nominatim.openstreetmap.org/search',
                 type: "GET",
                 delay: 500,
                 minimumInputLength: 3,
+
                 allowClear: 1,
                 data: function (params) {
                     return {

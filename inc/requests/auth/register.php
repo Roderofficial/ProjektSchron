@@ -26,7 +26,7 @@ if (!isset($_POST['username']) || empty($_POST['username'])) {
     echo 'Nazwa użytkownika nie może być pusta';
     exit();
 }
-if(strlen($_POST['username']) < 5 || strlen($_POST['username']) > 32){
+if(strlen($_POST['username']) < 5 || strlen($_POST['username']) > 64){
     http_response_code(403);
     echo 'Nazwa użytkownika jest zbyt krótka lub za długa.';
     exit();
