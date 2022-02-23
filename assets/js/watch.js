@@ -10,6 +10,12 @@ $('#table').bootstrapTable({
 
 })
 
+$('#table').on('page-change.bs.table', function (e,number) {
+  const url = new URL(window.location);
+    url.searchParams.set('page', number);
+    window.history.pushState({}, '', url);
+})
+
 function customViewFormatter(data) {
     var template = $('#card-template').html()
     var view = '';
@@ -113,31 +119,13 @@ $(function(){
 
     }
 
+    var pageno = getUrlParameter('page');
+    if(pageno != false){
+        $('#table').bootstrapTable('selectPage', parseInt(pageno))
+        console.log(pageno);
+    }
 
-
-
-    //Load categories and auto
-    $.get("/inc/requests/categories.php", function (data) {
-        //Append wszystkie
-        var object = $("#category-select");
-        object.append(new Option("Wszystkie", "-1"))
-
-        //Items from json request
-        data.forEach(element => {
-            object.append(new Option(element.text, element.id))
-        });
-
-        var category = getUrlParameter('category-select');
-        if(category != false){
-            if (category != false) {
-                $(`#category-select option[value=${category}]`).prop('selected', true);
-                refresh_table();
-            }
-        }
-
-    });
-
-
+    
 
 
 })
@@ -161,3 +149,38 @@ $('#table').on('page-change.bs.table', function (e, arg1) {
         scrollTop: $('.bootstrap-table').offset().top - 20
     }, 'slow');
 })
+
+$(()=>{
+    //category selector
+    $.get("/inc/requests/categories.php", function (data) {
+
+        //Append wybierz
+        var def_option = $("#category-select").append(new Option("Wszystkie", "-1",true))
+
+        //Items from json request
+        data.forEach(element => {
+        var option = $("#category-select").append(new Option(element.icon + " " +element.text, element.id)).attr({"data-icon": element.icon})
+        });
+
+        var category = getUrlParameter('category-select');
+        if(category != false){
+            if (category != false) {
+                $(`#category-select option[value=${category}]`).prop('selected', true);
+                refresh_table();
+            }
+        }
+    });
+    $('.category-select').select2({ 
+        theme: "bootstrap-5",
+        width:"100%",
+        allowHtml: true,
+        templateSelection: iformat,
+        templateResult: iformat
+    });
+
+
+})
+function iformat(icon) {
+  var originalOption = icon.element;
+  return $('<span>' + icon.text + '</span>');
+}

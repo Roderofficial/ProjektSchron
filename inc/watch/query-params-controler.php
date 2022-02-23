@@ -83,7 +83,17 @@ if(isset($_GET['osm_id']) && !empty($_GET['osm_id'])){
             }else{
                 //Promienia nie ma lub jest równy 0
                 $query_params["classfield.osm_id"] = $_GET['osm_id'];
-                $where->add("classfield.osm_id=%s", $_GET['osm_id']);
+                //$where->add("classfield.osm_id=%s", $_GET['osm_id']);
+
+                //Or search name and state
+                $osm_query = $where->addClause('or');
+                $osm_query_a = $osm_query->addClause('AND');
+
+                //Location explode
+                $location_explode = explode(",", $location_data["features"][0]["properties"]["display_name"]);
+                $osm_query_a->add("osm_name=%s", $location_data["features"][0]["properties"]["address"]["state"]);
+                $osm_query_a->add("LOWER(location) = LOWER(%s)", $location_explode[0]);
+
 
             }
 
@@ -108,7 +118,24 @@ if((isset($_GET['cost_min']) && is_numeric($_GET['cost_min']) && $_GET['cost_min
 
 }
 
-$results = DB::query("SELECT classfield.id, classfield.title, classfield.created_at,classfield.location, classfield.cost,classfield_photo.photo_hash FROM classfield INNER JOIN classfield_photo ON classfield.id = classfield_photo.classfield_id WHERE %l ORDER BY classfield.created_at DESC LIMIT %i OFFSET %i;", $where, $_GET['limit'], $_GET['offset']);
-$count_filtered = DB::query("SELECT COUNT(classfield.id) FROM classfield INNER JOIN classfield_photo ON classfield.id = classfield_photo.classfield_id WHERE %l", $where);
+//Q search
+if(isset($_GET["q"]) && !empty($_GET["q"])){
+    $q = str_ireplace(array(
+        '\'', '"',
+        ',', ';', '<', '>'
+    ), ' ', $_GET["q"]);
+
+    $q = '%'.$q.'%';
+
+    $qa = $where->addClause('or');
+    $qa->add("LOWER(title) LIKE LOWER(%s)", $q);
+    //$qa->add("LOWER(description) LIKE LOWER(%s)", $q);
+
+}
+
+$results = DB::query("SELECT classfield.id, classfield.title, classfield.created_at,classfield.location, classfield.cost,classfield_photo.photo_hash FROM classfield INNER JOIN classfield_photo ON classfield.id = classfield_photo.classfield_id INNER JOIN geo_wojewodztwo ON classfield.woj_id = geo_wojewodztwo.id WHERE %l ORDER BY classfield.created_at DESC LIMIT %i OFFSET %i;", $where, $_GET['limit'], $_GET['offset']);
+
+//echo DB::lastQuery();
+$count_filtered = DB::query("SELECT COUNT(classfield.id) FROM classfield INNER JOIN classfield_photo ON classfield.id = classfield_photo.classfield_id  INNER JOIN geo_wojewodztwo ON classfield.woj_id = geo_wojewodztwo.id WHERE %l", $where);
 $total_count =DB::query("SELECT COUNT(classfield.id) FROM classfield");
 ?>
