@@ -1,10 +1,75 @@
 $('#table').bootstrapTable({
-    url: '/inc/requests/classfields-member.php?userid=' + userid.toString(),
+    url: '/inc/requests/classfields-member.php',
     locale: "pl_PL",
     paginationParts: ['pageList']
 
 })
 
+function queryParams(params) {
+    $("#searchform").serializeArray().map(function(val){
+        params[val.name] = val.value
+    });
+    params["userid"] = userid.toString();
+    return params
+}
+
+//search btn
+$("#searchform").submit(function (event) {
+    event.preventDefault();
+    form = event;
+    // var serialize_obj = $("#searchform").serialize();
+    // current_page = location.protocol + '//' + location.host + location.pathname;
+    // document.location.href = current_page + '?' + serialize_obj;
+    // console.log(serialize_obj)
+    $('#table').bootstrapTable('refresh')
+    $('#table').bootstrapTable('selectPage', 1)
+
+});
+
+//City picker / radius picker
+$(() =>{
+    citypicker("#citypicker");
+    var radius_picker = $('#radius').select2({ theme: "bootstrap-5" });
+})
+
+//Category picker
+$(()=>{
+    //category selector
+    $.get("/inc/requests/categories.php", function (data) {
+
+        //Append wybierz
+        var def_option = $("#category-select").append(new Option("Wszystkie", "-1",true))
+
+        //Items from json request
+        data.forEach(element => {
+        var option = $("#category-select").append(new Option(element.icon + " " +element.text, element.id)).attr({"data-icon": element.icon})
+        });
+
+        var category = getUrlParameter('category-select');
+        if(category != false){
+            if (category != false) {
+                $(`#category-select option[value=${category}]`).prop('selected', true);
+                refresh_table();
+            }
+        }
+    });
+    $('.category-select').select2({ 
+        theme: "bootstrap-5",
+        width:"100%",
+        allowHtml: true,
+        templateSelection: iformat,
+        templateResult: iformat
+    });
+
+
+})
+function iformat(icon) {
+  var originalOption = icon.element;
+  return $('<span>' + icon.text + '</span>');
+}
+
+
+//Card formater
 function customViewFormatter(data) {
     var template = $('#card-template').html()
     var view = '';
@@ -22,7 +87,7 @@ function customViewFormatter(data) {
     }else{
         return `<div class="card">
     <div class="card-body">
-        <p class="card-text">Użytkownik nie posiada aktywnych ogłoszeń </p>
+        <p class="card-text">Brak ogłoszeń </p>
     </div>
     </div>`
     }
