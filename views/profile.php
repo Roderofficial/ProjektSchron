@@ -22,13 +22,13 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/profile/controler.php');
 
 <body>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/navbar/navbar.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/navbar/navbar.php');
 
     ?>
 
     <div class="profile container">
         <?php
         require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/profile/profile_overlay.php');
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/profile/filters.php');
         require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/profile/classfields.php');
         require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/profile/more_details.php');
 
@@ -44,6 +44,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/profile/controler.php');
 
     <?php require($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/scripts.php') ?>
     <script src="/assets/js/profile.js"></script>
+    <script src="/assets/libs/city-picker.js"></script>
 </body>
 
 </html>

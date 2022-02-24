@@ -2,6 +2,7 @@ function citypicker(tag){
     $(tag).select2(
         {
             theme: 'bootstrap-5',
+            allowHtml: true,
             
             ajax: {
                 url: 'https://nominatim.openstreetmap.org/search',
