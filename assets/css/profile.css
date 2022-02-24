@@ -98,3 +98,8 @@
     margin-left: -18px; */
     border: 2px solid #fff;
 }
+.watch-title {
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
