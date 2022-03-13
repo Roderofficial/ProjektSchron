@@ -129,10 +129,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/new_classfield/controler.php');
 
             </form>
         </div>
-        <?php
-        //ADS 
-        require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/ads/szeroka_reklama.php');
-        ?>
     </div>
 
 
