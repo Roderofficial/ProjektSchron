@@ -172,10 +172,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/settings/controler.php');
 
         </div>
     </div>
-    <?php
-    //ADS 
-    require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/ads/szeroka_reklama.php');
-    ?>
 
     </div>
 
