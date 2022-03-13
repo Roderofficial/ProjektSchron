@@ -22,3 +22,22 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/includes/login_modal.php');
 
 <script src="https://skrypt-cookies.pl/id/9738db0cb514b682.js"></script>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+<script>
+    //Mini info alert
+    const Toastinfo = Swal.mixin({
+        toast: true,
+        position: 'bottom-end',
+        showConfirmButton: false,
+        timerProgressBar: false,
+        showCloseButton: true,
+    })
+    $(() => {
+        infotoast = Toastinfo.fire({
+            icon: 'info',
+            title: 'Utrudnienia w działaniu serwisu!',
+            html: "Ze względu na modernizację serwisu w dniu 13 i 14 marca dostęp może być utrudniony. <br /> Z góry przepraszamy."
+        })
+        infotoast.stopTimer();
+    })
+</script>
