@@ -34,4 +34,16 @@ function require_login($redirect =1){
 
 }
 
+function check_permission($user_id, $permission_name){
+    $column = 'user_roles.'.$permission_name;
+    require($_SERVER["DOCUMENT_ROOT"].'/config/database.php');
+    $return_data = $database->select("user",["[>]user_roles" => ["user_roleID" => "id"]], $column, ['userid' => $user_id]);
+
+    if(empty($return_data)){
+        return false;
+    }else{
+        return boolval($return_data[0]);
+    }
+}
+
 ?>
