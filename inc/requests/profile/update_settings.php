@@ -20,6 +20,7 @@ if($_POST["type"] == "displaydata"){
 
     $email_update = 0;
     $displayname_update = 0;
+    $subdomain_update = 0;
     //DISPLAYDATA UPDATE
     //Check if post email exist
     if(isset($_POST["email"]) && !empty($_POST["email"])){
@@ -35,8 +36,8 @@ if($_POST["type"] == "displaydata"){
         //Check if some other has this email
         $email_count = $database->count("user", ["email" => $_POST["email"]]);
         if ($email_count != 0) {
-            $old_email = $database->select("user", ["email"], ["email" => $_POST["email"]]);
-            if ($old_email == $_POST['email']) {
+            $old_email = $database->select("user", "email", ["userid" => $_SESSION["userdata"]["userid"]]);
+            if ($old_email[0] != $_POST['email']) {
                 echo 'Podany adres email jest już przypisany do innego konta';
                 http_response_code(400);
                 exit();
@@ -64,9 +65,50 @@ if($_POST["type"] == "displaydata"){
         $displayname_update = 1;
     }
 
+
+    //VALIDATE SUBDOMAIN
+    //Check permissions
+    if(check_permission($_SESSION["userdata"]["userid"], "subdomain")){
+        if (isset($_POST["subdomain"]) && !empty($_POST["subdomain"])) {
+
+            //reformat
+            $_POST["subdomain"] = preg_replace("/[^a-zA-Z0-9]+/", "", $_POST["subdomain"]);
+            //check if email is valid
+            if (strlen($_POST["subdomain"]) < 5 || strlen($_POST["subdomain"]) > 25) {
+                echo 'Subdomena musi posiadać minimalnie 5 znaków lub maksymalnie 25.';
+                http_response_code(400);
+                exit();
+            }
+
+
+            //Check if some other has this email
+            $subdomain_count = $database->count("user", ["subdomain" => $_POST["subdomain"]]);
+            if ($subdomain_count != 0) {
+                $old_subdomain = $database->select("user", "subdomain", ["userid" => $_SESSION["userdata"]["userid"]]);
+                if ($old_subdomain[0] != $_POST['subdomain']) {
+                    echo 'Podana subdomena jest już zajęta!';
+                    http_response_code(400);
+                    exit();
+                }
+            }
+
+
+            //If email validate successfull
+            $subdomain_update = 1;
+        }elseif(empty($_POST["subdomain"])){
+            $_POST["subdomain"] = NULL;
+            $subdomain_update = 1;
+        }
+    }
+    
+
     //Update data if successfull
     if($email_update == 1){
         $database->update("user",["email" => $_POST["email"]], ["userid" => $_SESSION['userdata']['userid']]);
+    }
+
+    if ($subdomain_update == 1) {
+        $database->update("user", ["subdomain" => $_POST["subdomain"]], ["userid" => $_SESSION['userdata']['userid']]);
     }
 
     if($displayname_update == 1){
@@ -209,6 +251,9 @@ elseif ($_POST['type'] == 'details'){
         $database->update("user", ["about" => $_POST["about"]], ["userid" => $_SESSION['userdata']["userid"]]);
     }
     
+}else if($_POST['type'] == 'opentimes'){
+    var_dump($_POST);
+
 }
 
 

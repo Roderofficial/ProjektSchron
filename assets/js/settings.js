@@ -88,6 +88,7 @@ $("form").submit(function(e){
 
       //Success
       success: function (data) {
+        console.log(data);
         swaltoast("success", "Ustawienia zostały zapisane pomyślnie!")
       },
 

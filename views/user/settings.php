@@ -21,7 +21,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/settings/controler.php');
 
 <body>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/navbar/navbar.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/navbar/navbar.php');
 
     ?>
 
@@ -47,6 +46,9 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/settings/controler.php');
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="pills-info-tab" data-bs-toggle="pill" data-bs-target="#pills-info" type="button" role="tab" aria-controls="pills-info" aria-selected="false"><i class="fas fa-info-circle"></i> Informacje</button>
                         </li>
+                        <!-- <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="open-times-tab" data-bs-toggle="pill" data-bs-target="#open-times" type="button" role="tab" aria-controls="open-times" aria-selected="false"><i class="fa-solid fa-clock"></i> Godziny otwarcia</button>
+                        </li> -->
 
                     </ul>
                 </div>
@@ -64,6 +66,19 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/settings/controler.php');
                                 <label class="form-label">Adres e-mail</label>
                                 <input type="email" class="form-control" name="email" value="<?= $data["email"] ?>">
                             </div>
+                            <?php
+                            if(check_permission($_SESSION["userdata"]["userid"], "subdomain")){
+                                echo '
+                                <label class="form-label">Subdomena</label>
+                                <div class="input-group mb-3">
+                                    
+                                    <input type="text" min="5" max="25" class="form-control" name="subdomain" value="' . $data["subdomain"] . '">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">.getpet.pl</span>
+                                    </div>
+                                </div>';
+                            }
+                            ?>
                             <button type="submit" class="btn btn-primary">Zmień dane</button>
                         </form>
                     </div>
@@ -167,6 +182,125 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/settings/controler.php');
                             </tr>
                         </tbody>
                     </table>
+                </div>
+                <!-- GODZINY OTWARCIA -->
+                <div class="tab-pane fade" id="open-times" role="tabpanel" aria-labelledby="open-times-tab">
+                    <form method="POST" id="opentimes" action="/inc/requests/profile/update_settings.php">
+                        <input type="hidden" name="type" value="opentimes">
+                        <table class="table table-sm table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Dzień</th>
+                                    <th>Od</th>
+                                    <th>Do</th>
+                                    <th>Ustawienia</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <th scope="row">Poniedziałek</th>
+                                    <td><input type="time" class="form-control" name="opentime[]"></td>
+                                    <td><input type="time" class="form-control" name="closetime[]"></td>
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                            <input type="radio" class="btn-check" name="dayoption[0]" id="btnradio1" autocomplete="off" value="open">
+                                            <label class="btn btn-outline-primary" for="btnradio1">Otwarte</label>
+
+                                            <input type="radio" class="btn-check" name="dayoption[0]" id="btnradio2" value="close" autocomplete="off" checked>
+                                            <label class="btn btn-outline-primary" for="btnradio2">Zamknięte</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Wtorek</th>
+                                    <td><input type="time" class="form-control" name="opentime[]"></td>
+                                    <td><input type="time" class="form-control" name="closetime[]"></td>
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                            <input type="radio" class="btn-check" name="dayoption[1]" id="btnradio3" autocomplete="off" value="open">
+                                            <label class="btn btn-outline-primary" for="btnradio3">Otwarte</label>
+
+                                            <input type="radio" class="btn-check" name="dayoption[1]" id="btnradio4" value="close" autocomplete="off" checked>
+                                            <label class="btn btn-outline-primary" for="btnradio4">Zamknięte</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Środa</th>
+                                    <td><input type="time" class="form-control" name="opentime[]"></td>
+                                    <td><input type="time" class="form-control" name="closetime[]"></td>
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                            <input type="radio" class="btn-check" name="dayoption[2]" id="btnradio5" autocomplete="off" value="open">
+                                            <label class="btn btn-outline-primary" for="btnradio5">Otwarte</label>
+
+                                            <input type="radio" class="btn-check" name="dayoption[2]" id="btnradio6" value="close" autocomplete="off" checked>
+                                            <label class="btn btn-outline-primary" for="btnradio6">Zamknięte</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Czwartek</th>
+                                    <td><input type="time" class="form-control" name="opentime[]"></td>
+                                    <td><input type="time" class="form-control" name="closetime[]"></td>
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                            <input type="radio" class="btn-check" name="dayoption[3]" id="btnradio7" autocomplete="off" value="open">
+                                            <label class="btn btn-outline-primary" for="btnradio7">Otwarte</label>
+
+                                            <input type="radio" class="btn-check" name="dayoption[3]" id="btnradio8" value="close" autocomplete="off" checked>
+                                            <label class="btn btn-outline-primary" for="btnradio8">Zamknięte</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Piątek</th>
+                                    <td><input type="time" class="form-control" name="opentime[]"></td>
+                                    <td><input type="time" class="form-control" name="closetime[]"></td>
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                            <input type="radio" class="btn-check" name="dayoption[4]" id="btnradio9" autocomplete="off" value="open">
+                                            <label class="btn btn-outline-primary" for="btnradio9">Otwarte</label>
+
+                                            <input type="radio" class="btn-check" name="dayoption[4]" id="btnradioa" value="close" autocomplete="off" checked>
+                                            <label class="btn btn-outline-primary" for="btnradioa">Zamknięte</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Sobota</th>
+                                    <td><input type="time" class="form-control" name="opentime[]"></td>
+                                    <td><input type="time" class="form-control" name="closetime[]"></td>
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                            <input type="radio" class="btn-check" name="dayoption[5]" id="btnradio10" autocomplete="off" value="open">
+                                            <label class="btn btn-outline-primary" for="btnradio10">Otwarte</label>
+
+                                            <input type="radio" class="btn-check" name="dayoption[5]" id="btnradio11" value="close" autocomplete="off" checked>
+                                            <label class="btn btn-outline-primary" for="btnradio11">Zamknięte</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Niedziela</th>
+                                    <td><input type="time" class="form-control" name="opentime[]"></td>
+                                    <td><input type="time" class="form-control" name="closetime[]"></td>
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                            <input type="radio" class="btn-check" name="dayoption[6]" id="btnradio12" autocomplete="off" value="open">
+                                            <label class="btn btn-outline-primary" for="btnradio12">Otwarte</label>
+
+                                            <input type="radio" class="btn-check" name="dayoption[6]" id="btnradio13" value="close" autocomplete="off" checked>
+                                            <label class="btn btn-outline-primary" for="btnradio13">Zamknięte</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button type="submit" class="btn btn-primary">Zapisz informacje</button>
+                    </form>
                 </div>
             </div>
 
