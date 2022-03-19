@@ -63,13 +63,29 @@ require_login();
 
             <!-- SORTING -->
             <div class="col-12 col-md-auto  mb-3">
-                <label>Sortuj według</label>
-                <select class="form-select sort-box">
-                    <option value="0" selected>Data wygaśnięcia: malejąco</option>
-                    <option value="1">Data wygaśnięcia: rosnąco</option>
-                    <option value="2">Data dodania: malejąco</option>
-                    <option value="3">Data dodania: rosnąco</option>
-                </select>
+                <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                    <div class="col-10  ">
+                        <label>Sortuj według</label>
+                        <select class="form-select sort-box">
+                            <option value="0" selected>Data wygaśnięcia: malejąco</option>
+                            <option value="1">Data wygaśnięcia: rosnąco</option>
+                            <option value="2">Data dodania: malejąco</option>
+                            <option value="3">Data dodania: rosnąco</option>
+                        </select>
+                    </div>
+                    <div class="col-2  align-self-end">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                                <li><a role="button" class="dropdown-item refresh-all" href="#"><i class="fa-solid fa-arrows-rotate me-3"></i>Odśwież wszystkie ogłoszenia</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
 
