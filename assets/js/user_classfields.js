@@ -347,3 +347,51 @@ $('.sort-box').on('change', function () {
     refresh_all_tables();
 });
 
+//Refresh all button
+$(document).on('click', '.refresh-all', function (event) {
+    //show waiting box
+    Swal.fire({
+        title: 'Proszę czekać!',
+        html: `Trwa wykonywanie akcji. <br />
+        <div class="spinner-border spinner-border-sm" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        `,// add html attribute if you want or remove
+        icon: 'info',
+        allowOutsideClick: false,
+        showCancelButton: false,
+        showConfirmButton: false,
+        onBeforeOpen: () => {
+            Swal.showLoading()
+        },
+    });
+
+    //Ajax request
+        $.ajax({
+            type: "POST",
+            url: "/inc/requests/post/refresh_all.php",
+            success: function (response) {
+                Swal.fire(
+                    'Sukces!',
+                    `Odświeżono <b>${response}</b> ogłoszeń.`,
+                    'success'
+                )
+
+                active_table.bootstrapTable('refresh');
+                
+
+                
+
+            },
+            error: function (response) {
+                Swal.fire(
+                    'Błąd ' + response.status,
+                    ''+response.responseText,
+                    'error'
+                )
+
+            }
+        });
+
+
+});
