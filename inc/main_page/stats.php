@@ -21,10 +21,6 @@ $zdjecia = $database->count('classfield_photo');
 
 
 <div class="container">
-    <div class="sectiontitle">
-        <h2>Statystyki</h2>
-        <span class="headerLine"></span>
-    </div>
     <div id="projectFacts" class="sectionClass">
         <div class="fullWidth eight columns">
             <div class="projectFactsWrap ">
