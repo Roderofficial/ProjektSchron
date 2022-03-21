@@ -1,4 +1,4 @@
-<table id="table" data-server-sort="true" data-pagination="true" data-page-size="48" data-side-pagination="server" ata-server-sort="false" data-query-params="queryParams" data-show-custom-view="true" data-custom-view="customViewFormatter">
+<table id="table" data-server-sort="true" data-pagination="true" data-page-size="20 " data-side-pagination="server" ata-server-sort="false" data-query-params="queryParams" data-show-custom-view="true" data-custom-view="customViewFormatter">
     <thead>
         <tr>
             <th data-field="id">id</th>
