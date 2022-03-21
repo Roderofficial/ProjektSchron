@@ -1,4 +1,4 @@
-<form id="searchform">
+<form id="searchform" class="bg-white rounded border px-3 py-1 mb-3">
     <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|} mt-3 mb-3">
         <div class="col-12 align-self-end">
             <span class="watch-title">FILTRY</span>

@@ -280,19 +280,19 @@ body:not(.modal-open){
 }
 
 .projectFactsWrap .item:nth-child(1) {
-    background: rgb(66 0 145)
+    background: #EF476F;
 }
 
 .projectFactsWrap .item:nth-child(2) {
-    background: rgb(73 6 152)
+    background: #FFD166;
 }
 
 .projectFactsWrap .item:nth-child(3) {
-    background: rgb(81 5 170)
+    background: #06D6A0;
 }
 
 .projectFactsWrap .item:nth-child(4) {
-    background: rgb(93 5 196)
+    background: #118AB2;
 }
 
 .projectFactsWrap .item p.number {
@@ -324,7 +324,7 @@ body:not(.modal-open){
 .projectFactsWrap .item i {
     vertical-align: middle;
     font-size: 50px;
-    color: rgba(255, 255, 255, 0.8);
+    color: white;
 }
 
 
