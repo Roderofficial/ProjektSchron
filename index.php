@@ -18,6 +18,7 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/main_page/banner.php');
     require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/main_page/categories_section.php');
     require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/main_page/classfield.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/main_page/stats.php');
 
 
     //ADS 
