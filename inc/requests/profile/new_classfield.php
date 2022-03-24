@@ -204,6 +204,26 @@ for ($i = 0; $i < count($_FILES['images']['name']); $i++) {
 
 }
 
+//Validat detail points
+if(isset($_POST["point_details"])){
+    $points_detail = $database->select(
+        'category_has_detail',
+        [
+            "[>]classfield_detail_points" => ["classfield_detail_points_id" => "id"]
+        ],
+            'classfield_detail_points.id',
+        [
+            'category_has_detail.category_id' => $_POST["category"]
+        ]
+    );
+    if(array_diff($_POST["point_details"], $points_detail)){
+        echo "Niepoprawne wartości Details Points. Skontaktuj się z administratorem serwisu.";
+        http_response_code(400);
+        exit();
+    }
+
+}
+
 
 if (isset($_POST["mode"]) && $_POST["mode"] == "edit") {
     //////////////////////
@@ -232,6 +252,9 @@ if (isset($_POST["mode"]) && $_POST["mode"] == "edit") {
         echo 'Brak uprawnień!';
         exit();
     }
+
+
+
 
 
     //Update classfield
@@ -292,6 +315,18 @@ if (isset($_POST["mode"]) && $_POST["mode"] == "edit") {
         }catch (Exception $e){}
     }
 
+    //Remove old points details
+    $database->delete('classfield_has_detail', ['classfield_id' => $_POST["update_id"]]);
+    //Add points details
+    foreach ($_POST["point_details"] as $value) {
+        $database->insert('classfield_has_detail',[
+            'classfield_id'=> $_POST["update_id"],
+            'detail_id' => $value
+        ]);
+    }
+
+    
+
     echo '/post/' . clean($_POST['title']) . '-' . $_POST["update_id"];
 
 
@@ -348,6 +383,14 @@ if (isset($_POST["mode"]) && $_POST["mode"] == "edit") {
             "photo_hash" => $single_image_name,
             "classfield_id" => $insert_id,
             "main" => 0,
+        ]);
+    }
+
+    //Add points details
+    foreach ($_POST["point_details"] as $value) {
+        $database->insert('classfield_has_detail',[
+            'classfield_id'=> $insert_id,
+            'detail_id' => $value
         ]);
     }
 

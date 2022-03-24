@@ -128,7 +128,9 @@ function edit_mode_init(){
           });
         });
 
-
+        
+        //Update details points
+        update_point_details(response.classfield_categoryid, edit_id);
 
 
 
@@ -144,6 +146,8 @@ function edit_mode_init(){
       }
     });
 
+
+    
 
   }
 }
@@ -288,3 +292,55 @@ $("#classfield").submit(function (event) {
     }
   });
 });
+
+
+//Point details
+$('#new-classfield-category-picker').on('select2:select', function (e) {
+  var data = e.params.data;
+  update_point_details(data.id);
+  
+});
+
+function update_point_details(catid, classfield_id = null){
+  //Get Data
+  $.get("/inc/requests/post/category_details_point.php", {id: catid}, function(data){
+    if(!jQuery.isEmptyObject(data)){
+      //Create detail card
+      //Remove old card 
+      $('.point-details').remove();
+      var card_details = $('.details-section').append('<div class="row point-details "><label>Karta charakterystyki</label></div>' );
+      
+      //Append points
+      for (const [key, value] of Object.entries(data)) {
+        $(".point-details").append(`
+        <div class="col-12 col-md-6 mb-2 input-point-group">
+          <input class="form-check-input checkbox-dp" name="point_details[]" type="checkbox" value="${value.id}" id="dp${value.id}">
+          <label class="form-check-label label-dp" for="dp${value.id}">
+            ${value.text}
+          </label>
+        </div>
+        
+        `)
+      }
+    
+      //Update edit when classfield_id is not null
+      if(classfield_id != null){
+        $.get("/inc/requests/post/point_details.php", {id: classfield_id}, function(data){
+          if(!jQuery.isEmptyObject(data)){
+            for (const [key, value] of Object.entries(data)) {
+              $(".point-details").find(`:checkbox[value=${value}]`).attr("checked","true");
+            }
+          }
+        })
+      }
+
+
+
+    }else{
+      //Remove card when exist
+      $('.point-details').remove();
+    }
+    
+  });
+}
+

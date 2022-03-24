@@ -111,6 +111,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/new_classfield/controler.php');
                             </div>
 
                         </div>
+                        <div class="details-section col-12"></div>
                         <small>Pola oznaczone <span style="color:red;">*</span> są wymagane.</small>
                     </div>
 

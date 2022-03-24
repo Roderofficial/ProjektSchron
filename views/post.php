@@ -21,13 +21,14 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/post/controler.php');
         var geo_lat = <?php echo json_encode($data['geo_lat']); ?>;
         var geo_long = <?php echo json_encode($data['geo_long']); ?>;
         var post_id = <?php echo json_encode($id); ?>;
+        var post_cat = <?php echo json_encode($data["classfield_categoryid"]); ?>;
     </script>
 </head>
 
 <body>
     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/navbar/navbar.php');
     require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/post/main_post.php');
-    
+
 
     ?>
 
@@ -41,7 +42,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/post/controler.php');
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/build/ol.js"></script>
-    <script src="/assets/libs/owlcarousel/owl.carousel.min.js"></script>    
+    <script src="/assets/libs/owlcarousel/owl.carousel.min.js"></script>
 
     <script src="/assets/libs/fslightbox.js"></script>
     <script src="/assets/libs/autolink.js"></script>
