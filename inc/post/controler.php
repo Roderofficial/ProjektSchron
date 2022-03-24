@@ -24,7 +24,7 @@ $id = end($tmp);
 require_once($_SERVER['DOCUMENT_ROOT'].'/config/database.php');
 $data = $database->select("classfield", 
 ["[>]user" => ["user_id" => "userid"], "[>]classfield_category" => ["classfield_categoryid" => "ctid"]],
-['classfield.title', 'classfield.description', 'classfield.location', 'classfield.enabled', 'classfield.cost', 'classfield.geo_lat', 'classfield.geo_long', 'classfield.created_at', 'classfield_category.category_title','classfield_category.category_icon', "userdata" => ["user.username", "user.userid","user.avatar_hash","user.verified",]],
+['classfield.title', 'classfield.description', 'classfield.location', 'classfield.enabled', "classfield.classfield_categoryid", 'classfield.cost', 'classfield.geo_lat', 'classfield.geo_long', 'classfield.created_at', 'classfield_category.category_title','classfield_category.category_icon', "userdata" => ["user.username", "user.userid","user.avatar_hash","user.verified",]],
 [
     'classfield.id' => htmlspecialchars($id)
 ]
