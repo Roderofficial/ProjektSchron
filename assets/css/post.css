@@ -87,3 +87,10 @@ p.title-near-classfields {
     font-weight: 700;
     color: #444444;
 }
+
+.post-points-detail i{
+    font-size:25px;
+}
+.post-points-detail{
+    font-weight: 600;
+}

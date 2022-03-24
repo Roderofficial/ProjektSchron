@@ -3,6 +3,17 @@
     margin:auto;
     margin-top:20px;
 }
-.map-box{
-    height:200px;
+
+.input-point-group{
+    font-size:17px;
+    font-weight:400;
+}
+
+.input-point-group input[type='checkbox']{
+    font-size:25px;
+    vertical-align:middle;
+}
+
+.input-point-group label{
+    vertical-align:sub;
 }

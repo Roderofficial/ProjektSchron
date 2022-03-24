@@ -146,6 +146,57 @@ function addClassfield(data){
 
 }
 
+//Detail points
+function update_detail_points(classfield_id, cat_id){
+    //Cehck if classfield has detail points
+    $.get("/inc/requests/post/point_details.php", {id: classfield_id}, function(classfield_point_details){
+        if(!jQuery.isEmptyObject(classfield_point_details)){
+            //Get all points in categories
+             $.get("/inc/requests/post/category_details_point.php", {id: cat_id}, function(category_points){
+
+
+                var points_box = $('.post-points-detail');
+                var point_row = $(".post-points-detail .points-rows")
+
+                //Add points
+                for (const [key, value] of Object.entries(category_points)){
+
+                    //Append col
+                    var point = point_row.append(` 
+                    <div class="col-12 col-md-6 mb-2  point" data-pid="${value.id}">
+                        <span class="align-middle"><i class="fa-solid fa-circle-check"></i></span><span class="ms-2">${value.text}</span>
+                    </div>
+                    `)
+
+                    //Check if checked and color change icon
+                    if(classfield_point_details.includes(value.id)){
+                        if(value.background == null){
+                            var point_color = '#430091';
+                        }else{
+                            var point_color = value.background;
+                        }
+                        
+                    }else{
+                        var point_color = '#e4e4e4';
+                    }
+
+
+                    //Replace color in icon
+                    point.find( `[data-pid='${value.id}'] i` ).css( "color", point_color);
+
+                }
+
+                //Remove class d-none from post-points-detail
+                points_box.removeClass("d-none")
+
+             });
+            
+        }
+    })
+
+}
+
 $(() =>{
+    update_detail_points(post_id, post_cat);
     more_classfields();
 })

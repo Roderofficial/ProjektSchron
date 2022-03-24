@@ -85,7 +85,22 @@
 
 
 
-        <!-- DATA AND I PARAMETRY -->
+        <!-- DATA AND PARAMETRY -->
+        <div class="card post-points-detail d-none">
+            <div class="card-body w-100">
+                <!-- END IMAGES -->
+                <h2 class="w-100 desc-title custom-card-text mb-3">CHARAKTERYSTYKA</h2>
+                <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|} points-rows">
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <!-- DATA AND PARAMETRY -->
         <div class="card post-details">
             <div class="card-body w-100">
                 <!-- END IMAGES -->
