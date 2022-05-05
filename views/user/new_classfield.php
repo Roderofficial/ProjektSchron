@@ -111,7 +111,46 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/inc/new_classfield/controler.php');
                             </div>
 
                         </div>
-                        <div class="details-section col-12"></div>
+
+                        <!-- DODATKOWE INFORMACJE -->
+                        <div class="mt-3 details-section col-12 d-inline-block">
+                            <h6 class="card-subtitle mb-2 text-muted">Dodatkowe informacje</h6>
+                            <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                                <div class="col-lg-6 col-12 mb-2">
+                                    <label>Imie zwierzaka</label>
+                                    <input type="text" class="form-control" name="d_pet_name">
+
+                                </div>
+                                <div class="col-lg-6 col-12 mb-2">
+                                    <label>Rasa</label>
+                                    <select class="rasa-select form-control" name="d_breed" id="rasa-select" style="width:100%;" disabled>
+                                        <option value="">Brak informacji</option>
+                                    </select>
+
+                                </div>
+                                <div class="col-lg-6 col-12 mb-2">
+                                    <label>Płeć</label>
+                                    <select class="gender-select form-control" name="d_gender" id="gender-select" style="width:100%;">
+                                        <option value="">Brak informacji</option>
+                                        <option value="0">Ona</option>
+                                        <option value="1">On</option>
+                                    </select>
+
+                                </div>
+                                <div class="col-lg-6 col-12 mb-2">
+                                    <label>Wielkość</label>
+                                    <select class="size-select form-control" name="d_size" id="size-select" style="width:100%;">
+                                        <option value="">Brak informacji</option>
+                                        <option value="1">Bardzo mały</option>
+                                        <option value="2">Mały</option>
+                                        <option value="3">Średni</option>
+                                        <option value="4">Duży</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        </div>
                         <small>Pola oznaczone <span style="color:red;">*</span> są wymagane.</small>
                     </div>
 
