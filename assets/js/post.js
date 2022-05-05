@@ -48,7 +48,7 @@ $(function () {
         })
     });
     map.addLayer(circle_layer);
-    
+
 
 
     $(".placeholder").removeClass("placeholder");
@@ -61,12 +61,14 @@ $("#getcontactbtn").click(function () {
     $(this).prop("disabled", true);
     $.ajax({
         type: "POST",
-        data: {"post_id": post_id},
+        data: {
+            "post_id": post_id
+        },
         url: "/inc/requests/post/contact_details.php",
         success: function (response) {
-            if(response.email != null && response.email != ''){
+            if (response.email != null && response.email != '') {
                 var email_html = `<a href="mailto:${response.email}" class="btn btn-outline-primary"" role="button" aria-disabled="true"><i class="fas fa-envelope me-1"></i> ${response.email}</a>`;
-            }else{
+            } else {
                 var email_html = '';
             }
             console.log(response.email);
@@ -90,9 +92,9 @@ $("#getcontactbtn").click(function () {
                 },
             });
             notyf.error('Wystąpił błąd podczas pobierania danych.');
-            
 
-            
+
+
         }
     });
 
@@ -100,36 +102,36 @@ $("#getcontactbtn").click(function () {
 
 });
 //autolink
-$(".description").html(Autolinker.link($(".description").html(),{
+$(".description").html(Autolinker.link($(".description").html(), {
     newWindow: true,
     urls: true,
     phone: true
 }));
 
 
-function more_classfields(){
-  //Get more classfields
-  $.get( `/inc/requests/more_classfields.php?lat=${geo_lat}&lon=${geo_long}`, function( data ) {
-  data.forEach(function(row) {
-    addClassfield(row);
+function more_classfields() {
+    //Get more classfields
+    $.get(`/inc/requests/more_classfields.php?lat=${geo_lat}&lon=${geo_long}`, function (data) {
+        data.forEach(function (row) {
+            addClassfield(row);
         });
-    }).then(() =>{
+    }).then(() => {
         //Add carousel
-    $(".owl-carousel").owlCarousel({
-        autoWidth:true,
-        margin:10,
-        dots: true,
-        lazyLoad: true,
-        animateIn: true,
-        loop: true,
-    });
+        $(".owl-carousel").owlCarousel({
+            autoWidth: true,
+            margin: 10,
+            dots: true,
+            lazyLoad: true,
+            animateIn: true,
+            loop: true,
+        });
 
     });
 
-    
+
 }
 
-function addClassfield(data){
+function addClassfield(data) {
     $(".owl-carousel").append(
         `
                 <div class="card classfield-card-preview">
@@ -147,19 +149,23 @@ function addClassfield(data){
 }
 
 //Detail points
-function update_detail_points(classfield_id, cat_id){
+function update_detail_points(classfield_id, cat_id) {
     //Cehck if classfield has detail points
-    $.get("/inc/requests/post/point_details.php", {id: classfield_id}, function(classfield_point_details){
-        if(!jQuery.isEmptyObject(classfield_point_details)){
+    $.get("/inc/requests/post/point_details.php", {
+        id: classfield_id
+    }, function (classfield_point_details) {
+        if (!jQuery.isEmptyObject(classfield_point_details)) {
             //Get all points in categories
-             $.get("/inc/requests/post/category_details_point.php", {id: cat_id}, function(category_points){
+            $.get("/inc/requests/post/category_details_point.php", {
+                id: cat_id
+            }, function (category_points) {
 
 
                 var points_box = $('.post-points-detail');
                 var point_row = $(".post-points-detail .points-rows")
 
                 //Add points
-                for (const [key, value] of Object.entries(category_points)){
+                for (const [key, value] of Object.entries(category_points)) {
 
                     //Append col
                     var point = point_row.append(` 
@@ -169,34 +175,74 @@ function update_detail_points(classfield_id, cat_id){
                     `)
 
                     //Check if checked and color change icon
-                    if(classfield_point_details.includes(value.id)){
-                        if(value.background == null){
+                    if (classfield_point_details.includes(value.id)) {
+                        if (value.background == null) {
                             var point_color = '#430091';
-                        }else{
+                        } else {
                             var point_color = value.background;
                         }
-                        
-                    }else{
+
+                    } else {
                         var point_color = '#e4e4e4';
                     }
 
 
                     //Replace color in icon
-                    point.find( `[data-pid='${value.id}'] i` ).css( "color", point_color);
+                    point.find(`[data-pid='${value.id}'] i`).css("color", point_color);
 
                 }
 
                 //Remove class d-none from post-points-detail
                 points_box.removeClass("d-none")
 
-             });
-            
+            });
+
         }
     })
 
 }
 
-$(() =>{
+//Update table with pet details 
+function update_table() {
+
+    var gender = ['Ona', 'On'];
+    var pet_size = [null, "Bardzo mały", "Mały", "Średni", "Duży"];
+
+    //Generate TD to insert into table
+    function generate_td(row_name, row_value) {
+        var td =
+            `
+        <tr>
+            <th scope="row">${row_name}</th>
+            <td>${row_value}</td>
+        </tr>
+
+        `
+        return td;
+    }
+
+    //Show table to update
+    var table = $('.details-table')
+    var table_body = table.children('tbody');
+    table.removeClass("d-none");
+
+
+    //Append data into tbody in table
+    if (post_name != null) table_body.append(generate_td("Imię", post_name))
+    if (post_breed != null) table_body.append(generate_td("Rasa", post_breed))
+    if (post_gender != null) table_body.append(generate_td("Płeć", gender[parseInt(post_gender)]))
+    if (post_size != null) table_body.append(generate_td("Wielkość", pet_size[parseInt(post_size)]))
+    
+
+    //Append location
+    table_body.append(generate_td("Lokalizacja", `${post_location} (${post_wojewodztwo})`))
+
+
+
+}
+
+$(() => {
     update_detail_points(post_id, post_cat);
+    update_table();
     more_classfields();
 })

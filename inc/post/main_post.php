@@ -80,6 +80,9 @@
                     </p>
                 </div>
 
+
+
+
             </div>
         </div>
 
@@ -107,6 +110,14 @@
                 <h2 class="w-100 desc-title custom-card-text">OPIS</h2>
                 <p class="description w-100 placeholder"><?= nl2br($data["description"]) ?></p>
 
+                <!-- TABLE WITH INFORMATION -->
+                <div class="table-information">
+                    <table class="table table-sm table-bordered table-striped d-none details-table">
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 

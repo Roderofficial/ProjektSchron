@@ -22,6 +22,12 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/post/controler.php');
         var geo_long = <?php echo json_encode($data['geo_long']); ?>;
         var post_id = <?php echo json_encode($id); ?>;
         var post_cat = <?php echo json_encode($data["classfield_categoryid"]); ?>;
+        var post_breed = <?php echo json_encode($data["breed"]); ?>;
+        var post_gender = <?php echo json_encode($data["gender"]); ?>;
+        var post_name = <?php echo json_encode($data["name"]); ?>;
+        var post_size = <?php echo json_encode($data["size"]); ?>;
+        var post_location = <?php echo json_encode($data["location"]); ?>;
+        var post_wojewodztwo = <?php echo json_encode($data["wojewodztwo"]); ?>;
     </script>
 </head>
 
