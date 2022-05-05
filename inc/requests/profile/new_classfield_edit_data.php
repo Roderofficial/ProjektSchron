@@ -15,7 +15,7 @@
     $data = $database->select(
         "classfield",
         ["[>]user" => ["user_id" => "userid"], "[>]classfield_category" => ["classfield_categoryid" => "ctid"]],
-        ['classfield.title', 'classfield.description', 'classfield.cost', 'classfield.osm_id', 'classfield.location' ,'classfield.phone','classfield.email', 'classfield.classfield_categoryid'],
+        ['classfield.title', 'classfield.description', 'classfield.cost', 'classfield.osm_id', 'classfield.location' ,'classfield.phone','classfield.email', 'classfield.classfield_categoryid', 'classfield.name', 'classfield.breed', 'classfield.gender', 'classfield.size'],
         [
             'classfield.id' => htmlspecialchars($_GET["id"]),
             'classfield.user_id' => $_SESSION["userdata"]["userid"]
