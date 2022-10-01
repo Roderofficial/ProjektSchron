@@ -3,5 +3,4 @@ Sitemap: https://getpet.pl/sitemap-post.xml
 User-agent: *
 Disallow: /u/
 Disallow: /error/
-
-
+Disallow: /administrator/
